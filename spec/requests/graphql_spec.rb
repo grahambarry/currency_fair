@@ -17,7 +17,7 @@ RSpec.describe "POST /graphql" do
       operationName: operation_name
     )
 
-    expect(VueGraphqlAuthExampleSchema).to have_received(:execute).with(
+    expect(GrahamBarryUxDeveloperSchema).to have_received(:execute).with(
       query,
       variables: variables,
       context: { current_user: nil },
@@ -32,7 +32,7 @@ RSpec.describe "POST /graphql" do
 
     post graphql_path(format: :json)
 
-    expect(VueGraphqlAuthExampleSchema).to have_received(:execute).with(
+    expect(GrahamBarryUxDeveloperSchema).to have_received(:execute).with(
       nil,
       variables: {},
       context: { current_user: user },
@@ -44,7 +44,7 @@ RSpec.describe "POST /graphql" do
   # ...
 
   def stub_schema_execute
-    allow(VueGraphqlAuthExampleSchema).
+    allow(GrahamBarryUxDeveloperSchema).
       to receive(:execute).and_return(success: true)
   end
 

@@ -5,7 +5,7 @@ module GqlSupport
     add_account(context: context, account: account)
 
     query = GraphQL::Query.new(
-      VueGraphqlAuthExampleSchema,
+      GrahamBarryUxDeveloperSchema,
       query,
       variables: variables.deep_stringify_keys,
       context: context

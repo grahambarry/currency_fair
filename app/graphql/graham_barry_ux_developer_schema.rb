@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class VueGraphqlAuthExampleSchema < GraphQL::Schema
+class GrahamBarryUxDeveloperSchema < GraphQL::Schema
   mutation(Types::MutationType)
   query(Types::QueryType)
 

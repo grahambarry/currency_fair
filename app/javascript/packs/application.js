@@ -31,7 +31,7 @@ Vue.mixin(ApplicationSettingsMixin);
 
 document.addEventListener('DOMContentLoaded', () => {
   new Vue({
-    el: '#vg-application',
+    el: '#gbux-application',
     name: 'AppRoot',
     apolloProvider,
     router,

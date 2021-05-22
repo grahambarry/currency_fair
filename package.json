@@ -1,8 +1,8 @@
 {
-  "name": "vue_graphql_auth_example",
+  "name": "graham_barry_ux_developer",
   "version": "1.0.0",
   "description": "### Description",
-  "author": "James Klein",
+  "author": "Graham Barry",
   "scripts": {
     "dev": "bin/webpack-dev-server"
   },
@@ -53,6 +53,6 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kleinjm/vue_graphql_auth_example.git"
+    "url": ""
   }
 }

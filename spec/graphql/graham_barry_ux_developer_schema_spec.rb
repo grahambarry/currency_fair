@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe VueGraphqlAuthExampleSchema do
+RSpec.describe GrahamBarryUxDeveloperSchema do
   describe ".resolve_type" do
     it "resolves the given type dynamically" do
       [User].each do |klass|

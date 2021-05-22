@@ -7,7 +7,7 @@ class GraphqlController < ApplicationController
     operation_name = params[:operationName]
     context = { current_user: current_user }
 
-    result = VueGraphqlAuthExampleSchema.execute(
+    result = GrahamBarryUxDeveloperSchema.execute(
       query,
       variables: variables,
       context: context,

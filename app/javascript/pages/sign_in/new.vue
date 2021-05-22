@@ -1,5 +1,6 @@
 <template>
   <div class="row">
+    <Alerts :alerts="errors" />
     <div class="col-md-6 offset-md-3">
       <h2>Sign in</h2>
       <form class="simple_form form-horizontal">

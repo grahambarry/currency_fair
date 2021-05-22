@@ -4,9 +4,8 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby File.read("./.ruby-version").strip
-
+gem 'mimemagic', github: 'mimemagicrb/mimemagic', ref: '01f92d86d15d85cfd0f20dabd025dcbd36a8a60f'
 gem "bootsnap", ">= 1.1.0", require: false
-gem "bootstrap", ">= 4.3.1"
 gem "coffee-rails", "~> 4.2"
 gem "devise"
 gem "devise-token_authenticatable"
@@ -24,7 +23,6 @@ gem "webpacker", "~> 4.0.7"
 
 group :development do
   gem "graphiql-rails"
-  gem "jcop", "~> 0.2.4", git: "https://github.com/kleinjm/jcop"
   gem "listen", ">= 3.0.5", "< 3.2"
   gem "pry"
   gem "pry-nav"

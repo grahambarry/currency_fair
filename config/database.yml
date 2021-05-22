@@ -24,13 +24,13 @@ default: &default
 
 development:
   <<: *default
-  database: vue_graphql_auth_example_development
+  database: graham_barry_ux_developer
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
-  #username: vue_graphql_auth_example
+  #username: graham_barry_ux_developer
 
   # The password associated with the postgres role (username).
   #password:
@@ -58,7 +58,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: vue_graphql_auth_example_test
+  database: graham_barry_ux_developer_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -81,6 +81,6 @@ test:
 #
 production:
   <<: *default
-  database: vue_graphql_auth_example_production
-  username: vue_graphql_auth_example
-  password: <%= ENV['VUE_GRAPHQL_AUTH_EXAMPLE_DATABASE_PASSWORD'] %>
+  database: graham_barry_ux_developer_production
+  username: graham_barry_ux_developer
+  password: <%= ENV['GRAHAM_BARRY_UX_DEVELOPER_DATABASE_PASSWORD'] %>

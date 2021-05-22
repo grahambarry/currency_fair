@@ -5,7 +5,7 @@ require "rails_helper"
 RSpec.describe Mutations::SignIn do
   it "signs in the user" do
     variables = {
-      "email" => "kleinjm007@gmail.com",
+      "email" => "grahambarry@live.ie",
       "password" => "testing123"
     }
     user = create(:user, **variables.symbolize_keys)
@@ -23,7 +23,7 @@ RSpec.describe Mutations::SignIn do
 
   it "raises error for incorrect email/password" do
     variables = {
-      "email" => "kleinjm007@gmail.com",
+      "email" => "grahambarry@live.ie",
       "password" => "testing123"
     }
     user_variables = { email: variables["email"], password: "wrongpass1" }
@@ -38,7 +38,7 @@ RSpec.describe Mutations::SignIn do
 
   it "raises error for missing user" do
     variables = {
-      "email" => "kleinjm007@gmail.com",
+      "email" => "grahambarry@live.ie",
       "password" => "testing123"
     }
 

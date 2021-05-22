@@ -21,6 +21,11 @@ let routes = [
     name: 'sign_up',
     component: SignUp,
   },
+  {
+    path: '/sign_out',
+    name: 'sign_out',
+    component: SignIn,
+  },
 ];
 
 routes = _map(routes, (route) => {
