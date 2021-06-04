@@ -4,8 +4,10 @@
     <hr class="invisible" />
     <div v-if="signedIn">
       <div>
-        <LineJoiner/>
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        <div id="parallaxid" class="parallax">
+          <LineJoiner sectionId="first"/>
+          <LineJoiner sectionId="second"/>
+        </div>
       </div>
     </div>
     <div v-else>
@@ -23,3 +25,25 @@ export default {
   name: 'HomePage',
 };
 </script>
+<style scoped>
+  body {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+  }
+  /* Parallax Styles Media Query */
+  @media screen and (min-width: 1000px) {
+    @supports ((perspective: 1px) and (not (-webkit-overflow-scrolling: touch))) {
+      .parallax {
+        height: 1000px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        -webkit-perspective: 300px;
+        perspective: 300px;
+        -webkit-perspective-origin-x: 100%;
+        perspective-origin-x: 100%;
+        font-size: 200%;
+      }
+    }
+  }
+</style>
