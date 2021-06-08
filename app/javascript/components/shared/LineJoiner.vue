@@ -1,14 +1,15 @@
 <template>
   <div>
     <div ref="scrollyg" id="scrollyg" class="parallax__group">
-      <div class="parallax__layer parallax__layer--back">
-        <div ref="leftId" id="leftId" class="nodes" style="background-color:blue">
+      <div class="parallax__layer parallax__layer--back" :style="{backgroundColor: bodyColor}">
+        <div ref="leftId" id="leftId" class="nodes" :style="{backgroundColor: annotateColor}">
         </div>
       </div>
-      <div class="parallax__layer parallax__layer--base">
-        <div ref="rightId" id="rightId" class="nodes" style="margin-left:500px;background-color:red">
-        </div>
-        <div class="nodes" style="margin-top:1200px;background-color:red;">
+      <div class="parallax__layer parallax__layer--fore">
+        <div ref="rightId" id="rightId" class="annotation_panel" :style="{backgroundColor: annotateColor}">
+          <h1 :style="{color: h1Color}">Gestalt Principles</h1>
+          <h2 :style="{color: h2Color}">Alkimii</h2>
+          <p :style="{color: pColor}">One of a series of dashboards displaying employee metrics.</p>
         </div>
       </div>
     </div>
@@ -22,10 +23,33 @@ export default {
       type: String,
       default: ''
     },
+    annotateColor: {
+      type: String,
+      required: true
+    },
+    bodyColor: {
+      type: String,
+      required: true
+    },
+    h1Color: {
+      type: String,
+      required: true
+    },
+    h2Color: {
+      type: String,
+      required: true
+    },
+    pColor: {
+      type: String,
+      required: true
+    },
+    flipped: {
+      type: Boolean,
+      default: true
+    },
   },
   data() {
     return {
-      sectionId: '',
       markerInitialized: false,
       shape: null,
       strokeWidth: 5,
@@ -33,36 +57,37 @@ export default {
       nodeTwo: null,
       elmnt: null,
       path: null,
-      flipped: false,
       parallaxScroller: null,
       parallaxH: null,
     }
   },
   mounted() {
-    this.nodeOne = this.$refs.leftId
-    this.nodeTwo = this.$refs.rightId
+    if (this.flipped) {
+      this.nodeOne = this.$refs.leftId
+      this.nodeTwo = this.$refs.rightId
+    }
+    else {
+      this.nodeOne = this.$refs.rightId
+      this.nodeTwo = this.$refs.leftId
+    }
     this.elmnt = this.$refs.scrollyg
     this.parallaxScroller = document.getElementById("parallaxid")
-    console.log(this.parallaxH + ' this.parallaxH')
     this.$nextTick(() => {
-      this.connectDivs(this.nodeOne, this.nodeTwo, 'green', 0.5)
+      this.connectDivs(this.nodeOne, this.nodeTwo, this.annotateColor, 0.5)
       this.parallaxScroller.addEventListener('scroll', this.handleScroll)
 		})
   },
   methods: {
     handleScroll: function() {
-      this.strokeWidth = 10
-      this.connectDivs(this.nodeOne, this.nodeTwo, 'green', 0.5)
+      this.connectDivs(this.nodeOne, this.nodeTwo, this.annotateColor, 0.5)
     },
     createSVG: function() {
       let svg = document.getElementById("svg-canvas")
-      console.log('svg' + svg)
       if (null == svg) {
         svg = document.createElementNS("http://www.w3.org/2000/svg", "svg")
         svg.setAttribute('id', 'svg-canvas')
         svg.setAttribute('style', 'pointer-events:none;position:absolute; top:0px; left:0px')
         svg.setAttribute('width', document.body.clientWidth)
-        console.log(this.parallaxH + ' this.parallaxH')
         svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink")
         document.body.appendChild(svg)
       }
@@ -85,11 +110,7 @@ export default {
     },
     findAbsolutePosition: function(htmlElement) {
       let x = htmlElement.offsetLeft
-      console.log('x' + x)
       let y = htmlElement.getBoundingClientRect().top
-
-      console.log('y' + y)
-      console.log('bounding ' + htmlElement.getBoundingClientRect().top)
       for (let x = 0, y = 0, el=htmlElement; 
         el != null; 
         el = el.offsetParent) {
@@ -103,25 +124,22 @@ export default {
     },
     connectDivs: function(leftId, rightId, color, tension) {
       this.parallaxH = this.parallaxScroller.getBoundingClientRect().height
-      console.log('triggered')
-      console.log(this.parallaxH + ' this.parallaxH')
       let scrollx = this.elmnt.scrollLeft
       let scrolly = this.elmnt.scrollTop
 
       let leftPos = this.findAbsolutePosition(leftId)
       let x1 = leftPos.x
-      console.log(x1 + 'x1')
       let y1 = leftPos.y
-      console.log(y1 + 'y1')
-      x1 += leftId.offsetWidth
+      if (this.flipped) {
+        x1 += leftId.offsetWidth
+      }
       y1 += (leftId.offsetHeight / 2)
-
       let rightPos = this.findAbsolutePosition(rightId)
       let x2 = rightPos.x
       let y2 = rightPos.y - scrolly
       x2 += (rightId.offsetWidth / 2)
       y2 += (rightId.offsetHeight / 2)
-      this.flipped ? this.drawCircle(x2, y2, 3, color) : this.drawCircle(x1, y1, 3, color)
+      this.flipped ? this.drawCircle(x2, y2, this.strokeWidth / 2, color) : this.drawCircle(x1, y1, this.strokeWidth / 2, color)
       this.createTriangleMarker(color)
       this.drawCurvedLine(x1, y1, x2, y2, color, tension)
     },
@@ -186,13 +204,40 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
   /* Parallax Styles Media Query */
   @media screen and (min-width: 1000px) {
     @supports ((perspective: 1px) and (not (-webkit-overflow-scrolling: touch))) {
       .nodes{
         height:50px;
         width:50px;
+      }
+      .annotation_panel {
+        position: absolute;
+        top: 51px;
+        right: 80px;
+        border-radius: 19px;
+        padding: 12px 19px 13px 19px;
+        width: 368px;
+        margin-top: 51px;
+        font-weight: 400;
+        h1, h2, p {
+          font-family: 'Questrial', sans-serif;
+          margin: 0px;
+          padding: 0px;
+        }
+        h1 {
+          font-size: 30px;
+          line-height: 37px;
+        }
+        h2 {
+          font-size: 24px;
+          line-height: 30px;
+        }
+        p {
+          font-size: 15px;
+          line-height: 19px; 
+        }
       }
       .parallax__layer {
         position: absolute;
@@ -225,9 +270,9 @@ export default {
       }
       .parallax__group {
         position: relative;
-        height: 100vh;
         -webkit-transform-style: preserve-3d;
         transform-style: preserve-3d;
+        height: 200vh;
       }
     }
   }

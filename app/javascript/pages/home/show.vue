@@ -5,8 +5,48 @@
     <div v-if="signedIn">
       <div>
         <div id="parallaxid" class="parallax">
-          <LineJoiner sectionId="first"/>
-          <LineJoiner sectionId="second"/>
+          <LineJoiner sectionId="first" 
+                      bodyColor="#AAEFE8" 
+                      annotateColor="#CFFFFA"
+                      h1Color="#493EBE"
+                      h2Color="#7BE0BC"
+                      pColor="#2B618A"
+                      :flipped="false"/>
+          <LineJoiner sectionId="second" 
+                      bodyColor="#7BE0BC" 
+                      annotateColor="#CFFFFA"
+                      h1Color="#493EBE"
+                      h2Color="#7BE0BC"
+                      pColor="#2B618A"
+                      :flipped="false"/>
+          <LineJoiner sectionId="third" 
+                      bodyColor="#AAEFE8" 
+                      annotateColor="#CFFFFA"
+                      h1Color="#493EBE"
+                      h2Color="#7BE0BC"
+                      pColor="#2B618A"
+                      :flipped="false"/>
+          <LineJoiner sectionId="fourth" 
+                      bodyColor="#7BE0BC" 
+                      annotateColor="#CFFFFA"
+                      h1Color="#493EBE"
+                      h2Color="#7BE0BC"
+                      pColor="#2B618A"
+                      :flipped="false"/>
+          <LineJoiner sectionId="fifth" 
+                      bodyColor="#AAEFE8" 
+                      annotateColor="#CFFFFA"
+                      h1Color="#493EBE"
+                      h2Color="#7BE0BC"
+                      pColor="#2B618A"
+                      :flipped="false"/>
+          <LineJoiner sectionId="sixth" 
+                      bodyColor="#7BE0BC" 
+                      annotateColor="#CFFFFA"
+                      h1Color="#493EBE"
+                      h2Color="#7BE0BC"
+                      pColor="#2B618A"
+                      :flipped="false"/>
         </div>
       </div>
     </div>
@@ -30,12 +70,13 @@ export default {
     overflow: hidden;
     margin: 0;
     padding: 0;
+    overflow: hidden;
   }
   /* Parallax Styles Media Query */
   @media screen and (min-width: 1000px) {
     @supports ((perspective: 1px) and (not (-webkit-overflow-scrolling: touch))) {
       .parallax {
-        height: 1000px;
+        height: 100vh;
         overflow-x: hidden;
         overflow-y: auto;
         -webkit-perspective: 300px;
