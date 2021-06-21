@@ -205,46 +205,52 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+  .nodes{
+    height:50px;
+    width:50px;
+  }
+  .annotation_panel {
+    position: absolute;
+    top: 51px;
+    right: 80px;
+    border-radius: 19px;
+    padding: 12px 19px 13px 19px;
+    width: 368px;
+    margin-top: 51px;
+    font-weight: 400;
+    h1, h2, p {
+      font-family: 'Questrial', sans-serif;
+      margin: 0px;
+      padding: 0px;
+    }
+    h1 {
+      font-size: 30px;
+      line-height: 37px;
+    }
+    h2 {
+      font-size: 24px;
+      line-height: 30px;
+    }
+    p {
+      font-size: 15px;
+      line-height: 19px; 
+    }
+  }
+  .parallax__group {
+    position: relative;
+    height: 200vh;
+  }
+  .parallax__layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
   /* Parallax Styles Media Query */
   @media screen and (min-width: 1000px) {
     @supports ((perspective: 1px) and (not (-webkit-overflow-scrolling: touch))) {
-      .nodes{
-        height:50px;
-        width:50px;
-      }
-      .annotation_panel {
-        position: absolute;
-        top: 51px;
-        right: 80px;
-        border-radius: 19px;
-        padding: 12px 19px 13px 19px;
-        width: 368px;
-        margin-top: 51px;
-        font-weight: 400;
-        h1, h2, p {
-          font-family: 'Questrial', sans-serif;
-          margin: 0px;
-          padding: 0px;
-        }
-        h1 {
-          font-size: 30px;
-          line-height: 37px;
-        }
-        h2 {
-          font-size: 24px;
-          line-height: 30px;
-        }
-        p {
-          font-size: 15px;
-          line-height: 19px; 
-        }
-      }
       .parallax__layer {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
         -webkit-transform-origin-x: 100%;
         transform-origin-x: 100%;
       }
@@ -269,10 +275,8 @@ export default {
         z-index: 1;
       }
       .parallax__group {
-        position: relative;
         -webkit-transform-style: preserve-3d;
         transform-style: preserve-3d;
-        height: 200vh;
       }
     }
   }

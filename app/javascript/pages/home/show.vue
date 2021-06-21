@@ -72,13 +72,15 @@ export default {
     padding: 0;
     overflow: hidden;
   }
+  .parallax {
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100vh;
+  }
   /* Parallax Styles Media Query */
   @media screen and (min-width: 1000px) {
     @supports ((perspective: 1px) and (not (-webkit-overflow-scrolling: touch))) {
       .parallax {
-        height: 100vh;
-        overflow-x: hidden;
-        overflow-y: auto;
         -webkit-perspective: 300px;
         perspective: 300px;
         -webkit-perspective-origin-x: 100%;
