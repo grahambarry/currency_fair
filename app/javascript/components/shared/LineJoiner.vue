@@ -6,7 +6,7 @@
         </div>
       </div>
       <div class="parallax__layer parallax__layer--fore">
-        <div ref="rightId" class="annotation_panel" v-bind:style="annotateStyles">
+        <div ref="rightId" class="annotation_panel" :style="annotateStyles">
           <h1 :style="{color: h1Color}">Gestalt Principles</h1>
           <h2 :style="{color: h2Color}">Alkimii</h2>
           <p :style="{color: pColor}">One of a series of dashboards displaying employee metrics.</p>
