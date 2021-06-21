@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div ref="scrollyg" id="scrollyg" class="parallax__group">
+    <div ref="scrollyg" class="parallax__group">
       <div class="parallax__layer parallax__layer--back" :style="{backgroundColor: bodyColor}">
-        <div ref="leftId" id="leftId" class="nodes" :style="{backgroundColor: annotateColor}">
+        <div ref="leftId" class="nodes" :style="{backgroundColor: annotateColor}">
         </div>
       </div>
       <div class="parallax__layer parallax__layer--fore">
-        <div ref="rightId" id="rightId" class="annotation_panel" :style="{backgroundColor: annotateColor}">
+        <div ref="rightId" class="annotation_panel" v-bind:style="annotateStyles">
           <h1 :style="{color: h1Color}">Gestalt Principles</h1>
           <h2 :style="{color: h2Color}">Alkimii</h2>
           <p :style="{color: pColor}">One of a series of dashboards displaying employee metrics.</p>
@@ -43,10 +43,14 @@ export default {
       type: String,
       required: true
     },
-    flipped: {
+    isLeft: {
       type: Boolean,
-      default: true
+      default: false
     },
+    indent: {
+      type: Number,
+      default: 80
+    }
   },
   data() {
     return {
@@ -59,27 +63,39 @@ export default {
       path: null,
       parallaxScroller: null,
       parallaxH: null,
+      styleAnnotation: {
+        backgroundColor: this.annotateColor,
+        right: this.indent + 'px',
+        left: 'unset'
+      }
+    }
+  },
+  computed: {
+    annotateStyles: function () {
+      if (this.isLeft) {
+        this.styleAnnotation.right = 'unset'
+        this.styleAnnotation.left = this.indent + 'px'
+      }
+      return this.styleAnnotation
     }
   },
   mounted() {
-    if (this.flipped) {
-      this.nodeOne = this.$refs.leftId
-      this.nodeTwo = this.$refs.rightId
-    }
-    else {
-      this.nodeOne = this.$refs.rightId
-      this.nodeTwo = this.$refs.leftId
-    }
     this.elmnt = this.$refs.scrollyg
+    this.nodeOne = this.$refs.rightId
+    this.nodeTwo = this.$refs.leftId
     this.parallaxScroller = document.getElementById("parallaxid")
+    console.log('this.parallaxScroller ' + this.parallaxScroller)
+    setTimeout(() => this.handleScroll(), 10)
     this.$nextTick(() => {
-      this.connectDivs(this.nodeOne, this.nodeTwo, this.annotateColor, 0.5)
       this.parallaxScroller.addEventListener('scroll', this.handleScroll)
 		})
   },
   methods: {
     handleScroll: function() {
-      this.connectDivs(this.nodeOne, this.nodeTwo, this.annotateColor, 0.5)
+      this.$nextTick(() => {
+        console.log('NODES' + this.nodeOne + this.nodeTwo)
+        this.connectDivs(this.nodeOne, this.nodeTwo, this.annotateColor, 0.5)
+      })
     },
     createSVG: function() {
       let svg = document.getElementById("svg-canvas")
@@ -109,8 +125,10 @@ export default {
       return shape
     },
     findAbsolutePosition: function(htmlElement) {
-      let x = htmlElement.offsetLeft
+      let x = htmlElement.getBoundingClientRect().left
+      console.log('xa ' + x)
       let y = htmlElement.getBoundingClientRect().top
+      console.log('ya ' + y)
       for (let x = 0, y = 0, el=htmlElement; 
         el != null; 
         el = el.offsetParent) {
@@ -124,22 +142,24 @@ export default {
     },
     connectDivs: function(leftId, rightId, color, tension) {
       this.parallaxH = this.parallaxScroller.getBoundingClientRect().height
+      console.log('this.parallaxH ' + this.parallaxH)
       let scrollx = this.elmnt.scrollLeft
+      console.log('scrollx ' + scrollx)
       let scrolly = this.elmnt.scrollTop
+      console.log('scrolly ' + scrolly)
 
       let leftPos = this.findAbsolutePosition(leftId)
       let x1 = leftPos.x
       let y1 = leftPos.y
-      if (this.flipped) {
-        x1 += leftId.offsetWidth
-      }
       y1 += (leftId.offsetHeight / 2)
-      let rightPos = this.findAbsolutePosition(rightId)
+      this.isLeft ? x1 += (leftId.offsetWidth) : ''
+      const rightPos = this.findAbsolutePosition(rightId)
+      console.log('rightPos' + rightPos.x)
       let x2 = rightPos.x
       let y2 = rightPos.y - scrolly
       x2 += (rightId.offsetWidth / 2)
       y2 += (rightId.offsetHeight / 2)
-      this.flipped ? this.drawCircle(x2, y2, this.strokeWidth / 2, color) : this.drawCircle(x1, y1, this.strokeWidth / 2, color)
+      this.drawCircle(x1, y1, this.strokeWidth / 2, color)
       this.createTriangleMarker(color)
       this.drawCurvedLine(x1, y1, x2, y2, color, tension)
     },
@@ -212,7 +232,6 @@ export default {
   .annotation_panel {
     position: absolute;
     top: 51px;
-    right: 80px;
     border-radius: 19px;
     padding: 12px 19px 13px 19px;
     width: 368px;

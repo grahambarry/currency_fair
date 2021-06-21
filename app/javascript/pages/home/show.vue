@@ -11,22 +11,20 @@
                       h1Color="#493EBE"
                       h2Color="#7BE0BC"
                       pColor="#2B618A"
-                      :flipped="false"/>
+                      :isLeft="true"/>
           <LineJoiner sectionId="second" 
                       bodyColor="#7BE0BC" 
                       annotateColor="#CFFFFA"
                       h1Color="#493EBE"
                       h2Color="#7BE0BC"
-                      pColor="#2B618A"
-                      :flipped="false"/>
+                      pColor="#2B618A"/>
           <LineJoiner sectionId="third" 
                       bodyColor="#AAEFE8" 
                       annotateColor="#CFFFFA"
                       h1Color="#493EBE"
                       h2Color="#7BE0BC"
-                      pColor="#2B618A"
-                      :flipped="false"/>
-          <LineJoiner sectionId="fourth" 
+                      pColor="#2B618A"/>
+          <!-- <LineJoiner sectionId="fourth" 
                       bodyColor="#7BE0BC" 
                       annotateColor="#CFFFFA"
                       h1Color="#493EBE"
@@ -46,7 +44,7 @@
                       h1Color="#493EBE"
                       h2Color="#7BE0BC"
                       pColor="#2B618A"
-                      :flipped="false"/>
+                      :flipped="false"/> -->
         </div>
       </div>
     </div>

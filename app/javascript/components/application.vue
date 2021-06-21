@@ -3,11 +3,7 @@
     <div class="wrapper">
       <Navbar></Navbar>
       <main class="container content">
-        <div class="row">
-          <div class="col-md-10 offset-md-1">
-            <router-view/>
-          </div>
-        </div>
+        <router-view/>
       </main>
     </div>
   </div>
