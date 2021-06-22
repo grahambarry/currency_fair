@@ -2,14 +2,14 @@
   <div>
     <div ref="scrollyg" class="parallax__group">
       <div class="parallax__layer parallax__layer--fore">
-        <div ref="rightId" class="annotation_panel" :style="annotateStyles">
-          <h1 :style="{color: h1Color}">Gestalt Principles</h1>
-          <h2 :style="{color: h2Color}">Alkimii</h2>
-          <p :style="{color: pColor}">One of a series of dashboards displaying employee metrics.</p>
+        <div v-if="isAnnotated" ref="rightId" class="annotation_panel" :style="annotateStyles">
+          <h1 :style="{color: h1Color}">{{ heading }}</h1>
+          <h2 :style="{color: h2Color}">{{ subheading }}</h2>
+          <p :style="{color: pColor}">{{ paragraph }}</p>
         </div>
       </div>
       <div :class="`parallax__layer parallax__layer--${layer}`" :style="{backgroundColor: bodyColor}">
-        <img ref="leftId" :src="image" class="image">
+        <img ref="leftId" :src="image" class="image" :class="{small, large, isLeft}">
       </div>
     </div>
   </div>
@@ -24,7 +24,8 @@ export default {
     },
     image: {
       type: String,
-      required: true,
+      required: false,
+      default: ''
     },
     layer: {
       type: String,
@@ -32,11 +33,23 @@ export default {
     },
     annotateColor: {
       type: String,
-      required: true
+      required: false
     },
     bodyColor: {
       type: String,
       required: true
+    },
+    heading: {
+      type: String,
+      required: false
+    },
+    subheading: {
+      type: String,
+      required: false
+    },
+    paragraph: {
+      type: String,
+      required: false
     },
     h1Color: {
       type: String,
@@ -54,9 +67,25 @@ export default {
       type: Boolean,
       default: false
     },
-    indent: {
+    large: {
+      type: Boolean,
+      default: false
+    },
+    small: {
+      type: Boolean,
+      default: false
+    },
+    indentAnnotation: {
       type: Number,
       default: 80
+    },
+    xArrow: {
+      type: Number,
+      default: 1,
+    },
+    yArrow: {
+      type: Number,
+      default: 2,
     }
   },
   data() {
@@ -72,16 +101,24 @@ export default {
       parallaxH: null,
       styleAnnotation: {
         backgroundColor: this.annotateColor,
-        right: this.indent + 'px',
+        right: this.indentAnnotation + 'px',
         left: 'unset'
       }
     }
   },
   computed: {
+    isAnnotated: function() {
+      if (this.heading || this.subheading || this.paragraph) {
+        return true
+      }
+      else {
+        return false
+      }
+    },
     annotateStyles: function () {
       if (this.isLeft) {
         this.styleAnnotation.right = 'unset'
-        this.styleAnnotation.left = this.indent + 'px'
+        this.styleAnnotation.left = this.indentAnnotation + 'px'
       }
       return this.styleAnnotation
     }
@@ -93,10 +130,12 @@ export default {
     this.nodeTwo = this.$refs.leftId
     this.parallaxScroller = document.getElementById("parallaxid")
     console.log('this.parallaxScroller ' + this.parallaxScroller)
-    setTimeout(() => this.handleScroll(), 10)
-    this.$nextTick(() => {
-      this.parallaxScroller.addEventListener('scroll', this.handleScroll)
-		})
+    if (this.isAnnotated) {
+      setTimeout(() => this.handleScroll(), 10)
+      this.$nextTick(() => {
+        this.parallaxScroller.addEventListener('scroll', this.handleScroll)
+      })
+    }
   },
   methods: {
     handleScroll: function() {
@@ -165,7 +204,7 @@ export default {
       console.log('rightPos' + rightPos.x)
       let x2 = rightPos.x
       let y2 = rightPos.y - scrolly
-      x2 += (rightId.offsetWidth)
+      this.isLeft ? x2 += (0 + rightId.offsetWidth - rightId.offsetWidth / this.xArrow) : x2 += (rightId.offsetWidth - rightId.offsetWidth + rightId.offsetWidth / this.xArrow)
       y2 += (rightId.offsetHeight / 2)
       this.drawCircle(x1, y1, this.strokeWidth / 2, color)
       this.createTriangleMarker(color)
@@ -235,9 +274,20 @@ export default {
 <style lang="scss" scoped>
   img.image {
     position: absolute;
-    width: 52vw;
-    top: 14%;
-    margin-left: 80px;
+    &.small {
+      width: 52vw;
+      top: 14%;
+      left: 80px;
+    }
+    &.large {
+      width: 90vw;
+      top: 14%;
+      left: 80px;
+    }
+    &.isLeft {
+      right: 80px !important;
+      left: unset !important;
+    }
   }
   .annotation_panel {
     position: absolute;

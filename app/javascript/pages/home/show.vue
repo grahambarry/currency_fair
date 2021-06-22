@@ -2,29 +2,40 @@
   <div v-if="signedIn">
     <div v-if="signedIn" id="parallaxid" class="parallax">
       <LineJoiner sectionId="first" 
+                  small
                   bodyColor="#AAEFE8" 
                   annotateColor="#CFFFFA"
                   h1Color="#493EBE"
                   h2Color="#7BE0BC"
                   pColor="#2B618A"
-                  :isLeft="false"
+                  isLeft
+                  xArrow="2"
                   layer="deep"
+                  heading="Gestalt Principles"
+                  subheading="Alkimii"
+                  paragraph="One of a series of dashboards displaying employee metrics."
                   :image="require(`../../assets/alkStaffDashImg.png`)"/>
-      <LineJoiner sectionId="second" 
-                  bodyColor="#7BE0BC" 
-                  annotateColor="#CFFFFA"
+      <LineJoiner sectionId="second"
+                  large
                   h1Color="#493EBE"
-                  h2Color="#7BE0BC"
-                  pColor="#2B618A"
+                  xArrow="2"
+                  annotateColor="#CFFFFA"
+                  heading="Gestalt Principles"
+                  bodyColor="#7BE0BC" 
                   layer="back"
                   :image="require(`../../assets/alkStaffDashImg.png`)"/>
-      <LineJoiner sectionId="third" 
+      <LineJoiner sectionId="third"
+                  small
+                  xArrow="2"
                   bodyColor="#AAEFE8" 
                   annotateColor="#CFFFFA"
                   h1Color="#493EBE"
                   h2Color="#7BE0BC"
                   pColor="#2B618A"
-                  layer="deep"
+                  layer="base"
+                  heading="Gestalt Principles"
+                  subheading="Alkimii"
+                  paragraph="One of a series of dashboards displaying employee metrics."
                   :image="require(`../../assets/alkStaffDashImg.png`)"/>
       <!-- <LineJoiner sectionId="fourth" 
                   bodyColor="#7BE0BC" 
@@ -84,6 +95,7 @@ export default {
         -webkit-perspective-origin-x: 100%;
         perspective-origin-x: 100%;
         font-size: 200%;
+        padding-top: 300px;
       }
     }
   }
