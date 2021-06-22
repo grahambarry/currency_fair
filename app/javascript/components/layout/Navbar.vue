@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar">
     <div class="container">
       <div id="navbarSupportedContent" class="collapse navbar-collapse">
         <ul v-if="signedIn" class="navbar-nav">

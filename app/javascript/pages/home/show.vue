@@ -1,58 +1,52 @@
 <template>
-  <div>
-    <h1>This page is behind Auth</h1>
-    <hr class="invisible" />
-    <div v-if="signedIn">
-      <div>
-        <div id="parallaxid" class="parallax">
-          <LineJoiner sectionId="first" 
-                      bodyColor="#AAEFE8" 
-                      annotateColor="#CFFFFA"
-                      h1Color="#493EBE"
-                      h2Color="#7BE0BC"
-                      pColor="#2B618A"
-                      :isLeft="false"
-                      layer="deep"
-                      :image="require(`../../assets/alkStaffDashImg.png`)"/>
-          <LineJoiner sectionId="second" 
-                      bodyColor="#7BE0BC" 
-                      annotateColor="#CFFFFA"
-                      h1Color="#493EBE"
-                      h2Color="#7BE0BC"
-                      pColor="#2B618A"
-                      layer="back"
-                      :image="require(`../../assets/alkStaffDashImg.png`)"/>
-          <LineJoiner sectionId="third" 
-                      bodyColor="#AAEFE8" 
-                      annotateColor="#CFFFFA"
-                      h1Color="#493EBE"
-                      h2Color="#7BE0BC"
-                      pColor="#2B618A"
-                      layer="deep"
-                      :image="require(`../../assets/alkStaffDashImg.png`)"/>
-          <!-- <LineJoiner sectionId="fourth" 
-                      bodyColor="#7BE0BC" 
-                      annotateColor="#CFFFFA"
-                      h1Color="#493EBE"
-                      h2Color="#7BE0BC"
-                      pColor="#2B618A"
-                      :flipped="false"/>
-          <LineJoiner sectionId="fifth" 
-                      bodyColor="#AAEFE8" 
-                      annotateColor="#CFFFFA"
-                      h1Color="#493EBE"
-                      h2Color="#7BE0BC"
-                      pColor="#2B618A"
-                      :flipped="false"/>
-          <LineJoiner sectionId="sixth" 
-                      bodyColor="#7BE0BC" 
-                      annotateColor="#CFFFFA"
-                      h1Color="#493EBE"
-                      h2Color="#7BE0BC"
-                      pColor="#2B618A"
-                      :flipped="false"/> -->
-        </div>
-      </div>
+  <div v-if="signedIn">
+    <div v-if="signedIn" id="parallaxid" class="parallax">
+      <LineJoiner sectionId="first" 
+                  bodyColor="#AAEFE8" 
+                  annotateColor="#CFFFFA"
+                  h1Color="#493EBE"
+                  h2Color="#7BE0BC"
+                  pColor="#2B618A"
+                  :isLeft="false"
+                  layer="deep"
+                  :image="require(`../../assets/alkStaffDashImg.png`)"/>
+      <LineJoiner sectionId="second" 
+                  bodyColor="#7BE0BC" 
+                  annotateColor="#CFFFFA"
+                  h1Color="#493EBE"
+                  h2Color="#7BE0BC"
+                  pColor="#2B618A"
+                  layer="back"
+                  :image="require(`../../assets/alkStaffDashImg.png`)"/>
+      <LineJoiner sectionId="third" 
+                  bodyColor="#AAEFE8" 
+                  annotateColor="#CFFFFA"
+                  h1Color="#493EBE"
+                  h2Color="#7BE0BC"
+                  pColor="#2B618A"
+                  layer="deep"
+                  :image="require(`../../assets/alkStaffDashImg.png`)"/>
+      <!-- <LineJoiner sectionId="fourth" 
+                  bodyColor="#7BE0BC" 
+                  annotateColor="#CFFFFA"
+                  h1Color="#493EBE"
+                  h2Color="#7BE0BC"
+                  pColor="#2B618A"
+                  :flipped="false"/>
+      <LineJoiner sectionId="fifth" 
+                  bodyColor="#AAEFE8" 
+                  annotateColor="#CFFFFA"
+                  h1Color="#493EBE"
+                  h2Color="#7BE0BC"
+                  pColor="#2B618A"
+                  :flipped="false"/>
+      <LineJoiner sectionId="sixth" 
+                  bodyColor="#7BE0BC" 
+                  annotateColor="#CFFFFA"
+                  h1Color="#493EBE"
+                  h2Color="#7BE0BC"
+                  pColor="#2B618A"
+                  :flipped="false"/> -->
     </div>
     <div v-else>
       <h1>You are not signed in so you CANNOT View it!</h1>
