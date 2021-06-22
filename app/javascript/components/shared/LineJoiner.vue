@@ -1,16 +1,15 @@
 <template>
   <div>
     <div ref="scrollyg" class="parallax__group">
-      <div class="parallax__layer parallax__layer--back" :style="{backgroundColor: bodyColor}">
-        <div ref="leftId" class="nodes" :style="{backgroundColor: annotateColor}">
-        </div>
-      </div>
       <div class="parallax__layer parallax__layer--fore">
         <div ref="rightId" class="annotation_panel" :style="annotateStyles">
           <h1 :style="{color: h1Color}">Gestalt Principles</h1>
           <h2 :style="{color: h2Color}">Alkimii</h2>
           <p :style="{color: pColor}">One of a series of dashboards displaying employee metrics.</p>
         </div>
+      </div>
+      <div :class="`parallax__layer parallax__layer--${layer}`" :style="{backgroundColor: bodyColor}">
+        <img ref="leftId" :src="image" class="image">
       </div>
     </div>
   </div>
@@ -22,6 +21,14 @@ export default {
     sectionId: {
       type: String,
       default: ''
+    },
+    image: {
+      type: String,
+      required: true,
+    },
+    layer: {
+      type: String,
+      default: 'deep',
     },
     annotateColor: {
       type: String,
@@ -80,6 +87,7 @@ export default {
     }
   },
   mounted() {
+    console.log('IMAGE IMAGE ' + this.image)
     this.elmnt = this.$refs.scrollyg
     this.nodeOne = this.$refs.rightId
     this.nodeTwo = this.$refs.leftId
@@ -157,7 +165,7 @@ export default {
       console.log('rightPos' + rightPos.x)
       let x2 = rightPos.x
       let y2 = rightPos.y - scrolly
-      x2 += (rightId.offsetWidth / 2)
+      x2 += (rightId.offsetWidth)
       y2 += (rightId.offsetHeight / 2)
       this.drawCircle(x1, y1, this.strokeWidth / 2, color)
       this.createTriangleMarker(color)
@@ -225,9 +233,11 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  .nodes{
-    height:50px;
-    width:50px;
+  img.image {
+    position: absolute;
+    width: 52vw;
+    top: 14%;
+    margin-left: 80px;
   }
   .annotation_panel {
     position: absolute;
@@ -257,7 +267,8 @@ export default {
   }
   .parallax__group {
     position: relative;
-    height: 200vh;
+    height: 130vh;
+    margin-top: 130vh;
   }
   .parallax__layer {
     position: absolute;
