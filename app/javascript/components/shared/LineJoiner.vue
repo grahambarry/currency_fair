@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div ref="scrollyg" class="parallax__group">
+    <div ref="scrollyg" class="parallax__group" :style="{height: sectionHeight + 'vh'}">
       <div class="parallax__layer parallax__layer--fore">
         <div v-if="isAnnotated" ref="rightId" class="annotation_panel" :style="annotateStyles">
           <h1 :style="{color: h1Color}">{{ heading }}</h1>
@@ -8,8 +8,8 @@
           <p :style="{color: pColor}">{{ paragraph }}</p>
         </div>
       </div>
-      <div :class="`parallax__layer parallax__layer--${layer}`" :style="{backgroundColor: bodyColor}">
-        <img ref="leftId" :src="image" class="image" :class="{small, large, isLeft}">
+      <div :id="`plxgroup-${this.sectionId}`" :class="`parallax__layer parallax__layer--${layer}`" :style="{backgroundColor: bodyColor}">
+        <img ref="leftId" :src="image" class="image" :class="{small, large, isLeft}" :style="imageStyles">
       </div>
     </div>
   </div>
@@ -21,6 +21,10 @@ export default {
     sectionId: {
       type: String,
       default: ''
+    },
+    sectionHeight: {
+      type: Number,
+      default: 170
     },
     image: {
       type: String,
@@ -86,6 +90,10 @@ export default {
     yArrow: {
       type: Number,
       default: 2,
+    },
+    yImage: {
+      type: Number,
+      default: 0,
     }
   },
   data() {
@@ -121,6 +129,9 @@ export default {
         this.styleAnnotation.left = this.indentAnnotation + 'px'
       }
       return this.styleAnnotation
+    },
+    imageStyles: function () {
+      return `transform: translateY(${this.yImage}%)`
     }
   },
   mounted() {
@@ -272,6 +283,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+  @import 'app/assets/stylesheets/design_vars';
   img.image {
     position: absolute;
     &.small {
@@ -298,7 +310,7 @@ export default {
     margin-top: 51px;
     font-weight: 400;
     h1, h2, p {
-      font-family: 'Questrial', sans-serif;
+      font-family: $font-family-1;
       margin: 0px;
       padding: 0px;
     }
@@ -317,8 +329,6 @@ export default {
   }
   .parallax__group {
     position: relative;
-    height: 130vh;
-    margin-top: 130vh;
   }
   .parallax__layer {
     position: absolute;

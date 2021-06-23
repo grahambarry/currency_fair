@@ -10,7 +10,9 @@
                   pColor="#2B618A"
                   isLeft
                   xArrow="2"
+                  yImage="50"
                   layer="deep"
+                  sectionHeight="200"
                   heading="Gestalt Principles"
                   subheading="Alkimii"
                   paragraph="One of a series of dashboards displaying employee metrics."
@@ -23,16 +25,19 @@
                   heading="Gestalt Principles"
                   bodyColor="#7BE0BC" 
                   layer="back"
+                  sectionHeight="100"
                   :image="require(`../../assets/alkStaffDashImg.png`)"/>
       <LineJoiner sectionId="third"
                   small
                   xArrow="2"
+                  yImage="15"
                   bodyColor="#AAEFE8" 
                   annotateColor="#CFFFFA"
                   h1Color="#493EBE"
                   h2Color="#7BE0BC"
                   pColor="#2B618A"
                   layer="base"
+                  sectionHeight="125"
                   heading="Gestalt Principles"
                   subheading="Alkimii"
                   paragraph="One of a series of dashboards displaying employee metrics."
@@ -82,6 +87,11 @@ export default {
     overflow: hidden;
   }
   .parallax {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     overflow-x: hidden;
     overflow-y: auto;
     height: 100vh;
@@ -95,7 +105,6 @@ export default {
         -webkit-perspective-origin-x: 100%;
         perspective-origin-x: 100%;
         font-size: 200%;
-        padding-top: 300px;
       }
     }
   }

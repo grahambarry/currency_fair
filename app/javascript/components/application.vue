@@ -2,7 +2,7 @@
   <div>
     <div class="wrapper">
       <Navbar></Navbar>
-      <main class="container content">
+      <main class="main-container">
         <router-view/>
       </main>
     </div>
@@ -17,3 +17,8 @@ export default {
   components: { Navbar },
 };
 </script>
+<style>
+  .main-container {
+    z-index: 3;
+  }
+</style>
