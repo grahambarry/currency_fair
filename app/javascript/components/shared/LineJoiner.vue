@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div ref="scrollyg" class="parallax__group" :style="{height: sectionHeight + 'vh'}">
+    <div ref="scrollyg" class="parallax__group" :style="{height: bgHeight + 'vh'}">
       <div class="parallax__layer parallax__layer--fore">
         <div v-if="isAnnotated" ref="rightId" class="annotation_panel" :style="annotateStyles">
           <h1 :style="{color: h1Color}">{{ heading }}</h1>
@@ -8,7 +8,7 @@
           <p :style="{color: pColor}">{{ paragraph }}</p>
         </div>
       </div>
-      <div :id="`plxgroup-${this.sectionId}`" :class="`parallax__layer parallax__layer--${layer}`" :style="{backgroundColor: bodyColor}">
+      <div :id="`plxgroup-${this.sectionId}`" :class="`parallax__layer parallax__layer--${layer}`" :style="bgStyles">
         <img ref="leftId" :src="image" class="image" :class="{small, large, isLeft}" :style="imageStyles">
       </div>
     </div>
@@ -79,6 +79,10 @@ export default {
       type: Boolean,
       default: false
     },
+    faded: {
+      type: Boolean,
+      default: false
+    },
     indentAnnotation: {
       type: Number,
       default: 80
@@ -132,6 +136,19 @@ export default {
     },
     imageStyles: function () {
       return `transform: translateY(${this.yImage}%)`
+    },
+    bgStyles: function () {
+      if (this.faded) {
+        return `box-shadow: 0px -26px 150px 90px ${this.bodyColor};
+                backgroundColor: ${this.bodyColor}`
+      } 
+      else {
+        return `box-shadow: none;
+                backgroundColor: ${this.bodyColor}`
+      }
+    },
+    bgHeight: function () {
+      return this.faded ? +this.sectionHeight + +90 : this.sectionHeight
     }
   },
   mounted() {

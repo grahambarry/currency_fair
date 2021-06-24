@@ -13,6 +13,21 @@ default: &default
   # Reload manifest.json on all requests so we reload latest compiled packs
   cache_manifest: false
 
+  static_assets_extensions:
+    - .jpg
+    - .jpeg
+    - .png
+    - .webp
+    - .gif
+    - .tiff
+    - .ico
+    - .svg
+    - .eot
+    - .otf
+    - .ttf
+    - .woff
+    - .woff2
+
   extensions:
     - .vue
     - .js
@@ -23,6 +38,7 @@ default: &default
     - .module.scss
     - .module.css
     - .png
+    - .webp
     - .svg
     - .gif
     - .jpeg

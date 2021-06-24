@@ -3,6 +3,7 @@
     <div v-if="signedIn" id="parallaxid" class="parallax">
       <LineJoiner sectionId="first" 
                   small
+                  faded
                   bodyColor="#AAEFE8" 
                   annotateColor="#CFFFFA"
                   h1Color="#493EBE"
@@ -10,7 +11,7 @@
                   pColor="#2B618A"
                   isLeft
                   xArrow="2"
-                  yImage="50"
+                  yImage="65"
                   layer="deep"
                   sectionHeight="200"
                   heading="Gestalt Principles"
@@ -19,6 +20,7 @@
                   :image="require(`../../assets/alkStaffDashImg.png`)"/>
       <LineJoiner sectionId="second"
                   large
+                  faded
                   h1Color="#493EBE"
                   xArrow="2"
                   annotateColor="#CFFFFA"
@@ -29,6 +31,7 @@
                   :image="require(`../../assets/alkStaffDashImg.png`)"/>
       <LineJoiner sectionId="third"
                   small
+                  faded
                   xArrow="2"
                   yImage="15"
                   bodyColor="#AAEFE8" 
@@ -41,7 +44,7 @@
                   heading="Gestalt Principles"
                   subheading="Alkimii"
                   paragraph="One of a series of dashboards displaying employee metrics."
-                  :image="require(`../../assets/alkStaffDashImg.png`)"/>
+                  :image="require(`../../assets/alkStaffDashImg.webp`)"/>
       <!-- <LineJoiner sectionId="fourth" 
                   bodyColor="#7BE0BC" 
                   annotateColor="#CFFFFA"
