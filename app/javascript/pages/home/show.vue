@@ -17,7 +17,7 @@
                   heading="Gestalt Principles"
                   subheading="Alkimii"
                   paragraph="One of a series of dashboards displaying employee metrics."
-                  :image="require(`../../assets/alkStaffDashImg.png`)"/>
+                  :images="gestaltImages"/>
       <LineJoiner sectionId="second"
                   large
                   faded
@@ -28,7 +28,7 @@
                   bodyColor="#7BE0BC" 
                   layer="back"
                   sectionHeight="100"
-                  :image="require(`../../assets/alkStaffDashImg.png`)"/>
+                  :images="gestaltImages"/>
       <LineJoiner sectionId="third"
                   small
                   faded
@@ -44,7 +44,7 @@
                   heading="Gestalt Principles"
                   subheading="Alkimii"
                   paragraph="One of a series of dashboards displaying employee metrics."
-                  :image="require(`../../assets/alkStaffDashImg.webp`)"/>
+                  :images="gestaltImages"/>
       <!-- <LineJoiner sectionId="fourth" 
                   bodyColor="#7BE0BC" 
                   annotateColor="#CFFFFA"
@@ -80,6 +80,14 @@ export default {
     LineJoiner
   },
   name: 'HomePage',
+  data() {
+    return {
+      gestaltImages: [
+        { minWidth: '1400px', src: 'alkStaffDashImg.webp', type: 'webp'},
+        { minWidth: '900px', src: 'alkStaffDashImg.png', type: 'png'}
+      ],
+    } 
+  }
 };
 </script>
 <style scoped>

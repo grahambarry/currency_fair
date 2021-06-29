@@ -9,13 +9,21 @@
         </div>
       </div>
       <div :id="`plxgroup-${this.sectionId}`" :class="`parallax__layer parallax__layer--${layer}`" :style="bgStyles">
-        <img ref="leftId" :src="image" class="image" :class="{small, large, isLeft}" :style="imageStyles">
+        <PictureSrcSet :images="images" 
+                       ref="leftId"
+                       class="image" 
+                       :class="{small, large, isLeft}" 
+                       :style="imageStyles"/>
       </div>
     </div>
   </div>
 </template>
 <script>
+import PictureSrcSet from "~components/shared/PictureSrcSet";
 export default {
+  components: {
+    PictureSrcSet
+  },
   name: 'LineJoiner',
   props: {
     sectionId: {
@@ -98,6 +106,10 @@ export default {
     yImage: {
       type: Number,
       default: 0,
+    },
+    images: {
+      type: Array,
+      required: true,
     }
   },
   data() {
@@ -155,7 +167,7 @@ export default {
     console.log('IMAGE IMAGE ' + this.image)
     this.elmnt = this.$refs.scrollyg
     this.nodeOne = this.$refs.rightId
-    this.nodeTwo = this.$refs.leftId
+    this.nodeTwo = this.$refs.leftId.$refs.root
     this.parallaxScroller = document.getElementById("parallaxid")
     console.log('this.parallaxScroller ' + this.parallaxScroller)
     if (this.isAnnotated) {
@@ -301,23 +313,7 @@ export default {
 </script>
 <style lang="scss" scoped>
   @import 'app/assets/stylesheets/design_vars';
-  img.image {
-    position: absolute;
-    &.small {
-      width: 52vw;
-      top: 14%;
-      left: 80px;
-    }
-    &.large {
-      width: 90vw;
-      top: 14%;
-      left: 80px;
-    }
-    &.isLeft {
-      right: 80px !important;
-      left: unset !important;
-    }
-  }
+
   .annotation_panel {
     position: absolute;
     top: 51px;
