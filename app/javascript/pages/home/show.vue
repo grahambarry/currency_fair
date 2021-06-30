@@ -83,7 +83,7 @@ export default {
   data() {
     return {
       gestaltImages: [
-        { maxWidth: '1900px', src: require(`../../assets/alkStaffDashImg.webp`), type: 'webp'},
+        { maxWidth: '1900px', src: require(`../../assets/alkStaffDashImg.png`), type: 'png'},
         { maxWidth: '1900px', src: require(`../../assets/alkStaffDashImg.png`), type: 'png'},
       ],
     } 
