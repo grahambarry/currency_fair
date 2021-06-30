@@ -105,6 +105,7 @@ export default {
     bottom: 0;
     overflow-x: hidden;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     height: 100vh;
     -webkit-perspective: 300px;
     perspective: 300px;
