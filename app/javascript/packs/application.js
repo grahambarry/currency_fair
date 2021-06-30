@@ -23,9 +23,15 @@ import Vuex from 'vuex';
 import apolloProvider from './configuration/apolloProvider';
 import createStore from 'store/baseStore.js';
 import router from './configuration/router';
+import lazyLoad from 'vue-webp-lazyload'
 
 Vue.use(VueRouter);
 Vue.use(Vuex);
+Vue.use(lazyLoad,{
+  loadImg:'/static/loading.svg',
+  failImg:'/static/fail.png',
+  openWebp: true
+})
 
 Vue.mixin(ApplicationSettingsMixin);
 

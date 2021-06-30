@@ -31,6 +31,7 @@
     "vue-loader": "^15.7.0",
     "vue-router": "^3.0.1",
     "vue-template-compiler": "^2.5.16",
+    "vue-webp-lazyload": "^1.1.0",
     "vuex": "^3.0.1",
     "vuex-persistedstate": "^2.5.4"
   },

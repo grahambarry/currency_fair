@@ -1,5 +1,9 @@
 <template>
-  <img ref="root" :srcset="sources">
+  <img ref="root" v-webp="{image: images[1].src, webp: images[0].src}" class="image">
+  <!-- <picture>
+    <source v-for="(image, index) in images" :key="index" class="image" :src="`${image.src}`" :media="(`maxWidth: ${image.maxWidth}`)" :type="`image/${image.type}`" >
+    <img ref="root" :srcset="sources">
+  </picture> -->
 </template>
 
 <script>
@@ -25,8 +29,15 @@
 </script>
 <style lang="scss">
   @import 'app/assets/stylesheets/design_vars';
-  img.image {
+  .image {
     position: absolute;
+    picture {
+      display: block;
+    }
+    img {
+      width: 100%;
+      display: block;
+    }
     &.small {
       width: 52vw;
       top: 14%;
