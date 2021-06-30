@@ -1,0 +1,111 @@
+[ { "section": [
+  { "sectionId": "001",
+    "small": true,
+    "faded": true,
+    "bodyColor": "#AAEFE8", 
+    "annotateColor": "#CFFFFA",
+    "h1Color": "#493EBE",
+    "h2Color": "#7BE0BC",
+    "pColor": "#2B618A",
+    "isLeft": true,
+    "xArrow": "2",
+    "yImage": "65",
+    "layer": "deep",
+    "sectionHeight": "200",
+    "heading": "Gestalt Principles",
+    "subheading": "Alkimii",
+    "paragraph": "One of a series of dashboards displaying employee metrics.",
+    "images": [
+      { "maxWidth": "1100px", "src": "alkStaffDashImg.webp", "type": "webp"},
+      { "maxWidth": "1900px", "src": "alkStaffDashImg.png", "type": "png"}
+    ]
+  }
+]},
+{ "section": [
+  { "sectionId": "002",
+    "large": true,
+    "faded": true,
+    "bodyColor": "#7BE0BC", 
+    "annotateColor": "#CFFFFA",
+    "h1Color": "#493EBE",
+    "h2Color": "#7BE0BC",
+    "pColor": "#2B618A",
+    "xArrow": "2",
+    "layer": "back",
+    "sectionHeight": "100",
+    "heading": "Gestalt Principles",
+    "subheading": "Alkimii",
+    "paragraph": "One of a series of dashboards displaying employee metrics.",
+    "images": [
+      { "maxWidth": "1100px", "src": "alkStaffDashImg.webp", "type": "webp"},
+      { "maxWidth": "1900px", "src": "alkStaffDashImg.png", "type": "png"}
+    ]
+  }
+]},
+{ "section": [
+  { "sectionId": "003",
+    "small": true,
+    "faded": true,
+    "bodyColor": "#AAEFE8", 
+    "annotateColor": "#CFFFFA",
+    "h1Color": "#493EBE",
+    "h2Color": "#7BE0BC",
+    "pColor": "#2B618A",
+    "xArrow": "2",
+    "yImage": "15",
+    "layer": "base",
+    "sectionHeight": "125",
+    "heading": "Gestalt Principles",
+    "subheading": "Alkimii",
+    "paragraph": "One of a series of dashboards displaying employee metrics.",
+    "images": [
+      { "maxWidth": "1100px", "src": "alkStaffDashImg.webp", "type": "webp"},
+      { "maxWidth": "1900px", "src": "alkStaffDashImg.png", "type": "png"}
+    ]
+  }
+]},
+{ "section": [
+  { "sectionId": "004",
+    "width": "38",
+    "small": true,
+    "isLeft": true,
+    "bodyColor": "#7BE0BC", 
+    "annotateColor": "#CFFFFA",
+    "h1Color": "#493EBE",
+    "h2Color": "#7BE0BC",
+    "pColor": "#2B618A",
+    "xArrow": "2",
+    "yImage": "0",
+    "layer": "back",
+    "sectionHeight": "125",
+    "heading": "Gestalt Principles",
+    "subheading": "Alkimii",
+    "paragraph": "One of a series of dashboards displaying employee metrics.",
+    "images": [
+      { "maxWidth": "1100px", "src": "alkStaffDashImg.webp", "type": "webp"},
+      { "maxWidth": "1900px", "src": "alkStaffDashImg.png", "type": "png"}
+    ]
+  },
+  { "sectionId": "005",
+    "width": "62",
+    "small": true,
+    "isLeft": true,
+    "bodyColor": "#AAEFE8", 
+    "annotateColor": "#CFFFFA",
+    "h1Color": "#493EBE",
+    "h2Color": "#7BE0BC",
+    "pColor": "#2B618A",
+    "xArrow": "2",
+    "yImage": "15",
+    "layer": "base",
+    "sectionHeight": "125",
+    "heading": "Gestalt Principles",
+    "subheading": "Alkimii",
+    "paragraph": "One of a series of dashboards displaying employee metrics.",
+    "images": [
+      { "maxWidth": "1100px", "src": "alkStaffDashImg.webp", "type": "webp"},
+      { "maxWidth": "1900px", "src": "alkStaffDashImg.png", "type": "png"}
+    ]
+  }
+]}
+]

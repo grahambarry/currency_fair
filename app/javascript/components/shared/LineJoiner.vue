@@ -1,25 +1,23 @@
 <template>
-  <div>
-    <div ref="scrollyg" class="parallax__group" :style="{height: bgHeight + 'vh'}">
-      <div class="parallax__layer parallax__layer--fore">
-        <div v-if="isAnnotated" ref="rightId" class="annotation_panel" :style="annotateStyles">
-          <h1 :style="{color: h1Color}">{{ heading }}</h1>
-          <h2 :style="{color: h2Color}">{{ subheading }}</h2>
-          <p :style="{color: pColor}">{{ paragraph }}</p>
-        </div>
+  <div ref="scrollyg" class="parallax__group" :style="{width: widthPanel, height: bgHeight + 'vh'}">
+    <div :class="`parallax__layer parallax__layer--fore ${foreMod}`">
+      <div v-if="isAnnotated" ref="rightId" class="annotation_panel" :style="annotateStyles">
+        <h1 :style="{color: h1Color}">{{ heading }}</h1>
+        <h2 :style="{color: h2Color}">{{ subheading }}</h2>
+        <p :style="{color: pColor}">{{ paragraph }}</p>
       </div>
-      <div :id="`plxgroup-${this.sectionId}`" :class="`parallax__layer parallax__layer--${layer}`" :style="bgStyles">
-        <PictureSrcSet :images="images" 
-                       ref="leftId"
-                       class="image" 
-                       :class="{small, large, isLeft}" 
-                       :style="imageStyles"/>
-      </div>
+    </div>
+    <div :id="`plxgroup-${this.sectionId}`" :class="`parallax__layer parallax__layer--${layer} ${bgMod}`" :style="bgStyles">
+      <PictureSrcSet :images="images" 
+                      ref="leftId"
+                      class="image" 
+                      :class="{small, large, isLeft}" 
+                      :style="imageStyles"/>
     </div>
   </div>
 </template>
 <script>
-import PictureSrcSet from "~components/shared/PictureSrcSet";
+import PictureSrcSet from "~components/shared/PictureSrcSet"
 export default {
   components: {
     PictureSrcSet
@@ -110,7 +108,11 @@ export default {
     images: {
       type: Array,
       required: true,
-    }
+    },
+    width: {
+      type: Number,
+      default: 100,
+    },
   },
   data() {
     return {
@@ -146,8 +148,27 @@ export default {
       }
       return this.styleAnnotation
     },
+    bgMod: function () {
+      if (this.width !== 100) {
+        return `${this.layer}-mod`
+      } 
+      else {
+        return ''
+      }
+    },
+    foreMod: function () {
+      if (this.width !== 100) {
+        return 'fore-mod'
+      } 
+      else {
+        return ''
+      }
+    },
     imageStyles: function () {
       return `transform: translateY(${this.yImage}%)`
+    },
+    widthPanel: function () {
+      return this.width + '%'
     },
     bgStyles: function () {
       if (this.faded) {
@@ -342,6 +363,7 @@ export default {
   }
   .parallax__group {
     position: relative;
+    width: 100%;
   }
   .parallax__layer {
     position: absolute;
@@ -385,6 +407,18 @@ export default {
   .parallax__layer--fore {
     -webkit-transform: translateZ(90px) scale(.7);
     transform: translateZ(90px) scale(.7);
+  }
+  .fore-mod {
+    -webkit-transform: translateZ(10px) scale(0.7);
+    transform: translateZ(10px) scale(0.7);
+  }
+  .back-mod {
+    -webkit-transform: translateZ(-100px) scale(2);
+    transform: translateZ(-100px) scale(2);
+  }
+  .deep-mod {
+    -webkit-transform: translateZ(-200px) scale(3);
+    transform: translateZ(-200px) scale(3);
   }
   /* Parallax Styles Media Query */
   // @media screen and (min-width: 1000px) {

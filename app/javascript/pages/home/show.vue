@@ -1,50 +1,51 @@
 <template>
   <div v-if="signedIn">
     <div v-if="signedIn" id="parallaxid" class="parallax">
-      <LineJoiner sectionId="first" 
-                  small
-                  faded
-                  bodyColor="#AAEFE8" 
-                  annotateColor="#CFFFFA"
-                  h1Color="#493EBE"
-                  h2Color="#7BE0BC"
-                  pColor="#2B618A"
-                  isLeft
-                  xArrow="2"
-                  yImage="65"
-                  layer="deep"
-                  sectionHeight="200"
-                  heading="Gestalt Principles"
-                  subheading="Alkimii"
-                  paragraph="One of a series of dashboards displaying employee metrics."
-                  :images="gestaltImages"/>
-      <LineJoiner sectionId="second"
-                  large
-                  faded
-                  h1Color="#493EBE"
-                  xArrow="2"
-                  annotateColor="#CFFFFA"
-                  heading="Gestalt Principles"
-                  bodyColor="#7BE0BC" 
-                  layer="back"
-                  sectionHeight="100"
-                  :images="gestaltImages"/>
-      <LineJoiner sectionId="third"
-                  small
-                  faded
-                  xArrow="2"
-                  yImage="15"
-                  bodyColor="#AAEFE8" 
-                  annotateColor="#CFFFFA"
-                  h1Color="#493EBE"
-                  h2Color="#7BE0BC"
-                  pColor="#2B618A"
-                  layer="base"
-                  sectionHeight="125"
-                  heading="Gestalt Principles"
-                  subheading="Alkimii"
-                  paragraph="One of a series of dashboards displaying employee metrics."
-                  :images="gestaltImages"/>
+      <div v-for="(section, index) in workSections" :key="index" :class="section.section.length > 1 ? 'amm-flex-row' : ''">
+        <LineJoiner v-for="(subSection, i) in section.section " :key="i"
+                    :sectionId="subSection.sectionId"
+                    :width="subSection.width"
+                    :small="subSection.small"
+                    :large="subSection.large"
+                    :faded="subSection.faded"
+                    :bodyColor="subSection.bodyColor"
+                    :annotateColor="subSection.annotateColor"
+                    :h1Color="subSection.h1Color"
+                    :h2Color="subSection.h2Color"
+                    :pColor="subSection.pColor"
+                    :isLeft="subSection.isLeft"
+                    :xArrow="subSection.xArrow"
+                    :yImage="subSection.yImage"
+                    :layer="subSection.layer"
+                    :sectionHeight="subSection.sectionHeight"
+                    :heading="subSection.heading"
+                    :subheading="subSection.subheading"
+                    :paragraph="subSection.paragraph"
+                    :images="subSection.images"/>
+      </div>
+      <!-- <div class="amm-flex-row">
+        <LineJoiner v-for="(subsections, index) in section" :key="index"
+            :width="width"
+            :sectionId="section.sectionId"
+            :small="section.small"
+            :large="section.large"
+            :faded="section.faded"
+            :bodyColor="section.bodyColor"
+            :annotateColor="section.annotateColor"
+            :h1Color="section.h1Color"
+            :h2Color="section.h2Color"
+            :pColor="section.pColor"
+            :isLeft="section.isLeft"
+            :xArrow="section.xArrow"
+            :yImage="section.yImage"
+            :layer="section.layer"
+            :sectionHeight="section.sectionHeight"
+            :heading="section.heading"
+            :subheading="section.subheading"
+            :paragraph="section.paragraph"
+            :images="section.images"/>
+
+      </div> -->
       <!-- <LineJoiner sectionId="fourth" 
                   bodyColor="#7BE0BC" 
                   annotateColor="#CFFFFA"
@@ -74,6 +75,7 @@
 </template>
 <script>
 import LineJoiner from '~components/shared/LineJoiner'
+import WorkSections from '~components/json/WorkSections.json'
 
 export default {
   components: {
@@ -83,18 +85,25 @@ export default {
   data() {
     return {
       gestaltImages: [
-        { maxWidth: '1100px', src: require(`../../assets/alkStaffDashImg.webp`), type: 'webp'},
-        { maxWidth: '1900px', src: require(`../../assets/alkStaffDashImg.png`), type: 'png'},
+        { maxWidth: '1100px', src: 'alkStaffDashImg.webp', type: 'webp'},
+        { maxWidth: '1900px', src: 'alkStaffDashImg.png', type: 'png'},
       ],
+      workSections: WorkSections,
     } 
   }
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
+  @import 'app/assets/stylesheets/placeholders/flex-helpers';
   body {
     overflow: hidden;
     margin: 0;
     padding: 0;
+    overflow: hidden;
+  }
+  .amm-flex-row {
+    @extend %amm-flex-row;
+    height: 120vh;
     overflow: hidden;
   }
   .parallax {
