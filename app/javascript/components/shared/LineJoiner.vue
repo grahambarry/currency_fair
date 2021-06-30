@@ -350,37 +350,60 @@ export default {
     right: 0;
     bottom: 0;
   }
-  /* Parallax Styles Media Query */
-  @media screen and (min-width: 1000px) {
-    @supports ((perspective: 1px) and (not (-webkit-overflow-scrolling: touch))) {
-      .parallax__layer {
-        -webkit-transform-origin-x: 100%;
-        transform-origin-x: 100%;
-      }
-      .parallax__layer--base {
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
-        z-index: 4;
-      }
-      .parallax__layer--back {
-        -webkit-transform: translateZ(-300px) scale(2);
-        transform: translateZ(-300px) scale(2);
-        z-index: 3;
-      }
-      .parallax__layer--deep {
-        -webkit-transform: translateZ(-600px) scale(3);
-        transform: translateZ(-600px) scale(3);
-        z-index: 2;
-      }
-      .parallax__layer--fore {
-        -webkit-transform: translateZ(90px) scale(.7);
-        transform: translateZ(90px) scale(.7);
-        z-index: 1;
-      }
-      .parallax__group {
-        -webkit-transform-style: preserve-3d;
-        transform-style: preserve-3d;
-      }
-    }
+  .parallax__layer--base {
+    z-index: 4;
   }
+  .parallax__layer--back {
+    z-index: 3;
+  }
+  .parallax__layer--deep {
+    z-index: 2;
+  }
+  .parallax__layer--fore {
+    z-index: 1;
+  }
+  .parallax__group {
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
+  .parallax__layer {
+    -webkit-transform-origin-x: 100%;
+    transform-origin-x: 100%;
+  }
+  .parallax__layer--base {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+  .parallax__layer--back {
+    -webkit-transform: translateZ(-300px) scale(2);
+    transform: translateZ(-300px) scale(2);
+  }
+  .parallax__layer--deep {
+    -webkit-transform: translateZ(-600px) scale(3);
+    transform: translateZ(-600px) scale(3);
+  }
+  .parallax__layer--fore {
+    -webkit-transform: translateZ(90px) scale(.7);
+    transform: translateZ(90px) scale(.7);
+  }
+  /* Parallax Styles Media Query */
+  // @media screen and (min-width: 1000px) {
+  //   @supports ((perspective: 1px) and (not (-webkit-overflow-scrolling: touch))) {
+  //     .parallax__layer--base {
+  //       -webkit-transform: translateZ(0);
+  //       transform: translateZ(0);
+  //     }
+  //     .parallax__layer--back {
+  //       -webkit-transform: translateZ(-300px) scale(2);
+  //       transform: translateZ(-300px) scale(2);
+  //     }
+  //     .parallax__layer--deep {
+  //       -webkit-transform: translateZ(-600px) scale(3);
+  //       transform: translateZ(-600px) scale(3);
+  //     }
+  //     .parallax__layer--fore {
+  //       -webkit-transform: translateZ(90px) scale(.7);
+  //       transform: translateZ(90px) scale(.7);
+  //     }
+  //   }
 </style>

@@ -106,9 +106,14 @@ export default {
     overflow-x: hidden;
     overflow-y: auto;
     height: 100vh;
+    -webkit-perspective: 300px;
+    perspective: 300px;
+    -webkit-perspective-origin-x: 100%;
+    perspective-origin-x: 100%;
+    font-size: 200%;
   }
   /* Parallax Styles Media Query */
-  @media screen and (min-width: 1000px) {
+  /* @media screen and (min-width: 1000px) {
     @supports ((perspective: 1px) and (not (-webkit-overflow-scrolling: touch))) {
       .parallax {
         -webkit-perspective: 300px;
@@ -118,5 +123,5 @@ export default {
         font-size: 200%;
       }
     }
-  }
+  } */
 </style>
