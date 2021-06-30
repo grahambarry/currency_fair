@@ -1,8 +1,5 @@
 <template>
-  <picture>
-    <source v-for="(image, index) in images" :key="index" class="image" :type="`image/${image.type}`" :media="(`min-width: ${image.minWidth}`)" :srcset="require(`../../assets/${image.src}`)">
-    <img ref="root" :src="require(`../../assets/${imgSrc}`)" class="image">
-  </picture>
+  <img ref="root" :srcset="sources">
 </template>
 
 <script>
@@ -15,36 +12,34 @@
       }
     },
     computed: {
-      imgSrc: function() {
-        return this.images[0].src
+      sources: function() {
+        let source = ''
+        for(let i = 0; i < this.images.length; i++ ) {
+          source += this.images[i].src + ', '
+        }
+        return source
       }
-    }
+    },
   }
   
 </script>
 <style lang="scss">
   @import 'app/assets/stylesheets/design_vars';
-  .image {
+  img.image {
     position: absolute;
     &.small {
-      img {      
-        width: 52vw;
-        top: 14%;
-        left: 80px;
-      }
+      width: 52vw;
+      top: 14%;
+      left: 80px;
     }
-    &.large {
-      img { 
-        width: 90vw;
-        top: 14%;
-        left: 80px;
-      }
+    &.large { 
+      width: 90vw;
+      top: 14%;
+      left: 80px;
     }
     &.isLeft {
-      img { 
-        right: 80px !important;
-        left: unset !important;
-      }
+      right: 80px !important;
+      left: unset !important;
     }
   }
 </style>
