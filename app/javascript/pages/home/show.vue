@@ -1,5 +1,5 @@
 <template>
-  <div v-if="signedIn">
+  <div>
     <div v-if="signedIn" id="parallaxid" class="parallax">
       <div v-for="(section, index) in workSections" :key="index" :class="section.section.length > 1 ? 'amm-flex-row' : ''">
         <LineJoiner v-for="(subSection, i) in section.section " :key="i"

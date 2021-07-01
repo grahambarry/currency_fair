@@ -66,14 +66,12 @@ export default {
       return signOutMutation({ apollo: this.$apollo })
         .then(response => _get(response, 'data.signOut.success', false))
         .then(success => {
-          if(success) {
-            console.log('success')
+          if (success) {
             this.signOut()
             localStorage.setItem(AUTH_TOKEN_KEY, '')
             return this.$apollo.provider.clients.defaultClient.resetStore()
           }
         }).then(() => {
-          console.log('routerswitch')
           this.$router.push({ name: 'sign_in' })
         })
     },
