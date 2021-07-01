@@ -1,5 +1,6 @@
 [ { "section": [
     { "sectionId": "001",
+      "annLeft": "80",
       "small": true,
       "faded": true,
       "bodyColor": "#AAEFE8", 
@@ -23,6 +24,7 @@
   ]},
   { "section": [
     { "sectionId": "002",
+      "annRight": "80",
       "large": true,
       "faded": true,
       "bodyColor": "#7BE0BC", 
@@ -44,6 +46,7 @@
   ]},
   { "section": [
     { "sectionId": "003",
+      "annRight": "80",
       "small": true,
       "faded": true,
       "bodyColor": "#AAEFE8", 
@@ -66,15 +69,17 @@
   ]},
   { "section": [
     { "sectionId": "004",
+      "annLeft": "-80",
+      "annTop": "0",
       "width": "38",
       "small": true,
-      "isLeft": false,
+      "isLeft": true,
       "bodyColor": "#7BE0BC", 
       "annotateColor": "#CFFFFA",
       "h1Color": "#493EBE",
       "h2Color": "#7BE0BC",
       "pColor": "#2B618A",
-      "xArrow": "2",
+      "xArrow": "4.5",
       "yImage": "0",
       "layer": "back",
       "sectionHeight": "125",
@@ -84,12 +89,15 @@
       "images": [
         { "maxWidth": "1100px", "src": "alkStaffDashImg.webp", "type": "webp"},
         { "maxWidth": "1900px", "src": "alkStaffDashImg.png", "type": "png"}
-      ]
+      ],
+      "slackness": "0.9"
     },
     { "sectionId": "005",
+      "annRight": "80",
+      "annTop": "0",
       "width": "62",
       "small": true,
-      "isLeft": true,
+      "isLeft": false,
       "bodyColor": "#AAEFE8", 
       "annotateColor": "#CFFFFA",
       "h1Color": "#493EBE",
@@ -105,7 +113,81 @@
       "images": [
         { "maxWidth": "1100px", "src": "alkStaffDashImg.webp", "type": "webp"},
         { "maxWidth": "1900px", "src": "alkStaffDashImg.png", "type": "png"}
+      ],
+      "slackness": "0.9"
+    }
+  ]},
+  { "section": [
+    { "sectionId": "009",
+      "annRight": "80",
+      "small": true,
+      "faded": true,
+      "bodyColor": "#AAEFE8", 
+      "annotateColor": "#CFFFFA",
+      "h1Color": "#493EBE",
+      "h2Color": "#7BE0BC",
+      "pColor": "#2B618A",
+      "xArrow": "2",
+      "yImage": "15",
+      "layer": "base",
+      "sectionHeight": "100",
+      "heading": "Gestalt Principles",
+      "subheading": "Alkimii",
+      "paragraph": "One of a series of dashboards displaying employee metrics.",
+      "images": [
+        { "maxWidth": "1100px", "src": "alkStaffDashImg.webp", "type": "webp"},
+        { "maxWidth": "1900px", "src": "alkStaffDashImg.png", "type": "png"}
       ]
+    }
+  ]},
+  { "section": [
+    { "sectionId": "006",
+      "annRight": "51",
+      "annTop": "0",
+      "width": "70",
+      "small": true,
+      "isLeft": false,
+      "bodyColor": "#7BE0BC", 
+      "annotateColor": "#CFFFFA",
+      "h1Color": "#493EBE",
+      "h2Color": "#7BE0BC",
+      "pColor": "#2B618A",
+      "xArrow": "3.7",
+      "yImage": "0",
+      "layer": "back",
+      "sectionHeight": "125",
+      "heading": "Gestalt Principles",
+      "subheading": "Alkimii",
+      "paragraph": "One of a series of dashboards displaying employee metrics.",
+      "images": [
+        { "maxWidth": "1100px", "src": "alkStaffDashImg.webp", "type": "webp"},
+        { "maxWidth": "1900px", "src": "alkStaffDashImg.png", "type": "png"}
+      ],
+      "slackness": "0.5"
+    },
+    { "sectionId": "007",
+      "annRight": "80",
+      "annTop": "0",
+      "width": "30",
+      "small": true,
+      "isLeft": false,
+      "bodyColor": "#AAEFE8", 
+      "annotateColor": "#CFFFFA",
+      "h1Color": "#493EBE",
+      "h2Color": "#7BE0BC",
+      "pColor": "#2B618A",
+      "xArrow": "4",
+      "yImage": "15",
+      "layer": "base",
+      "sectionHeight": "125",
+      "heading": "Gestalt Principles",
+      "subheading": "Alkimii",
+      "paragraph": "One of a series of dashboards displaying employee metrics.",
+      "images": [
+        { "maxWidth": "1100px", "src": "alkStaffDashImg.webp", "type": "webp"},
+        { "maxWidth": "1900px", "src": "alkStaffDashImg.png", "type": "png"}
+      ],
+      "slackness": "0.9"
     }
   ]}
 ]

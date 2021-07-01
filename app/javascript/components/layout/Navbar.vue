@@ -108,6 +108,7 @@ export default {
     }
     .sub-menu {
       position: fixed;
+      opacity: .15;
       top: 160px;
       left: 40px;
     }

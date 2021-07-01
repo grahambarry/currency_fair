@@ -1,6 +1,6 @@
 <template>
   <div ref="scrollyg" class="parallax__group" :style="{width: widthPanel, height: bgHeight + 'vh'}">
-    <div :class="`parallax__layer parallax__layer--fore ${foreMod}`">
+    <div :class="`parallax__layer parallax__layer--fore ${foreModClass}`" :style="`${foreMod}`">
       <div v-if="isAnnotated" ref="annotationRef" class="annotation_panel" :style="annotateStyles">
         <h1 :style="{color: h1Color}">{{ heading }}</h1>
         <h2 :style="{color: h2Color}">{{ subheading }}</h2>
@@ -89,9 +89,21 @@ export default {
       type: Boolean,
       default: false
     },
-    indentAnnotation: {
-      type: Number,
-      default: 80
+    annTop: {
+      type: String,
+      default: '51'
+    },
+    annBottom: {
+      type: String,
+      default: ''
+    },
+    annLeft: {
+      type: String,
+      default: ''
+    },
+    annRight: {
+      type: String,
+      default: ''
     },
     xArrow: {
       type: Number,
@@ -113,6 +125,10 @@ export default {
       type: Number,
       default: 100,
     },
+    slackness: {
+      type: Number,
+      default: 0.5,
+    },
   },
   data() {
     return {
@@ -125,11 +141,6 @@ export default {
       path: null,
       parallaxScroller: null,
       parallaxH: null,
-      styleAnnotation: {
-        backgroundColor: this.annotateColor,
-        right: this.indentAnnotation + 'px',
-        left: 'unset'
-      }
     }
   },
   computed: {
@@ -142,11 +153,14 @@ export default {
       }
     },
     annotateStyles: function () {
-      if (this.isLeft) {
-        this.styleAnnotation.right = 'unset'
-        this.styleAnnotation.left = this.indentAnnotation + 'px'
+      let styleAnnotation = {
+        backgroundColor: this.annotateColor,
+        top: this.annTop + 'px',
+        bottom: this.annBottom + 'px',
+        right: this.annRight + 'px',
+        left: this.annLeft + 'px'
       }
-      return this.styleAnnotation
+      return styleAnnotation
     },
     bgMod: function () {
       if (this.width !== 100) {
@@ -157,8 +171,17 @@ export default {
       }
     },
     foreMod: function () {
+      let origin = (100 / this.width) * 100
+      if (this.width !== 100 && (this.layer === 'back' || this.layer === 'deep') ) {
+        return `-webkit-transform-origin-x: ${origin}%; transform-origin-x: ${origin}%;`
+      } 
+      else {
+        return ''
+      }
+    },
+    foreModClass: function () {
       if (this.width !== 100) {
-        return 'fore-mod'
+        return `fore-mod`
       } 
       else {
         return ''
@@ -201,7 +224,7 @@ export default {
   methods: {
     handleScroll: function() {
       this.$nextTick(() => {
-        this.connectDivs(this.nodeAnnotatePanel, this.nodeImage, this.annotateColor, 0.5)
+        this.connectDivs(this.nodeAnnotatePanel, this.nodeImage, this.annotateColor, this.slackness)
       })
     },
     createSVG: function() {
@@ -344,11 +367,9 @@ export default {
 
   .annotation_panel {
     position: absolute;
-    top: 51px;
     border-radius: 19px;
     padding: 12px 19px 13px 19px;
     width: 368px;
-    margin-top: 51px;
     font-weight: 400;
     h1, h2, p {
       font-family: $font-family-1;
@@ -416,12 +437,16 @@ export default {
     transform: translateZ(90px) scale(.7);
   }
   .fore-mod {
-    -webkit-transform: translateZ(10px) scale(0.7);
-    transform: translateZ(10px) scale(0.7);
+    .annotation_panel {
+      -webkit-transform: translateZ(10px) scale(0.7);
+      transform: translateZ(10px) scale(0.7);
+      -webkit-transform-origin-x: 100%;
+      transform-origin-x: 100%;
+    }
   }
   .back-mod {
-    -webkit-transform: translateZ(-100px) scale(2);
-    transform: translateZ(-100px) scale(2);
+    -webkit-transform: translateY(30%) translateZ(-100px) scale(2);
+    transform: translateY(30%) translateZ(-100px) scale(2);
   }
   .deep-mod {
     -webkit-transform: translateZ(-200px) scale(3);

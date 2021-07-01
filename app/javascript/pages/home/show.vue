@@ -4,6 +4,10 @@
       <div v-for="(section, index) in workSections" :key="index" :class="section.section.length > 1 ? 'amm-flex-row' : ''">
         <LineJoiner v-for="(subSection, i) in section.section " :key="i"
                     :sectionId="subSection.sectionId"
+                    :annLeft="subSection.annLeft"
+                    :annRight="subSection.annRight"
+                    :annTop="subSection.annTop"
+                    :annBottom="subSection.annBottom"
                     :width="subSection.width"
                     :small="subSection.small"
                     :large="subSection.large"
@@ -21,7 +25,8 @@
                     :heading="subSection.heading"
                     :subheading="subSection.subheading"
                     :paragraph="subSection.paragraph"
-                    :images="subSection.images"/>
+                    :images="subSection.images"
+                    :slackness="subSection.slackness"/>
       </div>
       <!-- <div class="amm-flex-row">
         <LineJoiner v-for="(subsections, index) in section" :key="index"
