@@ -1,7 +1,7 @@
 <template>
   <div ref="scrollyg" class="parallax__group" :style="{width: widthPanel, height: bgHeight + 'vh'}">
     <div :class="`parallax__layer parallax__layer--fore ${foreMod}`">
-      <div v-if="isAnnotated" ref="rightId" class="annotation_panel" :style="annotateStyles">
+      <div v-if="isAnnotated" ref="annotationRef" class="annotation_panel" :style="annotateStyles">
         <h1 :style="{color: h1Color}">{{ heading }}</h1>
         <h2 :style="{color: h2Color}">{{ subheading }}</h2>
         <p :style="{color: pColor}">{{ paragraph }}</p>
@@ -9,7 +9,7 @@
     </div>
     <div :id="`plxgroup-${this.sectionId}`" :class="`parallax__layer parallax__layer--${layer} ${bgMod}`" :style="bgStyles">
       <PictureSrcSet :images="images" 
-                      ref="leftId"
+                      ref="imageRef"
                       class="image" 
                       :class="{small, large, isLeft}" 
                       :style="imageStyles"/>
@@ -119,8 +119,8 @@ export default {
       markerInitialized: false,
       shape: null,
       strokeWidth: 5,
-      nodeOne: null,
-      nodeTwo: null,
+      nodeImage: null,
+      nodeAnnotatePanel: null,
       elmnt: null,
       path: null,
       parallaxScroller: null,
@@ -187,8 +187,8 @@ export default {
   mounted() {
     console.log('IMAGE IMAGE ' + this.image)
     this.elmnt = this.$refs.scrollyg
-    this.nodeOne = this.$refs.rightId
-    this.nodeTwo = this.$refs.leftId.$refs.root
+    this.nodeAnnotatePanel = this.$refs.annotationRef
+    this.nodeImage = this.$refs.imageRef.$refs.root
     this.parallaxScroller = document.getElementById("parallaxid")
     console.log('this.parallaxScroller ' + this.parallaxScroller)
     if (this.isAnnotated) {
@@ -201,8 +201,7 @@ export default {
   methods: {
     handleScroll: function() {
       this.$nextTick(() => {
-        console.log('NODES' + this.nodeOne + this.nodeTwo)
-        this.connectDivs(this.nodeOne, this.nodeTwo, this.annotateColor, 0.5)
+        this.connectDivs(this.nodeAnnotatePanel, this.nodeImage, this.annotateColor, 0.5)
       })
     },
     createSVG: function() {
@@ -234,9 +233,14 @@ export default {
     },
     findAbsolutePosition: function(htmlElement) {
       let x = htmlElement.getBoundingClientRect().left
-      console.log('xa ' + x)
       let y = htmlElement.getBoundingClientRect().top
-      console.log('ya ' + y)
+      if (this.sectionId === '005') {
+        // let x = htmlElement.getBoundingClientRect().left - htmlElement.getBoundingClientRect().width * 0.39
+        // let y = htmlElement.getBoundingClientRect().top - htmlElement.getBoundingClientRect().height * 0.17
+        console.log('xAAAA ' + x)
+        console.log('yAAAA ' + y)
+        console.log('htmlElement.getBoundingClientRect() ' + htmlElement.getBoundingClientRect())
+      }
       for (let x = 0, y = 0, el=htmlElement; 
         el != null; 
         el = el.offsetParent) {
@@ -248,28 +252,31 @@ export default {
         "y": y
       }
     },
-    connectDivs: function(leftId, rightId, color, tension) {
+    connectDivs: function(nodeA, nodeImage, color, tension) {
       this.parallaxH = this.parallaxScroller.getBoundingClientRect().height
-      console.log('this.parallaxH ' + this.parallaxH)
       let scrollx = this.elmnt.scrollLeft
-      console.log('scrollx ' + scrollx)
       let scrolly = this.elmnt.scrollTop
-      console.log('scrolly ' + scrolly)
 
-      let leftPos = this.findAbsolutePosition(leftId)
-      let x1 = leftPos.x
-      let y1 = leftPos.y
-      y1 += (leftId.offsetHeight / 2)
-      this.isLeft ? x1 += (leftId.offsetWidth) : ''
-      const rightPos = this.findAbsolutePosition(rightId)
-      console.log('rightPos' + rightPos.x)
-      let x2 = rightPos.x
-      let y2 = rightPos.y - scrolly
-      this.isLeft ? x2 += (0 + rightId.offsetWidth - rightId.offsetWidth / this.xArrow) : x2 += (rightId.offsetWidth - rightId.offsetWidth + rightId.offsetWidth / this.xArrow)
-      y2 += (rightId.offsetHeight / 2)
+      let annotatePos = this.findAbsolutePosition(nodeA)
+      let x1 = annotatePos.x
+      let y1 = annotatePos.y
+      y1 += (nodeA.getBoundingClientRect().height / 2)
+      this.isLeft ? x1 += (nodeA.getBoundingClientRect().width) : ''
+      const imagePos = this.findAbsolutePosition(nodeImage)
+      let x2 = imagePos.x
+      let y2 = imagePos.y - scrolly
+      let imageWidth = nodeImage.getBoundingClientRect().width
+      this.isLeft ? x2 += (imageWidth - imageWidth / this.xArrow) : x2 += (imageWidth / this.xArrow)
+      y2 += (nodeImage.getBoundingClientRect().height / 2)
       this.drawCircle(x1, y1, this.strokeWidth / 2, color)
       this.createTriangleMarker(color)
       this.drawCurvedLine(x1, y1, x2, y2, color, tension)
+      if (this.sectionId === '005') {
+        console.log('XXXimagePos' + imagePos.x)
+        console.log('YYYimagePos' + imagePos.y)
+        console.log('nodeImage.getBoundingClientRect().height / 2-- ' + nodeImage.getBoundingClientRect().height)
+        console.log('nodeImage.offsetHeight / 2 -- ' + nodeImage.offsetHeight)
+      }
     },
     drawCurvedLine: function(x1, y1, x2, y2, color, tension) {
       let svg = this.createSVG()

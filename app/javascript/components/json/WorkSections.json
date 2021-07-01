@@ -68,7 +68,7 @@
     { "sectionId": "004",
       "width": "38",
       "small": true,
-      "isLeft": true,
+      "isLeft": false,
       "bodyColor": "#7BE0BC", 
       "annotateColor": "#CFFFFA",
       "h1Color": "#493EBE",
