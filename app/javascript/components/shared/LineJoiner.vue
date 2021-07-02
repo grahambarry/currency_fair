@@ -140,9 +140,7 @@ export default {
       elmnt: null,
       path: null,
       parallaxScroller: null,
-      parallaxH: null,
-      ratio: 0.0,
-      increasingColor: `rgba(40, 40, 190, 1.0)`
+      parallaxH: null
     }
   },
   computed: {
@@ -216,19 +214,18 @@ export default {
     this.parallaxScroller = document.getElementById("parallaxid")
     if (this.isAnnotated) {
       setTimeout(() => this.handleScroll(), 20)
-      this.initIntersect()
+      setTimeout(() => this.initIntersect(this.nodeAnnotatePanel), 50)
+      // setTimeout(() => console.log(this.shape + '  SHAPE SHAPE SHAPE'), 20)
       this.$nextTick(() => {
         this.parallaxScroller.addEventListener('scroll', this.handleScroll)
       })
     }
   },
   methods: {
-    initIntersect: function () {
-      const numSteps = 20.0;
-      let ratio;
+    initIntersect: function (el) {
       // Set things up
       window.addEventListener('load',
-        this.createObserver(this.nodeAnnotatePanel)
+        this.createObserver(el),
       )
     },
     createObserver: function (boxElement) {
@@ -236,7 +233,7 @@ export default {
 
       let options = {
         root: null,
-        rootMargin: "-80px",
+        rootMargin: "-140px 0px -90px 0px",
         threshold: this.buildThresholdList()
       };
 
@@ -245,25 +242,20 @@ export default {
     },
     buildThresholdList: function () {
       let thresholds = [];
-      let numSteps = 20;
+      let numSteps = 100;
 
       for (let i=1.0; i<=numSteps; i++) {
         let ratio = i/numSteps;
         thresholds.push(ratio);
       }
-
       thresholds.push(0);
-      console.log('thresholds ' + thresholds + 'AND ' + thresholds[0])
       return thresholds;
     },
     handleIntersect: function (entries, observer) {
       console.log('ENTRIES ' + entries)
       entries.forEach((entry) => {
-        console.log('entry.intersectionRatio ' + entry.intersectionRatio)
         entry.target.style.opacity = entry.intersectionRatio
-        // let path = document.getElementById(`#path-${this.sectionId}`)
-        // console.log('PATH PATH ' + path)
-
+        this.shape.style.opacity = entry.intersectionRatio
       });
     },
     handleScroll: function() {
@@ -328,7 +320,7 @@ export default {
       let imageWidth = nodeImage.getBoundingClientRect().width
       this.isLeft ? x2 += (imageWidth - imageWidth / this.xArrow) : x2 += (imageWidth / this.xArrow)
       y2 += (nodeImage.getBoundingClientRect().height / 2)
-      this.drawCircle(x1, y1, this.strokeWidth / 2, color)
+      // this.drawCircle(x1, y1, this.strokeWidth / 2, color)
       this.createTriangleMarker(color)
       this.drawCurvedLine(x1, y1, x2, y2, color, tension)
     },
