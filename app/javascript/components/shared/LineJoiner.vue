@@ -141,6 +141,8 @@ export default {
       path: null,
       parallaxScroller: null,
       parallaxH: null,
+      ratio: 0.0,
+      increasingColor: `rgba(40, 40, 190, 1.0)`
     }
   },
   computed: {
@@ -208,20 +210,62 @@ export default {
     }
   },
   mounted() {
-    console.log('IMAGE IMAGE ' + this.image)
     this.elmnt = this.$refs.scrollyg
     this.nodeAnnotatePanel = this.$refs.annotationRef
     this.nodeImage = this.$refs.imageRef.$refs.root
     this.parallaxScroller = document.getElementById("parallaxid")
-    console.log('this.parallaxScroller ' + this.parallaxScroller)
     if (this.isAnnotated) {
-      setTimeout(() => this.handleScroll(), 10)
+      setTimeout(() => this.handleScroll(), 20)
+      this.initIntersect()
       this.$nextTick(() => {
         this.parallaxScroller.addEventListener('scroll', this.handleScroll)
       })
     }
   },
   methods: {
+    initIntersect: function () {
+      const numSteps = 20.0;
+      let ratio;
+      // Set things up
+      window.addEventListener('load',
+        this.createObserver(this.nodeAnnotatePanel)
+      )
+    },
+    createObserver: function (boxElement) {
+      let observer;
+
+      let options = {
+        root: null,
+        rootMargin: "-80px",
+        threshold: this.buildThresholdList()
+      };
+
+      observer = new IntersectionObserver(this.handleIntersect, options);
+      observer.observe(boxElement);
+    },
+    buildThresholdList: function () {
+      let thresholds = [];
+      let numSteps = 20;
+
+      for (let i=1.0; i<=numSteps; i++) {
+        let ratio = i/numSteps;
+        thresholds.push(ratio);
+      }
+
+      thresholds.push(0);
+      console.log('thresholds ' + thresholds + 'AND ' + thresholds[0])
+      return thresholds;
+    },
+    handleIntersect: function (entries, observer) {
+      console.log('ENTRIES ' + entries)
+      entries.forEach((entry) => {
+        console.log('entry.intersectionRatio ' + entry.intersectionRatio)
+        entry.target.style.opacity = entry.intersectionRatio
+        // let path = document.getElementById(`#path-${this.sectionId}`)
+        // console.log('PATH PATH ' + path)
+
+      });
+    },
     handleScroll: function() {
       this.$nextTick(() => {
         this.connectDivs(this.nodeAnnotatePanel, this.nodeImage, this.annotateColor, this.slackness)
@@ -257,13 +301,6 @@ export default {
     findAbsolutePosition: function(htmlElement) {
       let x = htmlElement.getBoundingClientRect().left
       let y = htmlElement.getBoundingClientRect().top
-      if (this.sectionId === '005') {
-        // let x = htmlElement.getBoundingClientRect().left - htmlElement.getBoundingClientRect().width * 0.39
-        // let y = htmlElement.getBoundingClientRect().top - htmlElement.getBoundingClientRect().height * 0.17
-        console.log('xAAAA ' + x)
-        console.log('yAAAA ' + y)
-        console.log('htmlElement.getBoundingClientRect() ' + htmlElement.getBoundingClientRect())
-      }
       for (let x = 0, y = 0, el=htmlElement; 
         el != null; 
         el = el.offsetParent) {
@@ -294,12 +331,6 @@ export default {
       this.drawCircle(x1, y1, this.strokeWidth / 2, color)
       this.createTriangleMarker(color)
       this.drawCurvedLine(x1, y1, x2, y2, color, tension)
-      if (this.sectionId === '005') {
-        console.log('XXXimagePos' + imagePos.x)
-        console.log('YYYimagePos' + imagePos.y)
-        console.log('nodeImage.getBoundingClientRect().height / 2-- ' + nodeImage.getBoundingClientRect().height)
-        console.log('nodeImage.offsetHeight / 2 -- ' + nodeImage.offsetHeight)
-      }
     },
     drawCurvedLine: function(x1, y1, x2, y2, color, tension) {
       let svg = this.createSVG()
