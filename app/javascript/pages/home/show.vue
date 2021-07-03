@@ -14,6 +14,7 @@
                     :faded="subSection.faded"
                     :bodyColor="subSection.bodyColor"
                     :annotateColor="subSection.annotateColor"
+                    :arrowColor="subSection.arrowColor"
                     :h1Color="subSection.h1Color"
                     :h2Color="subSection.h2Color"
                     :pColor="subSection.pColor"

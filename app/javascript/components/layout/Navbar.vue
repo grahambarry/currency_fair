@@ -88,7 +88,7 @@ export default {
     left: 0;
     right: 0;
     height: 80px;
-    background: #CFFFFA;
+    background: #F0F6F3;
     @extend %amm-flex-row;
     .burger-icon {
       position: absolute;

@@ -45,6 +45,10 @@ export default {
       type: String,
       required: false
     },
+    arrowColor: {
+      type: String,
+      required: false
+    },
     bodyColor: {
       type: String,
       required: true
@@ -162,6 +166,10 @@ export default {
       }
       return styleAnnotation
     },
+    arrowStyles: function () {
+      let arrow = this.arrowColor ? this.arrowColor : this.annotateColor
+      return arrow
+    },
     bgMod: function () {
       if (this.width !== 100) {
         return `${this.layer}-mod`
@@ -260,7 +268,7 @@ export default {
     },
     handleScroll: function() {
       this.$nextTick(() => {
-        this.connectDivs(this.nodeAnnotatePanel, this.nodeImage, this.annotateColor, this.slackness)
+        this.connectDivs(this.nodeAnnotatePanel, this.nodeImage, this.arrowStyles, this.slackness)
       })
     },
     createSVG: function() {
@@ -355,7 +363,7 @@ export default {
       this.shape.setAttributeNS(null, "stroke", color)
       this.shape.setAttributeNS(null, "stroke-width", this.strokeWidth)
       this.shape.setAttributeNS(null, "marker-start", "url(#trianglebackwards)")
-      this.shape.setAttributeNS(null, "marker-end", "url(#triangle)")
+      this.shape.setAttributeNS(null, "marker-end", `url(#triangle-${this.sectionId})`)
 
       return this.shape
     },
@@ -368,7 +376,7 @@ export default {
       svg.appendChild(defs)
 
       let marker = document.createElementNS('http://www.w3.org/2000/svg', 'marker')
-      marker.setAttribute('id', 'triangle')
+      marker.setAttribute('id', `triangle-${this.sectionId}`)
       marker.setAttribute('viewBox', '0 0 10 10')
       marker.setAttribute('refX', '0')
       marker.setAttribute('refY', '5')
