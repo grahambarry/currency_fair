@@ -345,7 +345,6 @@ export default {
       let x1 = annotatePos.x
       let y1 = annotatePos.y
       let linePos = this.linePosition(nodeA)
-      console.log("linePos LINEPOS LINEPOS " + linePos.x + " " + linePos.y)
       y1 += linePos.y
       x1 += linePos.x
       const imagePos = this.findAbsolutePosition(nodeImage)
