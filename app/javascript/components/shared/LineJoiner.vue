@@ -109,6 +109,10 @@ export default {
       type: String,
       default: ''
     },
+    linePos: {
+      type: String,
+      default: 'left'
+    },
     xArrow: {
       type: Number,
       default: 1,
@@ -312,6 +316,26 @@ export default {
         "y": y
       }
     },
+    linePosition: function(el) {
+      let x = 0
+      let y = 0
+      switch (this.linePos) {
+        case 'top': x = el.getBoundingClientRect().width / 2, y = this.strokeWidth
+        break
+        case 'right': x = el.getBoundingClientRect().width, y = el.getBoundingClientRect().height / 2
+        break
+        case 'left': x = 0, y = el.getBoundingClientRect().height / 2
+        break
+        case 'bottom': x = el.getBoundingClientRect().width / 2, y = el.getBoundingClientRect().height - this.strokeWidth
+        break
+        case 'center': x = el.getBoundingClientRect().width / 2, y = el.getBoundingClientRect().height / 2
+        break
+      }
+      return {
+        "x": x,
+        "y": y
+      }
+    },
     connectDivs: function(nodeA, nodeImage, color, tension) {
       this.parallaxH = this.parallaxScroller.getBoundingClientRect().height
       let scrollx = this.elmnt.scrollLeft
@@ -320,8 +344,10 @@ export default {
       let annotatePos = this.findAbsolutePosition(nodeA)
       let x1 = annotatePos.x
       let y1 = annotatePos.y
-      y1 += (nodeA.getBoundingClientRect().height / 2)
-      this.isLeft ? x1 += (nodeA.getBoundingClientRect().width) : ''
+      let linePos = this.linePosition(nodeA)
+      console.log("linePos LINEPOS LINEPOS " + linePos.x + " " + linePos.y)
+      y1 += linePos.y
+      x1 += linePos.x
       const imagePos = this.findAbsolutePosition(nodeImage)
       let x2 = imagePos.x
       let y2 = imagePos.y - scrolly

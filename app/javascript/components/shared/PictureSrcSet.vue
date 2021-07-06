@@ -1,9 +1,5 @@
 <template>
   <img ref="root" v-webp="{image: require(`../../assets/${images[1].src}`), webp: require(`../../assets/${images[0].src}`)}" class="image">
-  <!-- <picture>
-    <source v-for="(image, index) in images" :key="index" class="image" :src="`${image.src}`" :media="(`maxWidth: ${image.maxWidth}`)" :type="`image/${image.type}`" >
-    <img ref="root" :srcset="sources">
-  </picture> -->
 </template>
 
 <script>
@@ -14,16 +10,7 @@
         type: Array,
         required: true,
       }
-    },
-    computed: {
-      sources: function() {
-        let source = ''
-        for(let i = 0; i < this.images.length; i++ ) {
-          source += this.images[i].src + ', '
-        }
-        return source
-      }
-    },
+    }
   }
   
 </script>

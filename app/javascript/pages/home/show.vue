@@ -12,6 +12,7 @@
                     :small="subSection.small"
                     :large="subSection.large"
                     :faded="subSection.faded"
+                    :linePos="subSection.linePos"
                     :bodyColor="subSection.bodyColor"
                     :annotateColor="subSection.annotateColor"
                     :arrowColor="subSection.arrowColor"
