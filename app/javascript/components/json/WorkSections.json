@@ -12,6 +12,7 @@
       "h1Color": "#493EBE",
       "h2Color": "#686C6B",
       "pColor": "#686C6B",
+      "arrowIsOn": false,
       "xArrow": "1",
       "yImage": "-50%",
       "layer": "deep",

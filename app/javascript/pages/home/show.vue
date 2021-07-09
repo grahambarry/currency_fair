@@ -22,6 +22,7 @@
                     :h1Color="subSection.h1Color"
                     :h2Color="subSection.h2Color"
                     :pColor="subSection.pColor"
+                    :arrowIsOn="subSection.arrowIsOn"
                     :xArrow="subSection.xArrow"
                     :yArrow="subSection.yArrow"
                     :xImage="subSection.xImage"

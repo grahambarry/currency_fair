@@ -148,6 +148,10 @@ export default {
       type: String,
       default: '0.5',
     },
+    arrowIsOn: {
+      type: Boolean,
+      default: true
+    }
   },
   data() {
     return {
@@ -244,17 +248,17 @@ export default {
     this.nodeImage = this.$refs.imageRef.$refs.root
     this.parallaxScroller = document.getElementById("parallaxid")
     if (this.isAnnotated) {
-      setTimeout(() => this.handleScroll(), 20)
       setTimeout(() => this.initIntersect(this.nodeAnnotatePanel), 50)
-      // setTimeout(() => console.log(this.shape + '  SHAPE SHAPE SHAPE'), 20)
-      this.$nextTick(() => {
-        this.parallaxScroller.addEventListener('scroll', this.handleScroll)
-      })
+      if (this.arrowIsOn) {
+        setTimeout(() => this.handleScroll(), 40)
+        this.$nextTick(() => {
+          this.parallaxScroller.addEventListener('scroll', this.handleScroll)
+        })
+      }
     }
   },
   methods: {
     initIntersect: function (el) {
-      // Set things up
       window.addEventListener('load',
         this.createObserver(el),
       )
@@ -283,7 +287,6 @@ export default {
       return thresholds;
     },
     handleIntersect: function (entries, observer) {
-      console.log('ENTRIES ' + entries)
       entries.forEach((entry) => {
         entry.target.style.opacity = entry.intersectionRatio
         this.shape.style.opacity = entry.intersectionRatio
