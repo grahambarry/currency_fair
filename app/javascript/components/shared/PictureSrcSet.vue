@@ -24,15 +24,5 @@
     img {
       display: block;
     }
-    // &.small {
-    //   width: 52vw;
-    //   top: 14%;
-    //   left: 80px;
-    // }
-    // &.large { 
-    //   width: 90vw;
-    //   top: 14%;
-    //   left: 80px;
-    // }
   }
 </style>

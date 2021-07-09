@@ -10,8 +10,7 @@
     <div :id="`plxgroup-${this.sectionId}`" :class="`parallax__layer parallax__layer--${layer} ${bgMod}`" :style="bgStyles">
       <PictureSrcSet :images="images" 
                       ref="imageRef"
-                      class="image" 
-                      :class="{small, large}" 
+                      class="image"
                       :style="imageStyles"/>
     </div>
   </div>
@@ -97,18 +96,6 @@ export default {
       type: String,
       required: true
     },
-    isLeft: {
-      type: Boolean,
-      default: false
-    },
-    large: {
-      type: Boolean,
-      default: false
-    },
-    small: {
-      type: Boolean,
-      default: false
-    },
     faded: {
       type: Boolean,
       default: false
@@ -139,7 +126,7 @@ export default {
     },
     yArrow: {
       type: String,
-      default: '2',
+      default: '1',
     },
     yImage: {
       type: String,
@@ -383,8 +370,9 @@ export default {
       let x2 = imagePos.x
       let y2 = imagePos.y - scrolly
       let imageWidth = nodeImage.getBoundingClientRect().width
-      this.isLeft ? x2 += (imageWidth - imageWidth / this.xArrow) : x2 += (imageWidth / this.xArrow)
-      y2 += (nodeImage.getBoundingClientRect().height / 2)
+      let imageHeight = nodeImage.getBoundingClientRect().height
+      x2 += (imageWidth / 2) * this.xArrow
+      y2 += (imageHeight / 2) * this.yArrow
       // this.drawCircle(x1, y1, this.strokeWidth / 2, color)
       this.createTriangleMarker(color)
       this.drawCurvedLine(x1, y1, x2, y2, color, tension)
