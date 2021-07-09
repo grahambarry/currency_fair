@@ -22,22 +22,17 @@
       display: block;
     }
     img {
-      width: 100%;
       display: block;
     }
-    &.small {
-      width: 52vw;
-      top: 14%;
-      left: 80px;
-    }
-    &.large { 
-      width: 90vw;
-      top: 14%;
-      left: 80px;
-    }
-    &.isLeft {
-      right: 80px !important;
-      left: unset !important;
-    }
+    // &.small {
+    //   width: 52vw;
+    //   top: 14%;
+    //   left: 80px;
+    // }
+    // &.large { 
+    //   width: 90vw;
+    //   top: 14%;
+    //   left: 80px;
+    // }
   }
 </style>

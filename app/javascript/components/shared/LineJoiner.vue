@@ -11,7 +11,7 @@
       <PictureSrcSet :images="images" 
                       ref="imageRef"
                       class="image" 
-                      :class="{small, large, isLeft}" 
+                      :class="{small, large}" 
                       :style="imageStyles"/>
     </div>
   </div>
@@ -29,13 +29,33 @@ export default {
       default: ''
     },
     sectionHeight: {
-      type: Number,
-      default: 170
+      type: String,
+      default: '170'
     },
     image: {
       type: String,
       required: false,
       default: ''
+    },
+    imageTop: {
+      type: String,
+      default: '14%'
+    },
+    imageBottom: {
+      type: String,
+      default: 'unset'
+    },
+    imageLeft: {
+      type: String,
+      default: 'unset'
+    },
+    imageRight: {
+      type: String,
+      default: 'unset'
+    },
+    imageWidth: {
+      type: String,
+      default: '52vw'
     },
     layer: {
       type: String,
@@ -114,28 +134,32 @@ export default {
       default: 'left'
     },
     xArrow: {
-      type: Number,
-      default: 1,
+      type: String,
+      default: '1',
     },
     yArrow: {
-      type: Number,
-      default: 2,
+      type: String,
+      default: '2',
     },
     yImage: {
-      type: Number,
-      default: 0,
+      type: String,
+      default: '0',
+    },
+    xImage: {
+      type: String,
+      default: '0',
     },
     images: {
       type: Array,
       required: true,
     },
     width: {
-      type: Number,
-      default: 100,
+      type: String,
+      default: '100',
     },
     slackness: {
-      type: Number,
-      default: 0.5,
+      type: String,
+      default: '0.5',
     },
   },
   data() {
@@ -170,12 +194,23 @@ export default {
       }
       return styleAnnotation
     },
+    imageStyles: function () {
+      let imageStyle = {
+        transform: `translate(${this.xImage}, ${this.yImage})`,
+        width: this.imageWidth,
+        top: this.imageTop,
+        bottom: this.imageBottom,
+        right: this.imageRight,
+        left: this.imageLeft,
+      }
+      return imageStyle
+    },
     arrowStyles: function () {
       let arrow = this.arrowColor ? this.arrowColor : this.annotateColor
       return arrow
     },
     bgMod: function () {
-      if (this.width !== 100) {
+      if (this.width !== '100') {
         return `${this.layer}-mod`
       } 
       else {
@@ -184,7 +219,7 @@ export default {
     },
     foreMod: function () {
       let origin = (100 / this.width) * 100
-      if (this.width !== 100 && (this.layer === 'back' || this.layer === 'deep') ) {
+      if (this.width !== '100' && (this.layer === 'back' || this.layer === 'deep') ) {
         return `-webkit-transform-origin-x: ${origin}%; transform-origin-x: ${origin}%;`
       } 
       else {
@@ -192,15 +227,12 @@ export default {
       }
     },
     foreModClass: function () {
-      if (this.width !== 100) {
+      if (this.width !== '100') {
         return `fore-mod`
       } 
       else {
         return ''
       }
-    },
-    imageStyles: function () {
-      return `transform: translateY(${this.yImage}%)`
     },
     widthPanel: function () {
       return this.width + '%'
@@ -216,7 +248,7 @@ export default {
       }
     },
     bgHeight: function () {
-      return this.faded ? +this.sectionHeight + +90 : this.sectionHeight
+      return this.faded ? + this.sectionHeight + + 90 : this.sectionHeight
     }
   },
   mounted() {

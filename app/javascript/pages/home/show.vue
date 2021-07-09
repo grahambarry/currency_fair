@@ -8,6 +8,11 @@
                     :annRight="subSection.annRight"
                     :annTop="subSection.annTop"
                     :annBottom="subSection.annBottom"
+                    :imageWidth="subSection.imageWidth"
+                    :imageLeft="subSection.imageLeft"
+                    :imageRight="subSection.imageRight"
+                    :imageTop="subSection.imageTop"
+                    :imageBottom="subSection.imageBottom"
                     :width="subSection.width"
                     :small="subSection.small"
                     :large="subSection.large"
@@ -21,6 +26,7 @@
                     :pColor="subSection.pColor"
                     :isLeft="subSection.isLeft"
                     :xArrow="subSection.xArrow"
+                    :xImage="subSection.xImage"
                     :yImage="subSection.yImage"
                     :layer="subSection.layer"
                     :sectionHeight="subSection.sectionHeight"
@@ -30,50 +36,6 @@
                     :images="subSection.images"
                     :slackness="subSection.slackness"/>
       </div>
-      <!-- <div class="amm-flex-row">
-        <LineJoiner v-for="(subsections, index) in section" :key="index"
-            :width="width"
-            :sectionId="section.sectionId"
-            :small="section.small"
-            :large="section.large"
-            :faded="section.faded"
-            :bodyColor="section.bodyColor"
-            :annotateColor="section.annotateColor"
-            :h1Color="section.h1Color"
-            :h2Color="section.h2Color"
-            :pColor="section.pColor"
-            :isLeft="section.isLeft"
-            :xArrow="section.xArrow"
-            :yImage="section.yImage"
-            :layer="section.layer"
-            :sectionHeight="section.sectionHeight"
-            :heading="section.heading"
-            :subheading="section.subheading"
-            :paragraph="section.paragraph"
-            :images="section.images"/>
-
-      </div> -->
-      <!-- <LineJoiner sectionId="fourth" 
-                  bodyColor="#7BE0BC" 
-                  annotateColor="#CFFFFA"
-                  h1Color="#493EBE"
-                  h2Color="#7BE0BC"
-                  pColor="#2B618A"
-                  :flipped="false"/>
-      <LineJoiner sectionId="fifth" 
-                  bodyColor="#AAEFE8" 
-                  annotateColor="#CFFFFA"
-                  h1Color="#493EBE"
-                  h2Color="#7BE0BC"
-                  pColor="#2B618A"
-                  :flipped="false"/>
-      <LineJoiner sectionId="sixth" 
-                  bodyColor="#7BE0BC" 
-                  annotateColor="#CFFFFA"
-                  h1Color="#493EBE"
-                  h2Color="#7BE0BC"
-                  pColor="#2B618A"
-                  :flipped="false"/> -->
     </div>
     <div v-else>
       <h1>You are not signed in so you CANNOT View it!</h1>
