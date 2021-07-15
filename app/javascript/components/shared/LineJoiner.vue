@@ -253,8 +253,7 @@ export default {
         setTimeout(() => this.handleScroll(), 40)
         this.$nextTick(() => {
           this.parallaxScroller.addEventListener('scroll', this.handleScroll)
-          window.addEventListener('resize', this.handleScroll)
-          
+          window.addEventListener('resize', this.handleScroll) 
         })
       }
     }
@@ -295,9 +294,11 @@ export default {
       });
     },
     handleScroll: function() {
-      this.$nextTick(() => {
-        this.connectDivs(this.nodeAnnotatePanel, this.nodeImage, this.arrowStyles, this.slackness)
-      })
+      if (window.innerWidth > 1000) {
+        this.$nextTick(() => {
+          this.connectDivs(this.nodeAnnotatePanel, this.nodeImage, this.arrowStyles, this.slackness)
+        })
+      }
     },
     createSVG: function() {
       let svg = document.getElementById("svg-canvas")
