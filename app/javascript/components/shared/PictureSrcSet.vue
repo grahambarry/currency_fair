@@ -25,4 +25,10 @@
       display: block;
     }
   }
+  @media screen and (max-width: $breakpoint-small) {
+    .image {
+      width: 100vw !important;
+      right: unset !important;
+    }
+  }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div ref="scrollyg" class="parallax__group" :style="{width: widthPanel, height: bgHeight + 'vh'}">
+  <div ref="scrollyg" :class="`parallax__group ${layer}`" :style="{width: widthPanel, height: bgHeight + 'vh'}">
     <div :class="`parallax__layer parallax__layer--fore ${foreModClass}`" :style="`${foreMod}`">
       <div v-if="isAnnotated" ref="annotationRef" class="annotation_panel" :style="annotateStyles">
         <h1 :style="{color: h1Color}">{{ heading }}</h1>
@@ -253,6 +253,8 @@ export default {
         setTimeout(() => this.handleScroll(), 40)
         this.$nextTick(() => {
           this.parallaxScroller.addEventListener('scroll', this.handleScroll)
+          window.addEventListener('resize', this.handleScroll)
+          
         })
       }
     }
@@ -551,4 +553,13 @@ export default {
   //       transform: translateZ(90px) scale(.7);
   //     }
   //   }
+  @media screen and (max-width: $breakpoint-small) {
+    .parallax__group {
+      width: 100% !important;
+      height: 100vh !important;
+    }
+    .deep {
+      height: 190vh !important;
+    }
+  }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="signedIn" id="parallaxid" class="parallax">
-      <div v-for="(section, index) in workSections" :key="index" :class="section.section.length > 1 ? 'amm-flex-row' : ''">
+      <div v-for="(section, index) in workSections" :key="index" :class="section.section.length > 1 ? 'multi-row-section' : ''">
         <LineJoiner v-for="(subSection, i) in section.section " :key="i"
                     :sectionId="subSection.sectionId"
                     :annLeft="subSection.annLeft"
@@ -63,13 +63,14 @@ export default {
 </script>
 <style lang="scss" scoped>
   @import 'app/assets/stylesheets/placeholders/flex-helpers';
+  @import 'app/assets/stylesheets/design_vars';
   body {
     overflow: hidden;
     margin: 0;
     padding: 0;
     overflow: hidden;
   }
-  .amm-flex-row {
+  .multi-row-section {
     @extend %amm-flex-row;
     height: 120vh;
     overflow: hidden;
@@ -91,15 +92,21 @@ export default {
     font-size: 200%;
   }
   /* Parallax Styles Media Query */
-  /* @media screen and (min-width: 1000px) {
-    @supports ((perspective: 1px) and (not (-webkit-overflow-scrolling: touch))) {
-      .parallax {
-        -webkit-perspective: 300px;
-        perspective: 300px;
-        -webkit-perspective-origin-x: 100%;
-        perspective-origin-x: 100%;
-        font-size: 200%;
-      }
+  // @media screen and (min-width: $breakpoint-small) {
+  //   @supports ((perspective: 1px) and (not (-webkit-overflow-scrolling: touch))) {
+  //     .parallax {
+  //       -webkit-perspective: 300px;
+  //       perspective: 300px;
+  //       -webkit-perspective-origin-x: 100%;
+  //       perspective-origin-x: 100%;
+  //       font-size: 200%;
+  //     }
+  //   }
+  // }
+  @media screen and (max-width: $breakpoint-small) {
+    .multi-row-section {
+      flex-flow: row wrap !important;
+      height: auto;
     }
-  } */
+  }
 </style>
