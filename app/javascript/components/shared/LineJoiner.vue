@@ -294,7 +294,9 @@ export default {
     handleIntersect: function (entries, observer) {
       entries.forEach((entry) => {
         entry.target.style.opacity = entry.intersectionRatio
-        this.shape.style.opacity = entry.intersectionRatio
+        if (window.innerWidth > 1000) {
+          this.shape.style.opacity = entry.intersectionRatio
+        }
       });
     },
     handleScroll: function() {
