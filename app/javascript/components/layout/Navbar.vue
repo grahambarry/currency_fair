@@ -96,6 +96,7 @@ export default {
     height: 80px;
     background: #F0F6F3;
     @extend %amm-flex-row;
+    transition: top .2s ease-in-out;
     .burger-icon {
       position: absolute;
       top: 30px;

@@ -54,14 +54,13 @@ export default {
   data() {
     return {
       workSections: WorkSections,
-      scrollDelta: 9,
+      scrollDelta: 20,
+      myLastScrollPos: null,
       topValue: '0px',
-      upOrDown: 'down',
       lastScroll: 0,
       currentScroll: 0,
       throttleScrollThrottled: _.throttle(this.throttleScroll, 50),
       myCurrentScrollThrottled: _.throttle(this.myCurrentScroll, 100),
-      myLastScrollThrottled: _.throttle(this.myLastScroll, 50),
 
     } 
   },
@@ -70,37 +69,27 @@ export default {
   },
   methods: {
     throttleScroll: function () {
-      console.log('THROTTLER CALLED')
-      let myLast = this.myLastScrollThrottled()
+      let initialTopValue = this.topValue
+      this.myLastScrollPos = this.myCurrentScroll()
       let myCurrent = this.myCurrentScrollThrottled()
-      if (myLast < 80 || myCurrent < 80 ) {
+      if (this.myLastScrollPos < 120 || myCurrent < 120 ) {
         this.topValue = '0px'
-        return
       }
-      if (myCurrent <= (myLast - 2)) {
-        this.topValue = '-80px'
-        this.upOrDown = 'up'
-        console.log('UP MENU' + this.topValue)
-        return
+      else {
+        if (myCurrent <= (this.myLastScrollPos - 2)) {
+          this.topValue = '-80px'
+        }
+        if (myCurrent > (this.myLastScrollPos + 2)) {
+          this.topValue = '0px'
+        }
       }
-      if (myCurrent > (myLast + this.scrollDelta)) {
-        this.upOrDown = 'down'
-        this.topValue = '0px'
-        console.log('DOWN MENU' + this.topValue)
-        return
-      }
-      this.$emit('emitTop', this.topValue)
-      console.log('myLAST ' + myLast)
-      console.log('myCURRETN ' + myCurrent)
-      console.log('!!!!!!!!!UPORDOWN ' + this.upOrDown)
+      initialTopValue != this.topValue ? this.changeTopValue() : null
     },
     myCurrentScroll: function () {
       return this.$refs.scrollContainer.scrollTop
-      // console.log('this.currentScroll ' + this.currentScroll)
     },
-    myLastScroll: function () {
-      return this.$refs.scrollContainer.scrollTop
-      // console.log('this.lastScroll ' + this.lastScroll)
+    changeTopValue: function () {
+      this.$emit('emitTop', this.topValue)
     }
   }
 };
