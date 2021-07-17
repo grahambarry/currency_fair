@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="signedIn" id="parallaxid" class="parallax">
+    <div v-if="signedIn" ref="scrollContainer" @scroll="throttleScrollThrottled" id="parallaxid" class="parallax">
       <div v-for="(section, index) in workSections" :key="index" :class="section.section.length > 1 ? 'multi-row-section' : ''">
         <LineJoiner v-for="(subSection, i) in section.section " :key="i"
                     :sectionId="subSection.sectionId"
@@ -44,6 +44,7 @@
 <script>
 import LineJoiner from '~components/shared/LineJoiner'
 import WorkSections from '~components/json/WorkSections.json'
+import _ from 'lodash'
 
 export default {
   components: {
@@ -52,12 +53,59 @@ export default {
   name: 'HomePage',
   data() {
     return {
-      gestaltImages: [
-        { maxWidth: '1100px', src: 'alkStaffDashImg.webp', type: 'webp'},
-        { maxWidth: '1900px', src: 'alkStaffDashImg.png', type: 'png'},
-      ],
       workSections: WorkSections,
+      scrollDelta: 1,
+      topValue: '0px',
+      upOrDown: 'down',
+      lastScroll: 0,
+      currentScroll: 0,
+      throttleScrollThrottled: _.throttle(this.throttleScroll, 50),
+      myCurrentScrollThrottled: _.throttle(this.myCurrentScroll, 100),
+      myLastScrollThrottled: _.throttle(this.myLastScroll, 50),
+
     } 
+  },
+  mounted() {
+    this.currentScroll = this.$refs.scrollContainer.scrollY
+    // this.handleDebouncedScroll = debounce(this.handleScroll, 100);
+    // window.addEventListener('scroll', this.handleDebouncedScroll);
+  },
+  methods: {
+    throttleScroll: function () {
+      console.log('THROTTLER CALLED')
+      let myLast = this.myLastScrollThrottled()
+      let myCurrent = this.myCurrentScrollThrottled()
+      if (myLast < 80 || myCurrent < 80 ) {
+        this.topValue = '0px'
+        this.$emit('emitTop', this.topValue)
+        return
+      }
+      if (myCurrent <= (myLast - 2)) {
+        this.topValue = '-80px'
+        this.upOrDown = 'up'
+        
+        console.log('UP MENU' + this.topValue)
+        return
+      }
+      if (myCurrent > (myLast + this.scrollDelta)) {
+        this.upOrDown = 'down'
+        this.topValue = '0px'
+        console.log('DOWN MENU' + this.topValue)
+        return
+      }
+      this.$emit('emitTop', this.topValue)
+      console.log('myLAST ' + myLast)
+      console.log('myCURRETN ' + myCurrent)
+      console.log('!!!!!!!!!UPORDOWN ' + this.upOrDown)
+    },
+    myCurrentScroll: function () {
+      return this.$refs.scrollContainer.scrollTop
+      // console.log('this.currentScroll ' + this.currentScroll)
+    },
+    myLastScroll: function () {
+      return this.$refs.scrollContainer.scrollTop
+      // console.log('this.lastScroll ' + this.lastScroll)
+    }
   }
 };
 </script>

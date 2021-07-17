@@ -258,6 +258,10 @@ export default {
       }
     }
   },
+  destroyed () {
+    this.parallaxScroller.removeEventListener('scroll', this.handleScroll)
+    window.removeEventListener('resize', this.handleScroll) 
+  },
   methods: {
     initIntersect: function (el) {
       window.addEventListener('load',

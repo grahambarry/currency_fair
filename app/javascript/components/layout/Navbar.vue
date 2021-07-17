@@ -1,6 +1,6 @@
 <template>
-  <nav class="navbar">
-    <h1>Graham Barry UX | Developer</h1>
+  <nav class="navbar" :style="{top: topValue}">
+    <h1><span class="script">Graham Barry</span> &#160 | &#160 UX Developer</h1>
     <BurgerMenu icon-hover-color="#AAEFE8"
                 class="burger-icon"/>
     <ul v-if="signedIn" class="sub-menu">
@@ -60,6 +60,12 @@ export default {
   components: {
     BurgerMenu
   },
+  props: {
+    topValue: {
+      type: String,
+      default: '0px'
+    }
+  },
   methods: {
     ...mapActions(['signOut']),
     handleSignOut() {
@@ -103,6 +109,10 @@ export default {
       line-height: 30px;
       color: #2B618A;
       font-weight: 300;
+      .script {
+        font-family: $font-family-script;
+        font-size: 30px;
+      }
     }
     .sub-menu {
       position: fixed;

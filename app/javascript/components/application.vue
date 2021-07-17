@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="wrapper">
-      <Navbar></Navbar>
+      <Navbar :topValue="topValue"></Navbar>
       <main class="main-container">
-        <router-view/>
+        <router-view @emitTop="setTop"/>
       </main>
     </div>
   </div>
@@ -15,6 +15,17 @@ import Navbar from './layout/Navbar.vue';
 export default {
   name: 'ApplicationRootComponent',
   components: { Navbar },
+  data () {
+    return {
+      topValue: '0px'
+    }
+  },
+  methods: {
+    setTop (top) {
+      console.log('topXXXXXXXX ' + top)
+      this.topValue = top
+    }
+  }
 };
 </script>
 <style>
