@@ -54,7 +54,7 @@ export default {
   data() {
     return {
       workSections: WorkSections,
-      scrollDelta: 1,
+      scrollDelta: 9,
       topValue: '0px',
       upOrDown: 'down',
       lastScroll: 0,
@@ -67,8 +67,6 @@ export default {
   },
   mounted() {
     this.currentScroll = this.$refs.scrollContainer.scrollY
-    // this.handleDebouncedScroll = debounce(this.handleScroll, 100);
-    // window.addEventListener('scroll', this.handleDebouncedScroll);
   },
   methods: {
     throttleScroll: function () {
@@ -77,13 +75,11 @@ export default {
       let myCurrent = this.myCurrentScrollThrottled()
       if (myLast < 80 || myCurrent < 80 ) {
         this.topValue = '0px'
-        this.$emit('emitTop', this.topValue)
         return
       }
       if (myCurrent <= (myLast - 2)) {
         this.topValue = '-80px'
         this.upOrDown = 'up'
-        
         console.log('UP MENU' + this.topValue)
         return
       }
