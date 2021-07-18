@@ -3,12 +3,7 @@
     <h1><span class="script">Graham Barry</span> &#160 | &#160 UX Developer</h1>
     <BurgerMenu icon-hover-color="#AAEFE8"
                 class="burger-icon"/>
-    <ul v-if="signedIn" class="sub-menu">
-      <li class="nav-item active">
-        <span class="nav-link disabled">
-          {{ userFullName }}
-        </span>
-      </li>
+    <ul v-if="signedIn" class="nav-items">
       <li class="nav-item">
         <a class="nav-link"
           href="#"
@@ -18,11 +13,16 @@
       </li>
       <li class="nav-item">
         <router-link :to="{ name: 'home' }" class="nav-link">
-          Content Page
+          About Me
+        </router-link>
+      </li>
+      <li class="nav-item">
+        <router-link :to="{ name: 'home' }" class="nav-link">
+          My Work
         </router-link>
       </li>
     </ul>
-    <ul v-else class="navbar-nav">
+    <ul v-else class="nav-items">
       <li class="nav-item">
         <router-link
           :to="{ name: 'sign_in' }"
@@ -41,10 +41,11 @@
         <router-link
           :to="{ name: 'home' }"
           class="nav-link">
-          Content Page
+          My Work
         </router-link>
       </li>
     </ul>
+    <div class="spacer-33"></div>
   </nav>
 </template>
 
@@ -96,6 +97,8 @@ export default {
     height: 80px;
     background: #F0F6F3;
     @extend %amm-flex-row;
+    align-items: center;
+    justify-content: space-between;
     transition: top .2s ease-in-out;
     .burger-icon {
       position: absolute;
@@ -110,9 +113,45 @@ export default {
       line-height: 30px;
       color: #2B618A;
       font-weight: 300;
+      white-space: nowrap;
+      -moz-only-whitespace: nowrap;
       .script {
         font-family: $font-family-script;
         font-size: 30px;
+      }
+    }
+    .spacer-33 {
+      flex-basis: 33%;
+      flex-shrink: 2;
+    }
+    .nav-items {
+      @extend %amm-flex-row;
+      align-items: center;
+      margin: 0px;
+      margin-top: 12px;
+      margin-right: 50px;
+      li.nav-item {
+        text-decoration: none;
+        list-style: none;
+        margin-left: 50px;
+        height: 30px;
+        @extend %amm-flex-row;
+        align-items: flex-end;
+        a.nav-link {
+          white-space: nowrap;
+          -moz-only-whitespace: nowrap;
+          color:#686C6B;
+          font-family: $font-family-1;
+          font-size: 19px;
+          line-height: 30px;
+          text-decoration: none;
+          &:hover {
+            color:#493ebe;
+          }
+          &.router-link-active {
+            text-decoration: underline !important;
+          }
+        }
       }
     }
     .sub-menu {
