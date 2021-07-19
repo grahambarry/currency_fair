@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar" :style="{top: topValue}">
-    <h1><span class="script">Graham Barry</span> &#160 | &#160 UX Developer</h1>
+    <h1><span class="script">Graham Barry</span></h1>
     <BurgerMenu icon-hover-color="#AAEFE8"
                 class="burger-icon"/>
     <ul v-if="signedIn" class="nav-items">
