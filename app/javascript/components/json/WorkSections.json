@@ -127,6 +127,29 @@
         { "maxWidth": "1900px", "src": "alkStaffDashImg.png", "type": "png"}
       ],
       "slackness": "0.9"
+    },
+    { "sectionId": "005b",
+      "annRight": "80",
+      "annTop": "0",
+      "width": "62",
+      "linePos": "left",
+      "bodyColor": "#AAEFE8", 
+      "annotateColor": "#CFFFFA",
+      "h1Color": "#493EBE",
+      "h2Color": "#7BE0BC",
+      "pColor": "#2B618A",
+      "xArrow": "1",
+      "yImage": "15",
+      "layer": "base",
+      "sectionHeight": "125",
+      "heading": "Gestalt Principles",
+      "subheading": "Alkimii",
+      "paragraph": "One of a series of dashboards displaying employee metrics.",
+      "images": [
+        { "maxWidth": "1100px", "src": "alkStaffDashImg.webp", "type": "webp"},
+        { "maxWidth": "1900px", "src": "alkStaffDashImg.png", "type": "png"}
+      ],
+      "slackness": "0.9"
     }
   ]},
   { "section": [

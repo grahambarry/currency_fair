@@ -1,5 +1,5 @@
 <template>
-  <div ref="scrollyg" :class="`parallax__group ${layer}`" :style="{width: widthPanel, height: bgHeight + 'vh'}">
+  <div ref="scrollyg" :class="`parallax__group ${layer}`" :style="groupStyles">
     <div :class="`parallax__layer parallax__layer--fore ${foreModClass}`" :style="`${foreMod}`">
       <div v-if="isAnnotated" ref="annotationRef" class="annotation_panel" :style="annotateStyles">
         <h1 :style="{color: h1Color}">{{ heading }}</h1>
@@ -240,7 +240,15 @@ export default {
     },
     bgHeight: function () {
       return this.faded ? + this.sectionHeight + + 90 : this.sectionHeight
-    }
+    },
+    groupStyles: function () { 
+        let styleGroup = {
+        width: this.widthPanel,
+        minWidth: this.widthPanel,
+        height: this.bgHeight + 'vh',
+      }
+      return styleGroup
+    },
   },
   mounted() {
     this.elmnt = this.$refs.scrollyg
@@ -563,6 +571,7 @@ export default {
   @media screen and (max-width: $breakpoint-small) {
     .parallax__group {
       width: 100% !important;
+      min-width: 100% !important;
       height: 100vh !important;
     }
     .deep {

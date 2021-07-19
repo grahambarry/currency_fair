@@ -1,7 +1,9 @@
 <template>
   <div>
     <div v-if="signedIn" ref="scrollContainer" @scroll="throttleScrollThrottled" id="parallaxid" class="parallax">
-      <div v-for="(section, index) in workSections" :key="index" :class="section.section.length > 1 ? 'multi-row-section' : ''">
+      <div v-for="(section, index) in workSections" :key="index" 
+           :class="section.section.length > 1 ? 'multi-row-section' : ''"
+           :style="section.section.length > 2 ? 'overflow-x:auto' : ''">
         <LineJoiner v-for="(subSection, i) in section.section " :key="i"
                     :sectionId="subSection.sectionId"
                     :annLeft="subSection.annLeft"
@@ -107,6 +109,9 @@ export default {
     @extend %amm-flex-row;
     height: 120vh;
     overflow: hidden;
+  }
+  .overflow-x {
+    overflow-x: auto;
   }
   .parallax {
     position: absolute;
