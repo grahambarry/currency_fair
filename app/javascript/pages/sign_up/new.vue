@@ -84,7 +84,7 @@ export default {
           const user = response.user;
           this.signIn(user); // using the Vuex store
           localStorage.setItem(AUTH_TOKEN_KEY, user.authenticationToken);
-          this.$router.push({ name: 'home' });
+          this.$router.push({ name: 'showcase' });
         } else {
           this.errors = this.errorMessages(response.data.registerUser.errors);
         }

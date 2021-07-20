@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="19px" height="19px" viewBox="0 0 19 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>easel</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="iPhone-8" transform="translate(-197.000000, -208.000000)" fill="#493EBE" fill-rule="nonzero">
+            <g id="Group" transform="translate(197.000000, 130.000000)">
+                <g id="easel" transform="translate(0.000000, 78.000000)">
+                    <rect id="Rectangle" x="2.03571429" y="4.75" width="14.9285714" height="8.14285714"></rect>
+                    <path d="M18.3214286,2.71428571 L0.678571429,2.71428571 C0.303787946,2.71428571 0,3.01807366 0,3.39285714 L0,14.25 C0,14.6247835 0.293991071,14.9285714 0.668732143,14.9285714 L18.3214286,14.9285714 C18.6962121,14.9285714 19,14.6247835 19,14.25 L19,3.39285714 C19,3.01807366 18.6962121,2.71428571 18.3214286,2.71428571 Z M17.6428571,13.5714286 L1.35714286,13.5714286 L1.35714286,4.07142857 L17.6428571,4.07142857 L17.6428571,13.5714286 Z" id="Shape"></path>
+                    <polygon id="Path" points="2.03571429 19 3.39285714 19 4.58659152 15.6071429 3.25862723 15.6071429"></polygon>
+                    <polygon id="Path" points="10.1289509 0 8.88385714 0 8.15010938 2.03571429 10.8613415 2.03571429"></polygon>
+                    <polygon id="Path" points="14.4134085 15.6071429 15.6071429 19 16.9642857 19 15.7437054 15.6071429"></polygon>
+                    <rect id="Rectangle" x="8.82142857" y="15.6071429" width="1.35714286" height="2.03571429"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -3,13 +3,25 @@ import _extend from 'lodash/extend';
 
 import SignUp from 'pages/sign_up/new.vue';
 import SignIn from 'pages/sign_in/new.vue';
-import HomeShow from 'pages/home/show.vue';
+import Showcase from 'pages/home/showcase.vue';
+import About from 'pages/home/about.vue';
+import Contact from 'pages/home/contact.vue';
 
 let routes = [
   {
-    path: '/home',
-    name: 'home',
-    component: HomeShow,
+    path: '/about',
+    name: 'About',
+    component: About,
+  },
+  {
+    path: '/showcase',
+    name: 'Showcase',
+    component: Showcase,
+  },
+  {
+    path: '/contact',
+    name: 'Contact',
+    component: Contact,
   },
   {
     path: '',

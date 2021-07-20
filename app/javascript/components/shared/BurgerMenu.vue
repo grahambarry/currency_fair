@@ -26,7 +26,7 @@ export default {
    props: {
       iconColor: {
          type: String,
-         default: "#2B618A"
+         default: "#686C6B"
       },
       iconHoverColor: {
          type: String,

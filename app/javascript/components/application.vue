@@ -3,7 +3,9 @@
     <div class="wrapper">
       <Navbar :topValue="topValue"></Navbar>
       <main class="main-container">
-        <router-view @emitTop="setTop"/>
+        <transition name="fade" mode="out-in">
+          <router-view @emitTop="setTop"/>
+        </transition>
       </main>
     </div>
   </div>
@@ -22,7 +24,6 @@ export default {
   },
   methods: {
     setTop (top) {
-      console.log('topXXXXXXXX ' + top)
       this.topValue = top
     }
   }
@@ -31,5 +32,15 @@ export default {
 <style>
   .main-container {
     z-index: 3;
+  }
+  .fade-enter-active,
+  .fade-leave-active {
+    transition-duration: 0.6s;
+    transition-property: opacity;
+    transition-timing-function: ease;
+  }
+  .fade-enter,
+  .fade-leave-active {
+    opacity: 0
   }
 </style>

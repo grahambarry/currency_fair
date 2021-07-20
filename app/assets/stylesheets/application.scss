@@ -1,6 +1,7 @@
+@import '_design_vars';
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 html {
-   @import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
-   @import url('https://fonts.googleapis.com/css?family=Roboto');
    h1, h2, h3, h4, h5, h6, h7, p {
       font-weight: 400;
    }
@@ -8,6 +9,6 @@ html {
       overflow: hidden;
       margin: 0px;
       padding: 0px;
-      background-color: rgba(59, 59, 50, 0);
+      background-color: $med-gray;
    }
 }

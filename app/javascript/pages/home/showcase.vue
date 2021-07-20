@@ -52,7 +52,7 @@ export default {
   components: {
     LineJoiner
   },
-  name: 'HomePage',
+  name: 'Showcase',
   data() {
     return {
       workSections: WorkSections,

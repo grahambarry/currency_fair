@@ -64,7 +64,7 @@ export default {
           const user = response.user;
           this.signIn(user);
           localStorage.setItem(AUTH_TOKEN_KEY, user.authenticationToken);
-          this.$router.push({ name: 'home' });
+          this.$router.push({ name: 'about' });
         } else {
           this.errors = this.errorMessages(response.data.signIn.errors);
         }
