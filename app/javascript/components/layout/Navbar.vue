@@ -5,20 +5,22 @@
                 @click="openMenu"
                 class="burger-icon"/>
     <div class="nav-wrapper" :class="{open: isOpen}">
-      <div v-if="isOpen" @click="openMenu" class="nav-bg"></div>
+      <div @click="openMenu" class="nav-bg"></div>
       <ul v-if="signedIn" class="nav-items">
         <li class="burger-slide">
           <BurgerMenu icon-hover-color="#AAEFE8" @click="openMenu"/>
         </li>
-        <li v-for="(route, index) in routes" :key="index" class="nav-item">
-          <router-link :to="{ name: route }" class="nav-link">
-            {{route}}
+        <li v-for="(route, index) in routes" :key="index" @click="openMenu"  class="nav-item">
+          <router-link :to="{ name: route.label }" class="nav-link">
+            <img :src="require(`../../assets/${route.icon}`)" class="icon">
+            {{route.label}}
           </router-link>
         </li>
-        <li class="nav-item">
+        <li class="nav-item signout">
           <a class="nav-link"
             href="#"
             @click.prevent="handleSignOut">
+            <img :src="require(`../../assets/sign-out-icon.svg`)" class="icon">
             Sign out
           </a>
         </li>
@@ -76,7 +78,11 @@ export default {
   data () {
     return {
       isOpen: false,
-      routes: ['About', 'Showcase', 'Contact']
+      routes: [
+        { 'label': 'About', 'icon': 'about-icon.svg'},
+        { 'label': 'Showcase', 'icon': 'showcase-icon.svg'},
+        { 'label': 'Contact', 'icon': 'contactb-icon.svg'},
+      ]
     }
   },
   methods: {
@@ -95,7 +101,7 @@ export default {
         })
     },
     openMenu: function() {
-      this.isOpen = !this.isOpen;
+      this.isOpen ? setTimeout(() => this.isOpen = !this.isOpen, 300) : this.isOpen = !this.isOpen
     }
   },
 };
@@ -140,10 +146,21 @@ export default {
     }
     .nav-wrapper {
       .nav-bg {
-        -webkit-transition: opacity 0.8s ease-in-out;
-        -moz-transition: opacity 0.8s ease-in-out;
-        -o-transition: opacity 0.8s ease-in-out;
-        transition: opacity 0.8s ease-in-out;
+        pointer-events: none;
+        -webkit-transition: opacity 0.5s ease-in-out;
+        -moz-transition: opacity 0.5s ease-in-out;
+        -o-transition: opacity 0.5s ease-in-out;
+        transition: opacity 0.5s ease-in-out;
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        z-index: 2;
+        bottom: 0;
+        top: 0;
+        right: 0;
+        left: 0;
+        overflow: hidden;
+        background-color: $bg-gray;
         opacity: 0;
       }
     }
@@ -168,10 +185,12 @@ export default {
       li.nav-item {
         text-decoration: none;
         list-style: none;
-        margin-left: 50px;
+        padding-left: 25px;
+        padding-right: 25px;
         height: 30px;
         @extend %amm-flex-row;
         align-items: flex-end;
+        cursor: pointer;
         a.nav-link {
           position: relative;
           white-space: nowrap;
@@ -196,8 +215,15 @@ export default {
             visibility: hidden;
             transition: all 0.3s ease-in-out;
           }
+          .icon {
+            display: none;
+            width: 19px;
+            object-fit: contain;
+          }
         }
-        a.nav-link:hover:after {
+      }
+      li.nav-item:hover {
+        a.nav-link:after {
           visibility: visible;
           width: 100%;
         }
@@ -223,22 +249,18 @@ export default {
   @media screen and (max-width: $breakpoint-phone) {
     .navbar {
       z-index: 4;
+      h1 {
+        .script {
+          font-size: 24px;
+        }
+      }
       .burger-icon {
         display: block;
       }
       .nav-wrapper.open {
         .nav-bg {
+          pointer-events: auto;
           opacity: 0.85;
-          position: fixed;
-          width: 100vw;
-          height: 100vh;
-          z-index: 2;
-          bottom: 0;
-          top: 0;
-          right: 0;
-          left: 0;
-          overflow: hidden;
-          background-color: $bg-gray;
         }
         .nav-items {
           right: 0px;
@@ -260,12 +282,34 @@ export default {
         background: $light-gray;
         li.nav-item {
           margin-left: 0px;
+          padding-left: 0px;
+          padding-right: 0px;
           height: 58px;
+          &.signout {
+            bottom: 31px;
+            position: absolute;
+          }
           a.nav-link {
+            display: flex;
+            flex-flow: row nowrap !important;
+            align-items: center;
             line-height: 58px;
             &:after {
               bottom: 7px;
+              left: unset;
+              right: 0;
+              background-color: white;
             }
+            &.router-link-active:after {
+              width: calc(100% - 50px) !important;
+            }
+            .icon {
+              display: block;
+              margin-right: 31px;
+            }
+          }
+          a.nav-link:hover:after {
+            width: calc(100% - 50px) !important;
           }
         }
         li.burger-slide {
