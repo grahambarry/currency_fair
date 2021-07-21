@@ -268,6 +268,7 @@ export default {
       }
       .nav-items {
         position: fixed;
+        box-sizing: border-box;
         padding-left: 31px;
         padding-top: 130px;
         flex-flow: column wrap !important;
@@ -286,7 +287,7 @@ export default {
           padding-right: 0px;
           height: 58px;
           &.signout {
-            bottom: 31px;
+            bottom: 80px;
             position: absolute;
           }
           a.nav-link {
