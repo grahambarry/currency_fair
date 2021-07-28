@@ -1,22 +1,56 @@
 <template>
   <div>
     <div v-if="signedIn" ref="scrollContainer" @scroll="throttleScrollThrottled" id="parallaxid" class="parallax">
-      <h1>Contact</h1><br><br><br><br><br><br><br>
-      <h1>Contact</h1><br><br><br><br><br><br><br>
-      <h1>Contact</h1><br><br><br><br><br><br><br>
-      <h1>Contact</h1><br><br><br><br><br><br><br>
+      <Alerts :alerts="errors" />
+      <div class="col-md-6 offset-md-3">
+        <h2>Contact Me</h2>
+        <form class="simple_form form-horizontal">
+          <div class="form-group email optional user_email">
+            <label class="control-label email optional">
+              Name
+            </label>
+            <input
+              v-model="form.lastName"
+              class="form-control string email optional"
+              autofocus="autofocus"
+            >
+          </div>
+          <div class="form-group email optional user_email">
+            <label class="control-label email optional">
+              Email
+            </label>
+            <input
+              v-model="form.email"
+              class="form-control string email optional"
+              autofocus="autofocus"
+            >
+          </div>
+          <div class="text-center">
+            <button
+              class="btn btn-default btn btn-primary"
+              @click.prevent="handleSendForm"
+            >
+              Send Now
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </template>
 <script>
 import _ from 'lodash'
+import Alerts from '~components/shared/alerts';
+import _get from 'lodash/get';
+import sendForm from '~mutations/sendContactForm';
 
 export default {
-  components: {
-  },
-  name: 'About',
+  components: { Alerts },
+  name: 'Contact',
   data() {
     return {
+      errors: [],
+      form: {},
       scrollDelta: 20,
       myLastScrollPos: null,
       topValue: '0px',
@@ -53,34 +87,33 @@ export default {
     },
     changeTopValue: function () {
       this.$emit('emitTop', this.topValue)
-    }
+    },
+    handleSendForm() {
+      sendForm({
+        apollo: this.$apollo,
+        ...this.form,
+      }).then(response => _get(response, 'data.sendContactForm', {}))
+      .then(response => {
+        if(response.success) {
+          const user = response.user;
+          this.$router.push({ name: 'showcase' });
+        } else {
+          this.errors = this.errorMessages(response.data.sendContactForm.errors);
+        }
+      }).catch(error => {
+        this.errors = [error];
+      });
+    },
   }
 };
 </script>
 <style lang="scss" scoped>
   @import 'app/assets/stylesheets/placeholders/flex-helpers';
   @import 'app/assets/stylesheets/design_vars';
-  @import 'app/assets/stylesheets/design_vars';
   body {
     overflow: hidden;
     margin: 0;
     padding: 0;
     overflow: hidden;
-  }
-  .parallax {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    height: 100vh;
-    -webkit-perspective: 300px;
-    perspective: 300px;
-    -webkit-perspective-origin-x: 100%;
-    perspective-origin-x: 100%;
-    font-size: 200%;
   }
 </style>
