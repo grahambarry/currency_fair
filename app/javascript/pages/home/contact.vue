@@ -10,7 +10,7 @@
               Name
             </label>
             <input
-              v-model="form.lastName"
+              v-model="form.name"
               class="form-control string email optional"
               autofocus="autofocus"
             >
@@ -21,6 +21,26 @@
             </label>
             <input
               v-model="form.email"
+              class="form-control string email optional"
+              autofocus="autofocus"
+            >
+          </div>
+          <div class="form-group email optional user_email">
+            <label class="control-label email optional">
+              Company
+            </label>
+            <input
+              v-model="form.company"
+              class="form-control string email optional"
+              autofocus="autofocus"
+            >
+          </div>
+          <div class="form-group email optional user_email">
+            <label class="control-label email optional">
+              Message
+            </label>
+            <input
+              v-model="form.message"
               class="form-control string email optional"
               autofocus="autofocus"
             >
@@ -42,7 +62,7 @@
 import _ from 'lodash'
 import Alerts from '~components/shared/alerts';
 import _get from 'lodash/get';
-import sendForm from '~mutations/sendContactForm';
+import sendForm from '~mutations/createMessage';
 
 export default {
   components: { Alerts },
@@ -92,13 +112,13 @@ export default {
       sendForm({
         apollo: this.$apollo,
         ...this.form,
-      }).then(response => _get(response, 'data.sendContactForm', {}))
+      }).then(response => _get(response, 'data.createMessage', {}))
       .then(response => {
         if(response.success) {
           const user = response.user;
           this.$router.push({ name: 'showcase' });
         } else {
-          this.errors = this.errorMessages(response.data.sendContactForm.errors);
+          this.errors = this.errorMessages(response.data.createMessage.errors);
         }
       }).catch(error => {
         this.errors = [error];
