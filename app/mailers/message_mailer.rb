@@ -3,6 +3,6 @@ class MessageMailer < ApplicationMailer
 
   def contact_email
     @message = params[:args]
-    mail(to: 'grahambarry@live.ie', subject: 'Contact Form GBUX')
+    mail(to: 'info@grahambarryux.com', subject: 'Contact Form GBUX')
   end
 end
