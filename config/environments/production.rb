@@ -93,13 +93,14 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.smtp_settings = {
-    address:              "smtp.office365.com",
+    address:              "smtpout.secureserver.net",
     port:                 587,
     domain:               "grahambarryux.com",
     user_name:            ENV["SMTP_ADDRESS"],
     password:             ENV["SMTP_PASSWORD"],
     authentication:       :login,
-    enable_starttls_auto: true
+    enable_starttls_auto: true,
+    Timeout:              10000
     }
     config.action_mailer.delivery_method = :smtp
 end
