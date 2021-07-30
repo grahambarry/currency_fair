@@ -11,6 +11,7 @@ gem "devise"
 gem "devise-token_authenticatable"
 gem "foreman"
 gem "graphql"
+gem 'figaro'
 gem "jbuilder", "~> 2.5"
 gem "pg"
 gem "puma", "~> 3.11"

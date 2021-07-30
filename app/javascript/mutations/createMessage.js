@@ -15,13 +15,6 @@ const mutation = gql`
       company: $company,
       message: $message,
     }) {
-      message {
-        id
-        name
-        email
-        company
-        message
-      }
       success
       errors
     }
