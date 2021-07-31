@@ -1,35 +1,17 @@
 <template>
   <div class="row">
     <Alerts :alerts="errors" />
-    <div class="col-md-6 offset-md-3">
+    <div class="">
       <h2>Sign in</h2>
-      <form class="simple_form form-horizontal">
-        <div class="form-group email optional user_email">
-          <label class="control-label email optional">
-            Email
-          </label>
-          <input
-            v-model="form.email"
-            class="form-control string email optional"
-            autofocus="autofocus"
-          >
-        </div>
-        <div class="form-group password optional user_password">
-          <label class="control-label password optional">
-            Password
-          </label>
-          <input
-            v-model="form.password"
-            type="password"
-            class="form-control password optional"
-          >
-        </div>
-        <div class="text-center">
+      <form class="">
+        <GbInput v-model="form.email" label="Email" autofocus="autofocus"/>
+        <GbInput v-model="form.password" label="Password"/>
+        <div class="">
           <button
-            class="btn btn-default btn btn-primary"
+            class=""
             @click.prevent="handleSignIn"
           >
-            Sign In
+            Login
           </button>
         </div>
       </form>
@@ -38,6 +20,7 @@
 </template>
 <script>
 import Alerts from '~components/shared/alerts';
+import GbInput from '~components/shared/gbInput';
 import _get from 'lodash/get';
 import signIn from '~mutations/signIn';
 import { AUTH_TOKEN_KEY } from '~configuration/appConstants';
@@ -45,7 +28,7 @@ import { mapMutations } from 'vuex';
 
 export default {
   name: 'SignIn',
-  components: { Alerts },
+  components: { Alerts, GbInput },
   data() {
     return {
       errors: [],
