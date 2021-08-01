@@ -29,8 +29,8 @@
 </template>
 
 <script>
-import AutoFocusMixin from '~/components/global/AutoFocusMixin'
-import ValidationMixin from '~/mixins/ValidationMixin'
+import AutoFocusMixin from '~components/shared/AutoFocusMixin'
+import ValidationMixin from '~mixins/ValidationMixin'
 
 export default {
   mixins: [AutoFocusMixin, ValidationMixin],
@@ -95,7 +95,7 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-  @import '~assets/design_variables';
+  @import 'app/assets/stylesheets/design_vars';
 
   .a-input {
     --height: 44px;
