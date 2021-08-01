@@ -1,11 +1,10 @@
 <template>
-  <div class="row">
+  <div ref="scrollContainer" @scroll="throttleScrollThrottled" id="parallaxid" class="parallax">
     <Alerts :alerts="errors" />
-    <div class="">
-      <h2>Sign in</h2>
-      <form class="">
+    <div class="signin-container">
+      <form class="form">
         <GbInput v-model="form.email" label="Email" autofocus="autofocus"/>
-        <GbInput v-model="form.password" label="Password"/>
+        <GbInput v-model="form.password" type="password" label="Password"/>
         <div class="">
           <button
             class=""
@@ -58,3 +57,35 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+  @import 'app/assets/stylesheets/design_vars';
+  body {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  .parallax {
+    background-color: $limebg;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    height: 100vh;
+    -webkit-perspective: 300px;
+    perspective: 300px;
+    -webkit-perspective-origin-x: 100%;
+    perspective-origin-x: 100%;
+    font-size: 200%;
+    .signin-container {
+      position: relative;
+      width: 340px;
+      margin: 0 auto;
+      margin-top: 210px;
+    }
+  }
+</style>

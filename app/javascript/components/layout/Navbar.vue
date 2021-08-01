@@ -211,7 +211,7 @@ export default {
             height: 4px;
             bottom: -4px;
             left: 0;
-            background-color: $purple;
+            background-color: $limelite1;
             visibility: hidden;
             transition: all 0.3s ease-in-out;
           }

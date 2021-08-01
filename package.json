@@ -19,6 +19,7 @@
     "apollo-link-http": "^1.5.3",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "convert-units": "^2.3.4",
+    "core-js": "^3.6.5",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.0",
     "js-cookie": "^2.2.0",
@@ -37,6 +38,8 @@
     "vuex-persistedstate": "^2.5.4"
   },
   "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "babel-loader": "^8.2.2",
     "empty-module": "^0.0.2",
     "eslint": "^4.19.1",
     "eslint-config-standard": "^10.2.1",

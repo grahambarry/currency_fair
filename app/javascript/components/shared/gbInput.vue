@@ -1,8 +1,8 @@
 <template>
   <ValidationProvider ref="provider" v-slot="{errors}" :name="validationName || label" :rules="rules" :immediate="immediate" :mode="mode" slim>
-    <div class="a-input alk-form-element width-100 amm-flex-1" :class="{'is-disabled': disabled, 'is-compact': compact}">
+    <div class="a-input alk-form-element amm-flex-1" :class="{'is-disabled': disabled, 'is-compact': compact}">
       <div
-        :class="`input-wrap width-100 amm-flex pos-relative ${!!errors.length || status ? 'has-status padding-bottom-17':''} ${status ? `is-${status.type}`:''} ${clear ? 'is-clear':''} ${highlight ? 'is-highlighed':''} ${!label ? 'has-label':''}`">
+        :class="`amm-flex pos-relative ${!!errors.length || status ? 'has-status padding-bottom-17':''} ${status ? `is-${status.type}`:''} ${clear ? 'is-clear':''} ${highlight ? 'is-highlighed':''} ${!label ? 'has-label':''}`">
         <div class="a-input-container amm-flex amm-flex-1 flex-align-center pos-relative">
           <slot/>
           <div class="amm-flex amm-flex-1 pos-relative wrap-target">
@@ -14,7 +14,7 @@
               :value="value"
               :disabled="disabled"
               :readonly="readonly"
-              :class="['input width-100 amm-flex-1', {'has-placeholder': placeholder.length > 1, capitalize}, inputClass]"
+              :class="['input amm-flex-1', {'has-placeholder': placeholder.length > 1, capitalize}, inputClass]"
               v-on="listeners"
               @focus="onFocus">
             <label v-if="label" class="a-label">
@@ -98,11 +98,13 @@ export default {
   @import 'app/assets/stylesheets/design_vars';
 
   .a-input {
-    --height: 44px;
-    --label-font-size: 13px;
+    --height: 50px;
+    --label-font-size: 19px;
+    margin-bottom: 19px;
 
     &-container {
-      background-color: #fff;
+      box-sizing: border-box;
+      background-color: $limelite1;
       border-radius: $btn-border-radius;
       border: $inputs-border;
       transition: box-shadow 0.3s ease-in-out;
@@ -119,27 +121,60 @@ export default {
       }
       .has-label & {
         .input {
-          padding: 0 $padding-17;
+          padding: 0 $padding-12;
         }
       }
     }
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus,
+    select:-webkit-autofill,
+    select:-webkit-autofill:hover,
+    select:-webkit-autofill:focus,
+    input:-internal-autofill-selected, 
+    input:-webkit-autofill {
+      box-sizing: border-box;
+      box-shadow: 0 0 0px 1000px $limelite1 inset;
+      background-color: $limelite1;
+      -webkit-box-shadow: 0 0 0px 1000px $limelite1 inset;
+      width: 100%;
+    }
     .input {
+      font-family: $font-family-1;
+      box-sizing: border-box;
+      width: 100%;
       height: var(--height);
-      padding: 14px $padding-17 0 $padding-17;
-      background: #fff;
-      color: $alkimii-blue;
-      font-size: 15px;
+      padding: $padding-12 $padding-12 0 $padding-12;
+      background: transparent;
+      color: $navy-blue;
+      font-size: 19px;
+      line-height: 24px;
       font-weight: 300 !important;
       border-radius: $btn-border-radius !important;
       border: none !important;
       outline: none;
       transition: box-shadow 0.3s ease-in-out;
       cursor: inherit;
+      &:-webkit-autofill::first-line {
+        font-family: $font-family-1;
+        box-sizing: border-box;
+        height: var(--height);
+        padding: $padding-12 $padding-12 0 $padding-12;
+        background: transparent;
+        color: $navy-blue;
+        font-size: 19px;
+        line-height: 24px;
+      }
       &:not(:placeholder-shown) + .a-label, &:focus + .a-label, &.has-placeholder + .a-label {
-        --label-font-size: 11px;
+        --label-font-size: 10px;
+        line-height: 12px;
         padding-top: 7px;
         top: 0;
         transform: none;
+        color: $midgreen;
       }
       &:disabled {
         background-color: var(--input-disabled-color);
@@ -149,13 +184,13 @@ export default {
         border: none !important;
       }
       &::placeholder {
-        color: $amm-universal-light-gray;
+        color: $limelite1;
       }
       &::-webkit-input-placeholder {
-        color: $amm-universal-light-gray;
+        color: $limelite1;
       }
       &:-ms-input-placeholder {
-        color: $amm-universal-light-gray;
+        color: $limelite1;
       }
       &::-webkit-calendar-picker-indicator {
         background: none;
@@ -172,21 +207,20 @@ export default {
       margin: 0;
       position: absolute;
       top: 50%;
-      left: $padding-17;
-      color: $amm-smoke-gray;
-      font-family: 'Poppins';
+      left: $padding-12;
+      color: $litegreen;
+      font-family: $font-family-1;
       font-size: var(--label-font-size);
       text-transform: capitalize;
-      line-height: 1;
-      font-weight: 300;
+      line-height: 46px;
       transform: translateY(-50%);
       transition: all 0.3s ease-in-out;
       pointer-events: none;
     }
     &:focus-within:not(.is-disabled), &:hover:not(.is-disabled) {
       .a-input-container {
-        border: 1px solid $amm-action-color;
-        box-shadow: $box-shadow-1, $box-shadow-2, $box-shadow-4;
+        border: 1px solid $limelite2;
+        box-shadow: $box-shadow-1;
       }
     }
     .has-status {

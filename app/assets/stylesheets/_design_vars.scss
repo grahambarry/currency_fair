@@ -17,167 +17,26 @@ $med-gray: #F0F6F3;
 $light-gray: #F9F9F9;
 $bg-gray: #F0F5F2;
 $purple: #493ebe;
+$limebg: #B0F8F1;
+$limelite1: #CFFFFA;
+$limelite2: #B3FCF5;
+$litegreen: #AAEFE8;
+$midgreen: #7BE0BC;
+$navy-blue: #2B618A;
 
 
 
-// Alkimii Fonts
-
-@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
-@import url('https://fonts.googleapis.com/css?family=Roboto');
-
-$z-indexes:1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
-$steps: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 13, 17, 27, 44, 34, 50, 71, 88, 94, 100, 115, 186, 301, 488, 790;
-$percentage_steps: 0, 10, 11, 12, 13, 16, 17, 18, 19, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100;
-$column_widths: 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 25, 30, 33, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100;
-
-$quadrant-color-1: #5770E7;
-$quadrant-color-2: #27C088;
-$quadrant-color-3: #F25757;
-$quadrant-color-4: #C7B2E8;
-
-// Fonts
-$font-17scale-1: 10.88px;
-$font-17scale-2: 13.60px;
-$font-17scale-3: 17.00px;
-$font-17scale-4: 21.25px;
-$font-17scale-5: 26.56px;
-$font-17scale-6: 33.20px;
-$font-17scale-7: 41.50px;
-$font-17scale-8: 51.88px;
-
-$font-15scale-1: 9.60px;
-$font-15scale-2: 12.00px;
-$font-15scale-3: 15.00px;
-$font-15scale-4: 18.75px;
-$font-15scale-5: 23.44px;
-$font-15scale-6: 29.30px;
-$font-15scale-7: 36.62px;
-$font-15scale-8: 45.78px;
-
-$font_15_scales: $font-15scale-1, $font-15scale-2, $font-15scale-3, $font-15scale-4, $font-15scale-5, $font-15scale-6, $font-15scale-7, $font-15scale-8;
-
-$font-family-common: 'Roboto';
-$font-size-common: 13px;
-$font-size-common-mobile: 20px;
-$font-weight-common: 400;
-
-//Responsive sizes
-
-$mobile-phone-screen: 767px;
-$screen-md-min: 992px;
-$amm-viewport-small: 600px;
-$amm-viewport-medium:1024px;
-$amm-viewport-large:1200px;
-
-// Alkimii Universal Color Variables;
-
-$amm-universal-active-color: #4A90E2;
-$amm-dark-blue: #3842d1;
-$amm-action-color: #4A90E2;
-$amm-universal-dark-gray: #545454;
-$amm-universal-light-gray:#979797;
-$amm-universal-light-subtle-gray:#F7F8FB;
-$amm-gray-med:#d4dae1;
-
-$amm-dark-gray-alt:#4A4A4A;
-$amm-light-gray-alt:#9B9B9B;
-$amm-heading-gray: #5a5a5a;
-$amm-darker-subtle: #F2F3F8;
-
-$amm-smoke-gray: #a1adcd;
-$amm-light-smoke-gray:#ebedf5;
-
-$amm-background-gray: #F7F9FC;
-
-$amm-white-bg: #fff;
-$amm-red-warning-color:#F25757;
-$amm-border-1: #E6E8F1;
-$border-color-1: #d0d6e6;
+$btn-border-radius: 4px;
+$input-border-color: transparent;
+$inputs-border: 1px solid $input-border-color;
 $alkimii-blue: #4A90E2;
-$amm-red:#dd4330;
+$amm-universal-light-gray:#979797;
+$amm-smoke-gray: #a1adcd;
+$amm-action-color: #4A90E2;
 $amm-orange:#F5A623;
 $amm-green:#27C088;
-$amm-light-green:#50e3c2;
-$amm-lilac-blue:#5770E7;
-$amm-lilac:#C7B2E8;
-$amm-pink: #fc6dab;
-$amm-web-primary-text-color:#7790a7;
-$amm-web-secondary-color:#7790a7;
-$amm-action-color-hover: #2878B2;
-$amm-outline-color: #CED2E6;
-$amm-light-blue: #70c8ff;
-$amm-highlight-blue: #3DB0FF;
-$amm-placeholder-gray: #B2BEDA;
-// Alkimii Step Bullet Widget Variables;
-
-$amm-step-bullet-single-height: 79px;
-$amm-step-bullet-single-width: 181px;
-$amm-step-bullet-top-line-height:49px;
-
-// Alkimii Mega Menu Variables;
-
-$critical-error-bar-height: 27px;
-
-$navbar-height: 44px;
-$amm-notifications-dd-width: 450px;
-$amm-notifications-dd-height:342px;
-$amm-notifications-dd-item-height: 63px;
-
-
-
-$amm-announcements-dd-width: 488px;
-$amm-announcements-dd-height: 585px;
-$amm-news-dd-height: calc(100vh - 115px);
-
-$amm-connect-dd-width: 357px;
-$amm-connect-dd-height:362px;
-$amm-connect-dd-item-height: 54px;
-$amm-connect-message-text-color: #345368;
-
-// Alkimii HR Automation Variables;
-
-$perrywinkle-34: rgba (157 142 230, 0.34);
-$padding-1: 1px;
-$padding-2: 2px;
-$padding-4: 4px;
-$padding-6: 6px;
-$padding-10: 10px;
-$padding-17: 17px;
-$padding-27: 27px;
-$padding-44: 44px;
-$padding-71: 71px;
-$padding-94: 94px;
-$padding-88: 88px;
-$padding-115: 115px;
-$padding-186: 186px;
-
-$height-input: 34px;
-$border-radius-input: 0px;
-$color-border-input: transparent;
-$white: #fff;
-$input-icon-color: #999;
-$input-border-color: #dbdbdb;
-
-// Buttons
-$btn-border-radius: 4px;
-$panel-border-radius: $btn-border-radius;
-
-//Main Panels Shadows
-$shadow-1: -10px 9px 21px 0 rgba(128, 152, 213, 0.08) !important;
-$shadow-2: -10px 9px 21px 0 rgba(128, 152, 213, 0.07) !important;
-$shadow-3: 0 8px 19px -5px rgba(157, 142, 230, 0.34) !important;
-$shadow-4: 0 4px 14px -5px rgba(128, 152, 213, 0.9) !important;
+$amm-red-warning-color:#F25757;
+$padding-12: 12px;
 
 // Input Shadows
-$box-shadow-1: 10px 9px 21px 0px rgba(128, 152, 213 , 0.12);
-$box-shadow-2: 0 3px 4px 0 rgba(0, 0, 0, 0.14);
-$box-shadow-3: 0 1px 8px 0 rgba(0, 0, 0, 0.12);
-$box-shadow-4: 0 3px 3px -2px rgba(0, 0, 0, 0.4);
-
-// Shadows
-$shadow: 'box-shadow: 0 -3px 42px 0 rgba(128, 152, 213, 0.31) !important';
-
-$inputs-border: 1px solid $input-border-color;
-
-//Widths
-$amm-chat-list-width: 260px;
+$box-shadow-1: 0 2px 7px 0 rgba(43, 97, 138, 0.12);
