@@ -1,5 +1,5 @@
 <template>
-  <div ref="scrollContainer" @scroll="throttleScrollThrottled" id="parallaxid" class="parallax">
+  <div ref="scrollContainer" id="parallaxid" class="parallax">
     <Alerts :alerts="errors" />
     <div class="signin-container">
       <form class="form">
