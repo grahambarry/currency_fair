@@ -22,7 +22,7 @@
             </label>
           </div>
         </div>
-        <AlkMessage v-if="!!errors.length || status" :message="message"/>
+        <ErrorMessage v-if="!!errors.length || status" :message="message"/>
       </div>
     </div>
   </ValidationProvider>
@@ -178,7 +178,7 @@ export default {
       }
       &:disabled {
         background-color: var(--input-disabled-color);
-        color: $alkimii-blue !important;
+        color: $gb-blue !important;
         border-color: var(--input-disabled-color) !important;
         box-shadow: none;
         border: none !important;

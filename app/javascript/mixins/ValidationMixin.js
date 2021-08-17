@@ -1,6 +1,6 @@
 /* eslint-disable no-extra-boolean-cast */
 import { ValidationProvider, extend } from 'vee-validate/dist/vee-validate.full'
-import AlkMessage from '~components/shared/AlkMessage'
+import ErrorMessage from '~components/shared/ErrorMessage'
 
 extend('NumberExpiry', {
   params: ['target'],
@@ -9,7 +9,7 @@ extend('NumberExpiry', {
       return target !== '' && target !== null
     true
   },
-  message: 'This fileds needs a number and an expiration date'
+  message: 'This field needs a number and an expiration date'
 })
 
 extend('positive', {
@@ -33,7 +33,7 @@ extend('payslip', {
 export default {
   components: {
     ValidationProvider,
-    AlkMessage
+    ErrorMessage
   },
   props: {
     rules: {

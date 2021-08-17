@@ -1,20 +1,14 @@
 <template>
   <nav class="navbar" :style="{top: topValue}">
-    <h1><span class="script">Graham Barry</span></h1>
+    <img :src="require(`../../assets/currency_fair_logo.svg`)" class="logo">
     <BurgerMenu icon-hover-color="#AAEFE8"
                 @click="openMenu"
                 class="burger-icon"/>
     <div class="nav-wrapper" :class="{open: isOpen}">
       <div @click="openMenu" class="nav-bg"></div>
-      <ul v-if="signedIn" class="nav-items">
+      <ul class="nav-items">
         <li class="burger-slide">
           <BurgerMenu icon-hover-color="#AAEFE8" @click="openMenu"/>
-        </li>
-        <li v-for="(route, index) in routes" :key="index" @click="openMenu"  class="nav-item">
-          <router-link :to="{ name: route.label }" class="nav-link">
-            <img :src="require(`../../assets/${route.icon}`)" class="icon">
-            {{route.label}}
-          </router-link>
         </li>
         <li class="nav-item signout">
           <a class="nav-link"
@@ -23,33 +17,6 @@
             <img :src="require(`../../assets/sign-out-icon.svg`)" class="icon">
             Sign out
           </a>
-        </li>
-      </ul>
-      <ul v-else class="nav-items">
-        <li class="nav-item">
-          <router-link
-            :to="{ name: 'about' }"
-            class="nav-link">
-            About
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <router-link
-            :to="{ name: 'sign_in' }"
-            class="nav-link">
-            Sign In
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <router-link
-            :to="{ name: 'sign_up' }"
-            class="nav-link">
-            Sign up
-          </router-link>
-        </li>
-        <li>
-          <BurgerMenu icon-hover-color="#AAEFE8"
-                      class="burger-slide"/>
         </li>
       </ul>
     </div>
@@ -78,11 +45,6 @@ export default {
   data () {
     return {
       isOpen: false,
-      routes: [
-        { 'label': 'About', 'icon': 'about-icon.svg'},
-        { 'label': 'Showcase', 'icon': 'showcase-icon.svg'},
-        { 'label': 'Contact', 'icon': 'contactb-icon.svg'},
-      ]
     }
   },
   methods: {
@@ -115,34 +77,23 @@ export default {
     top: 0;
     left: 0;
     right: 0;
-    height: 80px;
-    background: #FFF;
+    height: $nav-height;
+    background: $nav-bg;
     @extend %amm-flex-row;
     align-items: center;
     justify-content: space-between;
     transition: top .2s ease-in-out;
+    padding: 12px $document-padding;
     .burger-icon {
       position: absolute;
-      top: 30px;
-      right: 31px;
+      top: 18px;
+      right: 22px;
       display: none;
     }
-    h1 {
-      z-index: 1;
-      margin-left: 31px;
-      margin-top: 30px;
-      font-family: $font-family-1;
-      font-size: 24px;
-      line-height: 30px;
-      color: #2B618A;
-      font-weight: 300;
-      white-space: nowrap;
-      -moz-only-whitespace: nowrap;
-      .script {
-        font-family: $font-family-script;
-        font-size: 30px;
-        color: $dark-gray;
-      }
+    .logo {
+      height: 42px;
+      width: 132px;
+      object-fit: contain;
     }
     .nav-wrapper {
       .nav-bg {
@@ -196,7 +147,7 @@ export default {
           white-space: nowrap;
           -moz-only-whitespace: nowrap;
           color:#686C6B;
-          font-family: $font-family-1;
+          font-family: $PG-Bold;
           font-size: 19px;
           line-height: 30px;
           text-decoration: none;
@@ -249,6 +200,7 @@ export default {
   @media screen and (max-width: $breakpoint-phone) {
     .navbar {
       z-index: 4;
+      padding: 12px 12px 12px 12px !important;
       h1 {
         .script {
           font-size: 24px;
@@ -317,8 +269,8 @@ export default {
           display: block;
           z-index: 4;
           position: absolute;
-          top: 30px;
-          right: 31px;
+          top: 18px;
+          right: 22px;
         }
       }
     }

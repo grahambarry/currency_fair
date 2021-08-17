@@ -1,15 +1,14 @@
 <template>
-  <div ref="scrollContainer" id="parallaxid" class="parallax">
+  <div class="container">
     <Alerts :alerts="errors" />
     <div class="signin-container">
       <form class="form">
-        <GbInput v-model="form.email" label="Email" autofocus="autofocus"/>
-        <GbInput v-model="form.password" type="password" label="Password"/>
+        <Input v-model="form.email" label="Email" autofocus="autofocus"/>
+        <Input v-model="form.password" type="password" label="Password"/>
         <div class="">
           <button
             class=""
-            @click.prevent="handleSignIn"
-          >
+            @click.prevent="handleSignIn">
             Login
           </button>
         </div>
@@ -19,7 +18,7 @@
 </template>
 <script>
 import Alerts from '~components/shared/alerts';
-import GbInput from '~components/shared/gbInput';
+import Input from '~components/shared/Input';
 import _get from 'lodash/get';
 import signIn from '~mutations/signIn';
 import { AUTH_TOKEN_KEY } from '~configuration/appConstants';
@@ -27,7 +26,7 @@ import { mapMutations } from 'vuex';
 
 export default {
   name: 'SignIn',
-  components: { Alerts, GbInput },
+  components: { Alerts, Input },
   data() {
     return {
       errors: [],
@@ -46,7 +45,7 @@ export default {
           const user = response.user;
           this.signIn(user);
           localStorage.setItem(AUTH_TOKEN_KEY, user.authenticationToken);
-          this.$router.push({ name: 'about' });
+          this.$router.push({ name: 'Transaction info' });
         } else {
           this.errors = this.errorMessages(response.data.signIn.errors);
         }
@@ -65,7 +64,7 @@ export default {
     padding: 0;
     overflow: hidden;
   }
-  .parallax {
+  .container {
     background-color: $limebg;
     position: absolute;
     top: 0;
@@ -76,11 +75,6 @@ export default {
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     height: 100vh;
-    -webkit-perspective: 300px;
-    perspective: 300px;
-    -webkit-perspective-origin-x: 100%;
-    perspective-origin-x: 100%;
-    font-size: 200%;
     .signin-container {
       position: relative;
       width: 340px;
