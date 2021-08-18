@@ -8,8 +8,8 @@
     <ConvertInput to 
                   :currencies="currencies"
                   :value="value2"
-                  v-on="$listeners"
-                  :currency="currency2"/>
+                  :currency="currency2"
+                  v-on="$listeners"/>
     {{currencies}}
   </div>
 </template>

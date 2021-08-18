@@ -8,7 +8,8 @@
         </section>
         <section v-else>
           <div v-if="loading">Loading...</div>
-          <Converter :value1="value1"
+          <Converter v-if="!loading"
+                     :value1="value1"
                      :value2="value2"
                      :currencies="currencies"
                      :currency1="currency1"
@@ -62,9 +63,11 @@ export default {
       ]
     } 
   },
+  created() {
+    this.getCurrencies(this.currency1)
+  },
   mounted() {
     this.currentScroll = this.$refs.scrollContainer.scrollY
-    this.getCurrencies(this.currency1)
   },
   methods: {
     getCurrencies: function (base_currency) {

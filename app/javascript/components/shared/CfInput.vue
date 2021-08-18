@@ -98,16 +98,15 @@ export default {
   @import 'app/assets/stylesheets/design_vars';
 
   .a-input {
-    --height: 50px;
+    --height: 38px;
     --label-font-size: 19px;
-    margin-bottom: 19px;
+    margin-bottom: 0px;
 
     &-container {
       box-sizing: border-box;
-      background-color: $limelite1;
+      background-color: transparent;
       border-radius: $btn-border-radius;
-      border: $inputs-border;
-      transition: box-shadow 0.3s ease-in-out;
+      border: none;
       .is-clear & {
         border-color: transparent;
         .input {
@@ -137,34 +136,31 @@ export default {
     input:-internal-autofill-selected, 
     input:-webkit-autofill {
       box-sizing: border-box;
-      box-shadow: 0 0 0px 1000px $limelite1 inset;
-      background-color: $limelite1;
-      -webkit-box-shadow: 0 0 0px 1000px $limelite1 inset;
+      box-shadow: none;
+      background-color: transparent;
+      -webkit-box-shadow: 0 0 0px 1000px transparent inset;
       width: 100%;
     }
     .input {
-      font-family: $font-family-1;
+      font-family: $PG-Medium;
       box-sizing: border-box;
       width: 100%;
       height: var(--height);
-      padding: $padding-12 $padding-12 0 $padding-12;
+      padding: 0;
       background: transparent;
-      color: $navy-blue;
-      font-size: 19px;
-      line-height: 24px;
-      font-weight: 300 !important;
-      border-radius: $btn-border-radius !important;
+      color: $black-gray;
+      font-size: 28px;
+      line-height: 38px;
       border: none !important;
       outline: none;
-      transition: box-shadow 0.3s ease-in-out;
       cursor: inherit;
       &:-webkit-autofill::first-line {
-        font-family: $font-family-1;
+        font-family: $PG-Medium;
         box-sizing: border-box;
         height: var(--height);
-        padding: $padding-12 $padding-12 0 $padding-12;
+        padding: 0;
         background: transparent;
-        color: $navy-blue;
+        color: $black-gray;
         font-size: 19px;
         line-height: 24px;
       }
@@ -174,7 +170,7 @@ export default {
         padding-top: 7px;
         top: 0;
         transform: none;
-        color: $midgreen;
+        color: transparent;
       }
       &:disabled {
         background-color: var(--input-disabled-color);
@@ -184,13 +180,13 @@ export default {
         border: none !important;
       }
       &::placeholder {
-        color: $limelite1;
+        color: transparent;
       }
       &::-webkit-input-placeholder {
-        color: $limelite1;
+        color: transparent;
       }
       &:-ms-input-placeholder {
-        color: $limelite1;
+        color: transparent;
       }
       &::-webkit-calendar-picker-indicator {
         background: none;
@@ -208,7 +204,7 @@ export default {
       position: absolute;
       top: 50%;
       left: $padding-12;
-      color: $litegreen;
+      color: transparent;
       font-family: $font-family-1;
       font-size: var(--label-font-size);
       text-transform: capitalize;
@@ -219,8 +215,8 @@ export default {
     }
     &:focus-within:not(.is-disabled), &:hover:not(.is-disabled) {
       .a-input-container {
-        border: 1px solid $limelite2;
-        box-shadow: $box-shadow-1;
+        border: none;
+        box-shadow: none;
       }
     }
     .has-status {

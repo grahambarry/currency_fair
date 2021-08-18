@@ -2,11 +2,16 @@
   <div class="cs-container" :class="{ from, to }">
     <div class="input-col">
       <div class="label">{{label}}</div>
-      <CfInput :value="value"
-               :label="label" 
-               v-on="$listeners"
-               autofocus="autofocus"
-               @input="emitValue"/>
+      <div class="input-row">
+        <div class="symbol">
+          {{mySymbol}}
+        </div>
+        <CfInput :value="value"
+                 :label="label" 
+                 v-on="$listeners"
+                 autofocus="autofocus"
+                 @input="emitValue"/>
+      </div>
     </div>
     <CurrencySelect :currency="myCurrency" 
                     :currencies="currencies"
@@ -18,11 +23,13 @@
 <script>
 import CurrencySelect from '~components/shared/CurrencySelect'
 import CfInput from '~components/shared/CfInput'
+import SymbolLUT from '~components/json/currency_symbols.json'
 export default {
   name: 'ConvertInput',
   components: {
     CurrencySelect,
     CfInput,
+    SymbolLUT
   },
   props: {
     currencies: {
@@ -49,12 +56,14 @@ export default {
   data() {
     return {
       myValue: this.value,
-      myCurrency: this.currency
+      myCurrency: this.currency,
+      mySymbol: this.symbol,
     }
   },
   methods: {
     emitCurrency (val) {
       this.myCurrency = val
+      this.mySymbol = SymbolLUT[val].symbol_native
       this.emitValueAndCurrency()
     },
     emitValue (val) {
@@ -115,6 +124,17 @@ export default {
     }
     .input-col {
       @extend %amm-flex-column;
+    }
+    .input-row {
+      @extend %amm-flex-row;
+      align-items: center;
+      line-height: 38px;
+      font-size: 28px;
+      font-family: $PG-Medium;
+    }
+    .symbol {
+      width: 28px;
+      font-size: 18px;
     }
   }
   @media screen and (max-width: $breakpoint-small) {
