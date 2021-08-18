@@ -5,7 +5,7 @@
            width="580px">
       <template #header>
         <div class="header-container">
-          <div class="flex-row">
+          <div class="flex-row title">
             <img :src="require(`../../assets/icon-lock.svg`)" class="icon">
             Identity verification required
           </div>
@@ -69,7 +69,18 @@ export default {
     .flex-row {
       @extend %amm-flex-row;
       width: 100%;
+      .icon {
+        transform: translate(-4px, -3px);
+        margin-right: 6px;
+      }
+      &.title {
+        font-family: $PG-Medium;
+        font-size: 18px;
+        line-height: 27px;
+        color: #768895;
+      }
       &.subtitle {
+        width: 442px;
         font-family: $PG-Book;
         font-size: 14px;
         line-height: 21px;
