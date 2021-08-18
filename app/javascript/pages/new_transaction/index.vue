@@ -107,12 +107,12 @@ export default {
       if (val.fromTo === 'from') {
         this.currency1 = val.currency
         this.value1 = val.value
-        this.value2 = (val.value * this.getRate(val.currency)).toFixed(2)
+        this.value2 = (val.value * this.getRate(this.currency1)).toFixed(2)
       }
       else {
         this.currency2 = val.currency
         this.value2 = val.value
-        this.value1 = (val.value * this.getRate(val.currency)).toFixed(2)
+        this.value1 = (val.value * this.getRate(this.currency1)).toFixed(2)
       }
     },
     getRate (currency) {
