@@ -100,7 +100,7 @@ export default {
     background-color: #fff;
     border-radius: 24px 4px 4px 24px;
     border: 1px solid #E0E0E0;
-    color: #616161;
+    color: $gray-med-1;
     width: 90px;
     height: 47px;
     cursor: pointer;
@@ -113,7 +113,7 @@ export default {
 
   .custom-select .items {
     background-color: #fff;
-    color: #616161;
+    color: $gray-med-1;
     border-radius: 0px 0px 6px 6px;
     font-family: $PG-Medium;
     overflow-y: auto;
@@ -133,7 +133,7 @@ export default {
     justify-content: flex-start;
     padding-left: 13px;
     align-items: center;
-    color: #616161;
+    color: $gray-med-1;
     cursor: pointer;
     user-select: none;
   }

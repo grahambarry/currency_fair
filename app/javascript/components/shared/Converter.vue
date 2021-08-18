@@ -10,7 +10,7 @@
                   :value="value2"
                   :currency="currency2"
                   v-on="$listeners"/>
-    {{currencies}}
+    <!-- {{currencies}} -->
   </div>
 </template>
 <script>

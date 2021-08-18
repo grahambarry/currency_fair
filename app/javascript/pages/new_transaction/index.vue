@@ -3,6 +3,8 @@
     <div v-if="signedIn" ref="scrollContainer" @scroll="throttleScrollThrottled" class="container">
       <div class="left">
         <Stepper :steps="steps"/>
+        <PromptText promptA="Let’s set up your transaction!"
+                    promptB="Specify the amount to be sent or received."/>
         <section v-if="errored">
           <p>We're sorry, we're not able to retrieve this information at the moment, please try back later</p>
         </section>
@@ -16,20 +18,32 @@
                      :currency2="currency2"
                      @emittedValues="setValues"/>
         </section>
+        <CfButton label="Next" 
+                  class="cf-button"
+                  @click="showModal = true"/>
+        <Footer :links="footerLinks"/>
       </div>
       <div class="right">
         <div class="fixed-panel">
+          <SummaryPanel/>
         </div>
       </div>
     </div>
     <div v-else>
       <h1>You are not signed in.</h1>
     </div>
+    <VerificationModal :show.sync="showModal"
+                        @close="closeModal"/>
   </div>
 </template>
 <script>
 import Stepper from '~components/shared/Stepper.vue'
+import PromptText from '~components/shared/PromptText.vue'
 import Converter from '~components/shared/Converter.vue'
+import CfButton from '~components/shared/CfButton.vue'
+import Footer from '~components/shared/Footer.vue'
+import SummaryPanel from '~components/shared/SummaryPanel.vue'
+import VerificationModal from '~components/shared/VerificationModal.vue'
 import _ from 'lodash'
 import axios from 'axios'
 
@@ -37,10 +51,16 @@ export default {
   name: 'TransactionInfo',
   components: {
     Stepper,
+    PromptText,
+    CfButton,
     Converter,
+    Footer,
+    SummaryPanel,
+    VerificationModal,
   },
   data() {
     return {
+      showModal: false,
       currencies: null,
       value1: 0,
       value2: 0,
@@ -60,7 +80,12 @@ export default {
         { 'label': 'Transaction info'},
         { 'label': 'Recipient info'},
         { 'label': 'Make payment'},
-      ]
+      ],
+      footerLinks: [
+        { 'label': 'Help \& Support'},
+        { 'label': 'Legal Stuff'},
+      ],
+
     } 
   },
   created() {
@@ -81,6 +106,10 @@ export default {
           this.errored = true
         })
         .finally(() => this.loading = false)
+    },
+    closeModal() {
+      console.log('TRIGGERED  AM')
+      this.showModal = false;
     },
     throttleScroll: function () {
       let initialTopValue = this.topValue
@@ -176,6 +205,11 @@ export default {
         width: 100%;
         padding-top: $nav-height;
       }
+    }
+    .cf-button {
+      margin-top: 36px;
+      display: flex;
+      align-items: flex-start;
     }
   }
   @media screen and (max-width: $breakpoint-small) {
