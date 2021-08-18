@@ -3,46 +3,18 @@
     <div v-if="signedIn" ref="scrollContainer" @scroll="throttleScrollThrottled" class="container">
       <div class="left">
         <Stepper :steps="steps"/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
-        Lorum <br/>
+        <section v-if="errored">
+          <p>We're sorry, we're not able to retrieve this information at the moment, please try back later</p>
+        </section>
+        <section v-else>
+          <div v-if="loading">Loading...</div>
+          <Converter :value1="value1"
+                     :value2="value2"
+                     :currencies="currencies"
+                     :currency1="currency1"
+                     :currency2="currency2"
+                     @emittedValues="setValues"/>
+        </section>
       </div>
       <div class="right">
         <div class="fixed-panel">
@@ -56,15 +28,26 @@
 </template>
 <script>
 import Stepper from '~components/shared/Stepper.vue'
+import Converter from '~components/shared/Converter.vue'
 import _ from 'lodash'
+import axios from 'axios'
 
 export default {
   name: 'TransactionInfo',
   components: {
-    Stepper
+    Stepper,
+    Converter,
   },
   data() {
     return {
+      currencies: null,
+      value1: 0,
+      value2: 0,
+      currency1: 'EUR',
+      currency2: 'USD',
+      rate: null,
+      loading: true,
+      errored: false,
       scrollDelta: 20,
       myLastScrollPos: null,
       topValue: '0px',
@@ -77,13 +60,25 @@ export default {
         { 'label': 'Recipient info'},
         { 'label': 'Make payment'},
       ]
-
     } 
   },
   mounted() {
     this.currentScroll = this.$refs.scrollContainer.scrollY
+    this.getCurrencies(this.currency1)
   },
   methods: {
+    getCurrencies: function (base_currency) {
+      axios
+        .get('https://v6.exchangerate-api.com/v6/044666c7ddb71990e9c7ff99/latest/' + `${base_currency}`)
+        .then(response => {
+          this.currencies = response.data.conversion_rates
+        })
+        .catch(error => {
+          console.log(error)
+          this.errored = true
+        })
+        .finally(() => this.loading = false)
+    },
     throttleScroll: function () {
       let initialTopValue = this.topValue
       this.myLastScrollPos = this.myCurrentScroll()
@@ -106,6 +101,30 @@ export default {
     },
     changeTopValue: function () {
       this.$emit('emitTop', this.topValue)
+    },
+    setValues: function(val) {
+      console.log("EMITTED " + val.fromTo + "  " + val.currency + "  " + val.value)
+      if (val.fromTo === 'from') {
+        this.currency1 = val.currency
+        this.value1 = val.value
+        this.value2 = (val.value * this.getRate(val.currency)).toFixed(2)
+      }
+      else {
+        this.currency2 = val.currency
+        this.value2 = val.value
+        this.value1 = (val.value * this.getRate(val.currency)).toFixed(2)
+      }
+    },
+    getRate (currency) {
+      let rate = this.currencies[currency]
+      console.log('rate ' + rate) 
+      return rate
+    },
+  },
+  computed: {
+    pair() {
+      let currencyPair = [this.currency1, this.currency2]
+      return currencyPair
     }
   }
 };

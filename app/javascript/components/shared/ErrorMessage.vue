@@ -1,5 +1,5 @@
 <template>
-  <div class="alk-form-element-msg height-17 amm-flex-row-center" data-cy="alkMsg">
+  <div class="form-element-msg height-17 amm-flex-row-center" data-cy="alkMsg">
     {{ message }}
   </div>
 </template>
@@ -18,7 +18,7 @@ export default {
 <style lang='scss' scoped>
   @import 'app/assets/stylesheets/design_vars';
 
-  .alk-form-element-msg {
+  .form-element-msg {
     --status-color: #{$amm-red-warning-color};
     --bg-color: var(--status-color);
     --color: #fff;

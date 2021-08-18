@@ -1,7 +1,7 @@
 {
   "name": "graham_barry_ux_developer",
   "version": "1.0.0",
-  "description": "### Description",
+  "description": "CF Code Challenge",
   "author": "Graham Barry",
   "scripts": {
     "dev": "bin/webpack-dev-server"
@@ -18,6 +18,7 @@
     "apollo-client": "^2.6.2",
     "apollo-link-context": "^1.0.7",
     "apollo-link-http": "^1.5.3",
+    "axios": "^0.21.1",
     "babel-loader": "^8.2.2",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "convert-units": "^2.3.4",
