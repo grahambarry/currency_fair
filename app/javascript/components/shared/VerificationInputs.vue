@@ -193,16 +193,24 @@ export default {
         }
       }
       .inputs-row {
+        .inputs-row {
+          margin-top: 31px;
+        }
         input {
-          width: 15%;
+          padding-left: 0px;
+          padding-right: 0px;
+          font-size: 21px;
+          width: 16%;
         }
       }
       .alt-actions {
         flex-flow: column wrap !important;
         width: 100%;
         align-items: flex-start;
+        justify-content: flex-start;
         .action {
           margin-top: 9px;
+          font-size: 11px;
         }
       }
     }
