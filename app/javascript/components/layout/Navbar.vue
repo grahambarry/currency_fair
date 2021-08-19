@@ -196,6 +196,9 @@ export default {
     .fade-leave-active {
       opacity: 1
     }
+    .signout {
+      display: none !important;
+    }
   }
   @media screen and (max-width: $breakpoint-phone) {
     .navbar {
@@ -239,6 +242,7 @@ export default {
           padding-right: 0px;
           height: 58px;
           &.signout {
+            display: flex !important;;
             bottom: 80px;
             position: absolute;
           }

@@ -3,32 +3,37 @@
     <div v-if="signedIn" ref="scrollContainer" @scroll="throttleScrollThrottled" class="container">
       <div class="left">
         <Stepper :steps="steps"/>
-        <PromptText promptA="Let’s set up your transaction!"
-                    promptB="Specify the amount to be sent or received."/>
-        <section v-if="errored">
-          <p>We're sorry, we're not able to retrieve this 
-             information at the moment, please try back later
-          </p>
-        </section>
-        <section v-else>
-          <div v-if="loading">Loading...</div>
-          <Converter v-if="!loading"
-                     :value1="value1"
-                     :value2="value2"
-                     :currencies="currencies"
-                     :currency1="currency1"
-                     :currency2="currency2"
-                     @emittedValues="setValues"/>
-        </section>
-        <CfButton label="Next"
-                  route="Transaction info"
-                  class="cf-button"
-                  @click.prevent="showModal = true"/>
-        <Footer :links="footerLinks"/>
+        <div class="wrap-phone">
+          <PromptText promptA="Let’s set up your transaction!"
+                      promptB="Specify the amount to be sent or received."/>
+          <section v-if="errored">
+            <p>We're sorry, we're not able to retrieve this 
+              information at the moment, please try back later
+            </p>
+          </section>
+          <section v-else>
+            <div v-if="loading">Loading...</div>
+            <Converter v-if="!loading"
+                      :value1="value1"
+                      :value2="value2"
+                      :currencies="currencies"
+                      :currency1="currency1"
+                      :currency2="currency2"
+                      @emittedValues="setValues"/>
+          </section>
+          <CfButton label="Next"
+                    route="Transaction info"
+                    class="cf-button"
+                    @click.prevent="showModal = true"/>
+          <Footer :links="footerLinks" class="media-lg"/>
+        </div>
       </div>
       <div class="right">
-        <div class="fixed-panel">
-          <SummaryPanel/>
+        <div class="wrap-phone">
+          <div class="fixed-panel">
+            <SummaryPanel/>
+            <Footer :links="footerLinks" class="media-sm"/>
+          </div>
         </div>
       </div>
     </div>
@@ -105,13 +110,11 @@ export default {
           this.currencies = response.data.conversion_rates
         })
         .catch(error => {
-          console.log(error)
           this.errored = true
         })
         .finally(() => this.loading = false)
     },
     closeModal() {
-      console.log('TRIGGERED  AM')
       this.showModal = false;
     },
     throttleScroll: function () {
@@ -138,7 +141,6 @@ export default {
       this.$emit('emitTop', this.topValue)
     },
     setValues: function(val) {
-      console.log("EMITTED " + val.fromTo + "  " + val.currency + "  " + val.value)
       if (val.fromTo === 'from') {
         this.currency1 = val.currency
         this.value1 = val.value
@@ -152,7 +154,6 @@ export default {
     },
     getRate (currency) {
       let rate = this.currencies[currency]
-      console.log('rate ' + rate) 
       return rate
     },
   },
@@ -174,6 +175,9 @@ export default {
   }
   .overflow-x {
     overflow-x: auto;
+  }
+  .media-sm {
+    display: none;
   }
   .container {
     box-sizing: border-box;
@@ -216,12 +220,26 @@ export default {
     }
   }
   @media screen and (max-width: $breakpoint-small) {
+    .media-sm {
+      display: flex;
+      margin-bottom: 17px;
+    }
+    .media-lg {
+      display: none !important;
+    }
     .container {
       flex-flow: column nowrap !important;
+      .wrap-phone {
+        padding-left: 17px;
+        padding-right: 17px;
+      }
       .right {
         .fixed-panel {
           position: relative;
-          background: red;
+          padding-top: 0px;
+          background-color: transparent;
+          border-left: none;
+          height: auto;
         }
       }
       .left {

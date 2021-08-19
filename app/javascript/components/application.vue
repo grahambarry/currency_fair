@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="wrapper">
-      <Navbar :topValue="topValue"></Navbar>
+      <Navbar v-if="signedIn" :topValue="topValue"></Navbar>
       <main class="main-container">
         <transition name="fade" mode="out-in">
           <router-view @emitTop="setTop"/>

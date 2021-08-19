@@ -1,5 +1,14 @@
 <template>
   <div class="wrapper">
+    <div class="phone-row">
+      <div class="text">
+        Enter the code sent via SMS to
+        <span class="phone code">+353</span>
+        <span class="phone number">872251177</span>
+      </div>
+      <div class="row">
+      </div>
+    </div>
     <div class="inputs-row">
       <input v-for="index in digits" 
              :key="index" 
@@ -7,6 +16,16 @@
              maxlength="1"
              @focus="clearValue(index)"
              @input="focusNext(index)">
+    </div>
+    <div class="alt-actions">
+      <div class="action">
+        <img :src="require(`../../assets/icon-refresh.svg`)" class="icon">
+        Receive a new code
+      </div>
+      <div class="action">
+        <img :src="require(`../../assets/icon-phone.svg`)" class="icon">
+        Receive code via call instead
+      </div>
     </div>
   </div>
 </template>
@@ -60,6 +79,60 @@ export default {
   .wrapper {
     @extend %amm-flex-column;
     width: 100%;
+    .phone-row {
+      @extend %amm-flex-row;
+      align-items: flex-start;
+      justify-content: flex-start;
+      font-family: $PG-Medium;
+      font-size: 16px;
+      line-height: 27px;
+      margin-bottom: 24px;
+      .text {
+        @extend %amm-flex-row;
+        color: #3C454B;
+        white-space: nowrap;
+      }
+      span.phone {
+        background-color: #F4F4F4;
+        transform: translateY(-3px);
+        margin-left: auto;
+        padding-top: 3px;
+        padding-bottom: 2px;
+        padding-left: 6px;
+        padding-right: 7px;
+        color: #999999;
+        &.code {
+          margin-left: 7px;
+          border: 1px solid #DEDDDD;
+          background-color: #F2F1F1;
+          border-radius: 2px 0px 0px 2px;
+        }
+        &.number {
+          border: 1px solid $border-gray;
+          border-left-color: transparent;
+          border-radius: 0px 2px 2px 0px;
+        }
+      }
+    }
+    .alt-actions {
+      @extend %amm-flex-row;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+    .action {
+      @extend %amm-flex-row;
+      align-items: flex-start;
+      justify-content: flex-start;
+      font-family: $PG-Book;
+      font-size: 12px;
+      line-height: 27px;
+      color: #768895;
+      .icon {
+        margin-right: 4px;
+        transform: translateY(4px);
+      }
+    }
     .inputs-row {
       height: 54px;
       width: 100%;
@@ -88,6 +161,10 @@ export default {
     }
   }
   @media screen and (max-width: $breakpoint-small) {
-
+    .wrapper {
+      .phone-row {
+        font-size: 13px;
+      }
+    }
   }
 </style>

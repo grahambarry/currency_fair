@@ -159,6 +159,11 @@ export default {
     }
   }
   @media screen and (max-width: $breakpoint-small) {
-
+    .panel-container {
+      overflow: hidden;
+      width: 100%;
+      margin-top: 0px;
+      margin-left: 0px;
+    }
   }
 </style>

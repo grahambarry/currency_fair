@@ -74,6 +74,8 @@ export default {
     border: 1px solid $border-gray;
   }
   @media screen and (max-width: $breakpoint-small) {
-
+    .modal-panel {
+      width: calc(100% - 20px) !important;
+    }
   }
 </style>

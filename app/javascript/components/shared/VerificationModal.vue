@@ -23,11 +23,17 @@
       </template>
       <template #actions>
         <div class="actions-container">
-          <CfButton label="Verify Identity"
-                    :disabled="!canVerify"/>
-          <CfButton label="Cancel"
-                    secondary
-                    class="but-2"/>
+          <div class="buttons-wrap">
+            <CfButton label="Verify Identity"
+                      :disabled="!canVerify"
+                      v-on="$listeners"
+                      @click="$emit('close')"/>
+            <CfButton label="Cancel"
+                      secondary
+                      class="but-2"
+                      v-on="$listeners"
+                      @click="$emit('close')"/>
+          </div>
           <router-link :to="{ name: 'Transaction info' }" class="link">
             I can’t access this mobile device
           </router-link>
@@ -128,6 +134,10 @@ export default {
     height: 90px;
     border-top: 1px solid $border-gray;
     padding: 26px 31px 29px 28px;
+    .buttons-wrap {
+      @extend %amm-flex-row;
+      align-items: center;   
+    }
     .but-2 {
       margin-left: 16px;
     }
@@ -142,6 +152,32 @@ export default {
     }
   }
   @media screen and (max-width: $breakpoint-small) {
-
+    .header-container {
+      padding: 30px 10px 21px 10px;
+      .flex-row {
+        &.subtitle {
+          width: 100%;
+          font-size: 12px;
+        }
+        &.title {
+          font-size: 22px;
+        }
+      }
+    }
+    .body-container {
+      padding: 52px 10px 53px 10px;
+    }
+    .actions-container {
+      padding: 26px 10px 29px 10px;
+      flex-flow: column nowrap !important;
+      height: auto;
+      .link {
+        padding-top: 51px;
+        margin: 0 auto;
+      }
+      .buttons-wrap {
+        align-items: center;   
+      }
+    }
   }
 </style>

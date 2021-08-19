@@ -71,7 +71,6 @@ export default {
       this.emitValueAndCurrency()
     },
     emitValueAndCurrency () {
-      console.log('VALLS' + this.fromTo + this.currency + this.myValue)
       this.$emit('emittedValues', {fromTo: this.fromTo, currency: this.myCurrency, value: this.myValue})
     }
   },
