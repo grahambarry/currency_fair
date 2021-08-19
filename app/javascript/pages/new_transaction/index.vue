@@ -6,7 +6,9 @@
         <PromptText promptA="Let’s set up your transaction!"
                     promptB="Specify the amount to be sent or received."/>
         <section v-if="errored">
-          <p>We're sorry, we're not able to retrieve this information at the moment, please try back later</p>
+          <p>We're sorry, we're not able to retrieve this 
+             information at the moment, please try back later
+          </p>
         </section>
         <section v-else>
           <div v-if="loading">Loading...</div>
@@ -18,9 +20,10 @@
                      :currency2="currency2"
                      @emittedValues="setValues"/>
         </section>
-        <CfButton label="Next" 
+        <CfButton label="Next"
+                  route="Transaction info"
                   class="cf-button"
-                  @click="showModal = true"/>
+                  @click.prevent="showModal = true"/>
         <Footer :links="footerLinks"/>
       </div>
       <div class="right">

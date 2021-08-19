@@ -10,18 +10,27 @@
             Identity verification required
           </div>
           <div class="flex-row subtitle">
-            For your security, we ocassionally require you to verify your identity by entering a code sent to your mobile device.
+            For your security, we ocassionally require you to verify your identity by 
+            entering a code sent to your mobile device.
           </div>
         </div>
       </template>
       <template #body-modal>
         <div class="body-container">
-          Hello
+          <VerificationInputs @disable="canVerify = false"
+                              @emittedCode="handleVerificationCode"/>
         </div>
       </template>
       <template #actions>
         <div class="actions-container">
-          Hello2
+          <CfButton label="Verify Identity"
+                    :disabled="!canVerify"/>
+          <CfButton label="Cancel"
+                    secondary
+                    class="but-2"/>
+          <router-link :to="{ name: 'Transaction info' }" class="link">
+            I can’t access this mobile device
+          </router-link>
         </div>
       </template>
     </Modal>
@@ -31,17 +40,26 @@
 
 import PromptText from '~components/shared/PromptText.vue'
 import Modal from '~components/shared/Modal.vue'
+import CfButton from '~components/shared/CfButton.vue'
+import VerificationInputs from '~components/shared/VerificationInputs.vue'
 
 export default {
   name: 'VerificationModal',
   components: {
     PromptText,
-    Modal
+    Modal,
+    CfButton,
+    VerificationInputs,
   },
   props: {
     show: {
       type: Boolean,
       default: false
+    }
+  },
+  data() {
+    return {
+      canVerify: false,
     }
   },
   computed: {
@@ -52,6 +70,11 @@ export default {
       set(val) {
         return this.$emit('update:show', val)
       }
+    }
+  },
+  methods: {
+    handleVerificationCode(emittedCode) {
+      this.canVerify = true
     }
   }
 };
@@ -86,6 +109,36 @@ export default {
         line-height: 21px;
         color: #808080;
       }
+    }
+  }
+  .body-container {
+    box-sizing: border-box;
+    padding: 52px 103px 53px 93px;
+    height: 258px;
+    @extend %amm-flex-column;
+    background-color: #FBFCFC;
+    width: 100%;
+    flex-grow: 1;
+  }
+  .actions-container {
+    @extend %amm-flex-row;
+    align-items: center;
+    width: 100%;
+    background-color: #EDF0F3;
+    height: 90px;
+    border-top: 1px solid $border-gray;
+    padding: 26px 31px 29px 28px;
+    .but-2 {
+      margin-left: 16px;
+    }
+    .link {
+      margin-left: auto;
+      font-family: $PG-Medium;
+      font-size: 12px;
+      line-height: 27px;
+      text-decoration: none;
+      color: $link-color;
+
     }
   }
   @media screen and (max-width: $breakpoint-small) {

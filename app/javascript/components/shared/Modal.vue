@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     closeModal() {
-      this.$emit('close')
+      event.target.className === 'modal-bg' ? this.$emit('close') : ''
     }
   }
 };
@@ -63,6 +63,10 @@ export default {
     background: rgba(0, 0, 0, 0.75);
   }
   .modal-panel {
+    z-index: 21;
+    @extend %amm-flex-column;
+    justify-content: space-between;
+    align-items: center;
     min-height: 300px;
     background-color: white;
     border-radius: 4px;
