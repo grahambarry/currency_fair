@@ -3,6 +3,7 @@
 // FONTS
 @import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
 
 // Font Weight Import Loop
 $weights: 'Bold', 'Book', 'Medium';
@@ -20,6 +21,7 @@ $weights: 'Bold', 'Book', 'Medium';
 }
 
 $font-family-1: 'Questrial', sans-serif;
+$font-family-2: 'Montserrat', sans-serif;
 $PG-Bold: 'PostGrotesk-Bold', sans-serif;
 $PG-Book: 'PostGrotesk-Book', sans-serif;
 $PG-Medium: 'PostGrotesk-Medium', sans-serif;

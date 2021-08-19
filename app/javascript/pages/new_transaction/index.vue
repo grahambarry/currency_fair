@@ -176,9 +176,6 @@ export default {
   .overflow-x {
     overflow-x: auto;
   }
-  .media-sm {
-    display: none;
-  }
   .container {
     box-sizing: border-box;
     position: absolute;
@@ -217,6 +214,9 @@ export default {
       margin-top: 36px;
       display: flex;
       align-items: flex-start;
+    }
+    .media-sm {
+      display: none;
     }
   }
   @media screen and (max-width: $breakpoint-small) {

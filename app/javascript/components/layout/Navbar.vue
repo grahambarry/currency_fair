@@ -18,6 +18,13 @@
             Sign out
           </a>
         </li>
+        <li class="nav-item signin-but">
+          <router-link
+            :to="{ name: 'sign_up' }"
+            class="nav-link">
+            Sign up
+          </router-link>
+        </li>
       </ul>
     </div>
     <div class="spacer-20"></div>
@@ -142,6 +149,9 @@ export default {
         @extend %amm-flex-row;
         align-items: flex-end;
         cursor: pointer;
+        &.signin-but {
+          display: none;
+        }
         a.nav-link {
           position: relative;
           white-space: nowrap;

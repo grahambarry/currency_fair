@@ -7,7 +7,7 @@
         <Input v-model="form.password" type="password" label="Password"/>
         <div class="">
           <button
-            class=""
+            class="gb-button"
             @click.prevent="handleSignIn">
             Login
           </button>
@@ -80,6 +80,23 @@ export default {
       width: 340px;
       margin: 0 auto;
       margin-top: 210px;
+    }
+    .gb-button {
+      transition: all 2 ease-in-out;
+      height: 50px;
+      background-color: $midgreen;
+      width: 100%;
+      font-family: $font-family-2;
+      font-size: 19px;
+      line-height: 46px;
+      color: $litegreen;
+      border-radius: 4px;
+      border: 2px solid $midgreen;
+      cursor: pointer;
+      &:hover {
+        border: 2px solid $litegreen;
+        box-shadow: 0 2px 7px rgba(43, 97, 138, 0.12);
+      }
     }
   }
 </style>

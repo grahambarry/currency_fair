@@ -1,6 +1,7 @@
 import _map from 'lodash/map';
 import _extend from 'lodash/extend';
 import SignIn from 'pages/sign_in/new.vue';
+import SignUp from 'pages/sign_up/new.vue';
 import NewTransaction from 'pages/new_transaction/index.vue';
 
 let routes = [
@@ -28,6 +29,11 @@ let routes = [
     path: '/sign_out',
     name: 'sign_out',
     component: SignIn,
+  },
+  {
+    path: '/sign_up',
+    name: 'sign_up',
+    component: SignUp,
   },
 ];
 
