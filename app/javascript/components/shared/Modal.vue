@@ -76,6 +76,8 @@ export default {
   @media screen and (max-width: $breakpoint-small) {
     .modal-panel {
       width: calc(100% - 20px) !important;
+      overflow-y: auto;
+      overflow-x: hidden;
     }
   }
 </style>

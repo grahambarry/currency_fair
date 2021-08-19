@@ -157,15 +157,12 @@ export default {
       .flex-row {
         &.subtitle {
           width: 100%;
-          font-size: 12px;
-        }
-        &.title {
-          font-size: 22px;
+          font-size: 10px;
         }
       }
     }
     .body-container {
-      padding: 52px 10px 53px 10px;
+      padding: 31px 10px 53px 10px;
     }
     .actions-container {
       padding: 26px 10px 29px 10px;

@@ -3,10 +3,10 @@
     <div class="phone-row">
       <div class="text">
         Enter the code sent via SMS to
-        <span class="phone code">+353</span>
-        <span class="phone number">872251177</span>
-      </div>
-      <div class="row">
+        <div class="phone-wrapper">
+          <span class="phone code">+353</span>
+          <span class="phone number">872251177</span>
+        </div>
       </div>
     </div>
     <div class="inputs-row">
@@ -14,6 +14,9 @@
              :key="index" 
              ref="input" 
              maxlength="1"
+             type="tel" 
+             pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+             required
              @focus="clearValue(index)"
              @input="focusNext(index)">
     </div>
@@ -85,32 +88,45 @@ export default {
       justify-content: flex-start;
       font-family: $PG-Medium;
       font-size: 16px;
-      line-height: 27px;
+      line-height: 29px;
       margin-bottom: 24px;
       .text {
         @extend %amm-flex-row;
         color: #3C454B;
         white-space: nowrap;
+        width: 100%;
+      }
+      .phone-wrapper {
+        @extend %amm-flex-row;
+        box-sizing: border-box;
+        height: 29px;
+        background-color: #F4F4F4;
+        margin-left: auto;
+        border-radius: 2px;
+        overflow: hidden;
+        border: 1px solid $border-gray;
+        padding-right: 2px;
       }
       span.phone {
         background-color: #F4F4F4;
         transform: translateY(-3px);
-        margin-left: auto;
-        padding-top: 3px;
-        padding-bottom: 2px;
-        padding-left: 6px;
-        padding-right: 7px;
         color: #999999;
+        padding-right: 5px;
+        display: block;
+        margin-left: 5px;
+        height: 33px;
+        line-height: 33px;
         &.code {
-          margin-left: 7px;
-          border: 1px solid #DEDDDD;
+          display: block;
+          margin-left: 5px;
+          height: 33px;
+          line-height: 33px;
+          border-right: 1px solid #DEDDDD;
           background-color: #F2F1F1;
           border-radius: 2px 0px 0px 2px;
         }
         &.number {
-          border: 1px solid $border-gray;
           border-left-color: transparent;
-          border-radius: 0px 2px 2px 0px;
         }
       }
     }
@@ -162,8 +178,32 @@ export default {
   }
   @media screen and (max-width: $breakpoint-small) {
     .wrapper {
+      .text {
+        flex-flow: column wrap !important;
+        align-items: flex-start;
+      }
+      .phone-wrapper {
+        margin-left: unset !important;
+      }
       .phone-row {
         font-size: 13px;
+        .alt-actions {
+          flex-flow: column wrap;
+          align-items: flex-start;
+        }
+      }
+      .inputs-row {
+        input {
+          width: 15%;
+        }
+      }
+      .alt-actions {
+        flex-flow: column wrap !important;
+        width: 100%;
+        align-items: flex-start;
+        .action {
+          margin-top: 9px;
+        }
       }
     }
   }

@@ -98,5 +98,14 @@ export default {
         box-shadow: 0 2px 7px rgba(43, 97, 138, 0.12);
       }
     }
+    @media screen and (max-width: $breakpoint-phone) {
+      .signin-container {
+        width: calc(100vw - 20px);
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-top: 37vh;
+        transform: translateY(-50%)
+      }
+    }
   }
 </style>
